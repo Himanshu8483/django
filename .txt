@@ -1,0 +1,42 @@
+net required for pip file
+asyncronous getway request(asgi), sqlparse, timezone(tzdata) 
+sql is a structured query language 
+pip install (django in main folder)
+Successfully installed asgiref-3.8.1 django-5.1.7 sqlparse-0.5.3 tzdata-2025.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+./activate    always run on script directory to activate
+lib->siteproject all packages
+django dependent packeges( asgiref, sqlparse, tzdata) and django framework auto
+
+project directory make by :
+django-admin startproject <project-name>
+cd ../ single dot means current directory and double dot means previous directory   
+
+step:
+1. py -m venv env
+2. cd env/
+3. cd scripts/
+4. ./activate
+cd ../../
+pip install django 
+django-admin startproject project
+
+24 mar:
+
+outer folder structure (outer project): manage.py(brain or heart of django don't change anything) 
+manage.py (utility tools for administrative operation)
+and db.sqlite(default database : data store in tabular format) not in non tabular format(key value)
+    inner project folder ( inner project folder) init, asgi, settings, wsgi, urls
+relational database for memory not wasting and non relational database if increase column it will show some empty data so memory wastage
+non  relational me key value data  
+1 row is called 1 instance
+
+init.py always empty file (responsible to make package this folder)
+asgi.py: asyncronous server gatway interface(it takes at a time multiple request) (asyncronous): USE IN LIVE STREAMING, TRADING SITE, WEB SCHOKET, live cricket score
+wsgi.py: web server gatway interface (IT TAKES AT A TIME SINGLE REQUEST) (SYNCRONIOUSLY) (eg., normal site)
+(django supoports wsgi.py by-default)
+
+python manage runcode 8000 to run django
+
+settings.py: port enable or disable, and any risponsibility will manage 
+also describe all files in simple to make notes for interview also 
