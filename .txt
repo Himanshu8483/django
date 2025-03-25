@@ -40,3 +40,27 @@ python manage runcode 8000 to run django
 
 settings.py: port enable or disable, and any risponsibility will manage 
 also describe all files in simple to make notes for interview also 
+
+25 mar 
+PS D:\z_notes\django\create_project\env\Scripts> ./activate
+(env) PS D:\z_notes\django\create_project\env\Scripts> cd ../../     
+(env) PS D:\z_notes\django\create_project> cd .\project\
+(env) PS D:\z_notes\django\create_project\project> py .\manage.py runserver
+
+python-code             query           database 
+object relational method(orm)(py manage.py makemigrations : pythoncode to query) then query to database by: py manage.py migrade
+orm responsible for database show and query translate the code
+
+server break by ctrl + C
+sqlite viewer extension for sqlite in vscode
+(env) PS D:\z_notes\django\create_project\project> py .\manage.py migrate
+
+py manage.py startapp app
+app/
+->migrations/ : python code to query via makemigration for(name:initial0001.py)
+->__init__.py
+->admin.py
+->app.py 
+->module.py 
+->tests.py 
+->views.py 
