@@ -64,3 +64,170 @@ app/
 ->module.py 
 ->tests.py 
 ->views.py 
+
+
+
+**Django Project and App Management Notes**
+
+### 1. **Folder Structure**
+
+```
+env/
+project/
+  |-- app/
+  |-- project/
+  |-- manage.py
+  |-- db.sqlite3
+```
+
+**Inside App:**
+
+- `migrations/` (Database Queries)
+- `__init__.py` (Marks Directory as Package)
+- `admin.py` (Admin Interface Management)
+- `apps.py` (Application Configuration)
+- `models.py` (Database Models)
+- `tests.py` (Application Testing)
+- `views.py` (Logical Application Work)
+
+**Notes:**
+
+- Apps are connected to the project.
+- Avoid renaming generated files.
+
+---
+
+### 2. **Port Number Management in Django**
+
+#### **Static Port Change:**
+
+You can change the port statically by modifying the server run command in the following path:
+
+```
+env/lib/site-packages/django/core/management/commands/
+```
+
+1. open 40 line approx.
+2. Locate the line defining the default port:
+   ```python
+   default_port = '8000'
+   ```
+3. Change it to your desired port:
+   ```python
+   default_port = '8080'  # Example static port
+   ```
+4. Save the file and run the server using:
+   ```bash
+   python manage.py runserver
+   ```
+
+#### **Dynamic Port Management:**
+
+- You can specify a different port dynamically using the runserver command:
+
+```bash
+python manage.py runserver 8002
+```
+
+- This will start the server on `127.0.0.1:8002`.
+
+---
+
+### 3. **Basic Concepts**
+
+- **Create Project Environment**: Virtual environment created using `venv`
+- **Structure**:
+  - `env/lib/site-packages` (includes Django, Core Packages)
+  - Management commands with `manage.py`
+
+---
+
+### 4. **Dynamic Management with manage.py**
+
+- `manage.py` runs the server on port `8000` by default or on the specified port.
+- Multiple servers can run on different ports.
+- Entry Point for commands: `manage.py`
+
+**Server Concept:**
+
+- **WSGI (Web Server Gateway Interface)**: Interface for communication between web servers and Python applications.
+- Debug using `print()` in:
+  - `wsgi.py`
+  - `manage.py`
+  - `settings.py`
+
+**Request-Response Lifecycle:**
+
+- Request goes through WSGI -> Project (`settings.py`) -> Application Layer (Middleware) -> Response
+
+---
+
+### 5. **Create a Project and App**
+
+- **Create Project:**
+  ```bash
+  django-admin startproject project_name
+  ```
+- **Create App:**
+  ```bash
+  python manage.py startapp app_name
+  ```
+
+---
+
+### 6. **Virtual Environment Management**
+
+1. Create Environment:
+   ```bash
+   python -m venv env
+   ```
+2. Activate Environment:
+   ```bash
+   cd env/Scripts/
+   activate
+   ```
+3. Install Django:
+   ```bash
+   pip install django
+   ```
+
+---
+
+### 7. **Run Server**
+
+- Start Server:
+  ```bash
+  python manage.py runserver
+  ```
+- Check Port (Default: 127.0.0.1:8000)
+- If Red Color Error -> Port Conflict
+
+---
+
+### 8. **Database Management**
+
+- Migrate Changes:
+  ```bash
+  python manage.py migrate
+  ```
+- Make Migrations (Reflect App in DB):
+  ```bash
+  python manage.py makemigrations app_name
+  ```
+
+---
+
+### 9. **Interview Preparation Questions**
+
+- Explain the Django Project Structure.
+- What is the purpose of `manage.py`?
+- How does WSGI work in Django?
+- Describe the request-response lifecycle.
+- How to create and manage virtual environments?
+- How to troubleshoot server port conflicts?
+- Explain migrations and their role in Django.
+- How to connect an app to a project in Django?
+- What are the uses of `views.py`, `models.py`, and `admin.py`?
+- How can you customize the Django admin interface?
+- How to debug issues using print statements in Django?
+
