@@ -264,3 +264,19 @@ Successfully installed asgiref-3.8.1 django-5.1.7 sqlparse-0.5.3 tzdata-2025.2
 (env) PS D:\z_notes\django\landing_page> cd project
 (env) PS D:\z_notes\django\landing_page\project> py manage.py startapp app
 (env) PS D:\z_notes\django\landing_page\project> 
+
+incript method , 
+
+29 mar:
+response :
+render()
+redirect()
+{ inbuilt: from django.shortcut iport render, redirect}
+httpresponse()
+jsonresponse()
+{from django.http import httpresponse, jsonResponse}
+
+render()-> url to normal_page(.html)
+redirect()-> url to url 
+httpresponse()-> text content 
+jsonResponse()-> json data as a response 

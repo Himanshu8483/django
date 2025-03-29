@@ -1,2 +1,90 @@
-This is django landing page
-<h1>This is Home Page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="title">Doctor Care</title>
+  <link rel="icon" href="img/title.png">
+ 
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body{
+        font-size: 18px;
+        font-style: normal;
+    }
+
+</style>
+</head>
+<body  id="appointment" >
+   <div data-aos="fade-right" data-aos-duration="2000">
+    <div class="container">
+      <h1>This Is Landing Page of Django</h1>
+      <form align="center">
+        <div class="group">
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" placeholder="Enter your name">
+          <p id="errName" class="error"></p>
+        </div>
+
+        <div class="group">
+          <label for="phone">Phone Number:</label>
+          <input type="text" id="phone" placeholder="10-digit number">
+          <p id="errPhone" class="error"></p>
+        </div>
+        <div class="group">
+          <label for="age">Age:</label>
+          <input type="number" id="age" placeholder="Enter Age">
+          <p id="errAge" class="error"></p>
+        </div>
+
+        <div class="group">
+          <label for="treatment">Select Treatment:</label>
+          <select id="treatment">
+            <option value="">Choose Treatment</option>
+            <option value="General Checkup">General Checkup</option>
+            <option value="Dental Care">Dental Care</option>
+            <option value="Eye Checkup">Eye Checkup</option>
+            <option value="Skin Treatment">Skin Treatment</option>
+            <option value="Physiotherapy">Physiotherapy</option>
+            <option value="Other">Other</option>
+          </select>
+          <p id="errTreatment" class="error"></p>
+        </div>
+
+        <div class="group">
+          <label for="date">Appointment Date:</label>
+          <input type="date" id="date">
+          <p id="errDate" class="error"></p>
+        </div>
+
+        <div class="group">
+          <label for="time">Appointment Time:</label>
+          <input type="time" id="time">
+          <p id="errTime" class="error"></p>
+        </div>
+
+        <!-- <div class="group">
+          <label for="message">Message:</label>
+          <textarea id="message" placeholder="Enter your message"></textarea>
+        </div> -->
+
+        <input type="submit" class="btn" value="Book Appointment" onclick="return appointment()">
+      </form>
+    </div>
+  </div>
+
+
+<!-- alert library script  -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+   
+    </script>
+      <!-- AOS animation 1st link-->
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <!-- AOS animation 2nd link -->
+      <script>
+        AOS.init();
+      </script>
+      <script src="crud.js"></script>
+</body>
+</html>
