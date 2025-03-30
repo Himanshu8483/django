@@ -8,10 +8,6 @@ Successfully installed asgiref-3.8.1 django-5.1.7 sqlparse-0.5.3 tzdata-2025.1
 lib->siteproject all packages
 django dependent packeges( asgiref, sqlparse, tzdata) and django framework auto
 
-project directory make by :
-django-admin startproject <project-name>
-cd ../ single dot means current directory and double dot means previous directory   
-
 step:
 1. py -m venv env
 2. cd env/
