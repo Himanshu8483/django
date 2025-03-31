@@ -276,3 +276,21 @@ render()-> url to normal_page(.html)
 redirect()-> url to url 
 httpresponse()-> text content 
 jsonResponse()-> json data as a response 
+
+views.py heavy se rokne ke liye alag alag karte hai
+logics can be perform in views.py 
+
+difference to find python_dict and json_data:
+dict:
+''/""/"""/single, double or triple 
+True/False
+None
+data type: (dict)
+eg: data= {'name': True, 'age':False, 'quali':None}
+
+
+in json: "double only
+true/false 
+null
+b'' data type
+eg: {"name": true, "age": false, "quali": null}
