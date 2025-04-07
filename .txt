@@ -294,3 +294,112 @@ true/false
 null
 b'' data type
 eg: {"name": true, "age": false, "quali": null}
+
+1 april
+complete lifecycle:
+request-> wsgi.py-> settings.py->project/urls.py -> app/views.py ->models.py or templates/
+template as a response send to views.py then urls.py then settings.py then wsgi then response come
+views.py, models.py, templates/ are called mvt pattern 
+logic perform in views.html
+
+settings.py debug = true to see the error
+when makeing project work in development server :local system 
+python anywhere to host data
+when deploy the project debug = false make because user will see that error if server down
+pip only required net 
+Successfully installed asgiref-3.8.1 django-5.1.7 sqlparse-0.5.3 tzdata-2025.2
+
+url.py:
+path(route, fun_name or class_name, temp_related) from views.py   
+
+02 april 
+path with context which is in dictionary format 
+can only passed by dict format because key value pair for input type='text' name='name'>
+always button click method post because data will send in url if get method use 
+
+
+<h1>{{name}}</h1>
+
+cookies and session for client and server
+multiple data send :
+    path('cart/', views.cart, name='cart'),
+
+===============
+both side /home/ 
+http://127.0.0.1:8000/index/?%20name%20=%20Himanshu%20&%20city%20=Rewa
+http://127.0.0.1:8000/index/?name=Himanshu&city=Rewa
+GET
+<QueryDict: {'name': ['Himanshu'], 'city': ['Rewa']}>
+
+if this pass after refresh runserver from browser
+    print(request.method)
+    print(request.GET)
+    # return HttpResponse("<h1>Hello through Redirect</h1>")
+
+  request.GET.get('name')
+  request.GET(dict)
+  capital get is the url method of crud 
+  
+      x= request.GET.get('name')
+    y=request.GET.get('city')
+    print(x,y)
+  <QueryDict: {'name': ['Himanshu'], 'city': ['Rewa']}>
+Himanshu Rewa
+
+command line entry and exit point : manage.py 
+djangoo entry and exit point : wsgi
+wsgi is the server which give the response 
+
+.html
+1.template cutting: like a routing in react
+2. DTL tas
+3. DTL 
+template cutting work on dry pattern do not repeat yourself
+
+05 apr 
+template cutting:
+changed part :
+<html>
+<head>
+  <title>Document</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  navbar same on every page
+  content will be change on every page 
+  footer same on every page
+</body>
+</html>
+
+DTL-tags:
+      without closing  :--
+1.  {% extends %}
+ex. {% extends 'base.html%'}    // top postition.
+2. {% include %}    
+3. {% load %}   // for static file 
+4. {% url %}     // for url pattern
+5. {% csrt_token %}   // important for interview: cross site request for check fraud url so it use for security purpose
+6. {% empty %} // if url not have data then it run and give empty as result
+
+with closing :-- 
+{% block %} // for
+{% endblock %}  // for closing 
+{% with %}    // 
+{% endwith %}    // 
+{% if condition %}    // 
+{% endif %}    // 
+{% if condition %}
+{% if elif condition %}
+{% if else %}
+{% if endif %}
+{% if for i in collection %}
+{% empty %}     // not closing 
+{% endfor %}
+
+
+.gitignore : file make in project where env and project show 
+env.gitignore
+
+requirements.txt 
+
+

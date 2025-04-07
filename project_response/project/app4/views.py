@@ -5,3 +5,4 @@ def app4(request):
     data= {'name': 'Himanshu', 'age':20, 'quali':"Btech"}
     data= {'name': True, 'age':False, 'quali':None}
     return JsonResponse(data)
+    
