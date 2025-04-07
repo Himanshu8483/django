@@ -7,4 +7,4 @@ base.html(common) not share in views.py
 
 url pattern: <a href="{% url 'home'%}">home</a>a></a>
 name= match with url name 
-3rd parameter is related to template in urls.py 
+3rd parameter is related to template in urls.py  
