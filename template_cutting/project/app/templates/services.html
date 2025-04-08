@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content%}
+<h1>This is Services page</h1>
+ 
+ {% block title %} This is Services page {% endblock%}
+<a class="navbar-brand" href="{% url 'base' %}">Go to landing Page</a>
+
+    {% include 'base1.html' %}
+{% endblock %}

@@ -8,3 +8,59 @@ base.html(common) not share in views.py
 url pattern: <a href="{% url 'home'%}">home</a>a></a>
 name= match with url name 
 3rd parameter is related to template in urls.py  
+
+  <!-- Footer starts -->
+  <footer class="bg-dark text-white pt-4 mt-5">
+    <div class="container text-md-start">
+      <div class="row">
+        <!-- Column 1 -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold">YourSite</h6>
+          <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px"/>
+          <p>
+            This is a short description 
+          </p>
+        </div>
+  
+        <!-- Column 2 -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold">Links</h6>
+          <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px"/>
+          <p><a href="{% url 'home' %}" class="text-white">Home</a></p>
+          <p><a href="#" class="text-white">About</a></p>
+          <p><a href="#" class="text-white">Services</a></p>
+          <p><a href="#" class="text-white">Contact</a></p>
+        </div>
+  
+        <!-- Column 3 -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold">Resources</h6>
+          <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px"/>
+          <p><a href="#" class="text-white">Docs</a></p>
+          <p><a href="#" class="text-white">Blog</a></p>
+          <p><a href="#" class="text-white">FAQs</a></p>
+          <p><a href="#" class="text-white">Help</a></p>
+        </div>
+  
+        <!-- Column 4 -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <h6 class="text-uppercase fw-bold">Contact</h6>
+          <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px"/>
+          <p><i class="fas fa-home me-3"></i> City, State, Country</p>
+          <p><i class="fas fa-envelope me-3"></i> info@example.com</p>
+          <p><i class="fas fa-phone me-3"></i> +91 98765 43210</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Bottom bar -->
+    <div class="text-center p-3 bg-secondary">
+      © 2025 YourSite.com — All rights reserved.
+    </div>
+  </footer>
+  
+  <!-- Footer ends -->
+
+  encript type form 
+  name, email, contact, education: 
+  image, document 

@@ -20,5 +20,10 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.base, name="base"),
-    path('home/', views.home, name='home')      # this name = home must match at views.home function
+    path('home/', views.home, name='home'),      # this name = home must match at views.home function
+    path('about/', views.about, name='about') ,
+    path('contact/', views.contact, name='contact') ,
+    path('services/', views.services, name='services') ,
+    path('registration/', views.registration, name='registration') ,
+    path('login/', views.login, name='login') ,
 ]
