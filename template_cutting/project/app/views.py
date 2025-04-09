@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-
+    
 def base(request):
     return render(request, 'landing.html')
 
@@ -17,3 +17,9 @@ def registration(request):
     return render(request, 'registration.html')
 def login(request): 
     return render(request, 'login.html')
+
+def register(request):
+    print( " Register")
+    print(request.method)
+    print(request.POST)
+    print(request.FILES)
