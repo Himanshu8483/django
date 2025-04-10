@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
     
@@ -19,7 +20,20 @@ def login(request):
     return render(request, 'login.html')
 
 def register(request):
-    print( " Register")
     print(request.method)
     print(request.POST)
     print(request.FILES)
+    name = request.POST.get('username')
+    email = request.POST.get('email')
+    detail = request.POST.get('detail')
+    phone = request.POST.get('phone')
+    dob = request.POST.get('dob')
+    gender = request.POST.get('gender')
+    education = request.POST.getlist('subscribe')
+    profile_pic = request.FILES.get('profile-pic')      # _ used here because hyphon(-) cannot be used
+    resume = request.FILES.get('resume')
+    password = request.POST.get('password')
+    cpassword = request.POST.get('cpassword')
+    
+    print(name, email, detail, phone, dob, gender, education, profile_pic, resume, password, cpassword)
+    # return HttpResponse("Form submitted successfully")
