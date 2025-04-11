@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block title %} This is Home page {% endblock%}
+{% load static %}
 
 {% block content%}
-    <h1>This is Home page</h1>
 
+<img src="{% static 'image/1.jpg' %}" height="500px" alt="img">
+
+    <h1>This is Home page</h1>
 
 {% endblock %}
