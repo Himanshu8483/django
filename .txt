@@ -1,4 +1,77 @@
-post has text content
-file has binary data 
-static content: 
-all things use in html are static like css, js, images, audio, video 
+Django Basic Notes
+
+Django Overview
+
+• Python framework for web development.
+
+• Follows MVT (Model-View-Template) pattern.
+
+• Default database: SQLite3.
+
+• Supports MySQL and PostgreSQL.
+
+• Default port: 8000.
+
+MVT Pattern
+
+• Model: Handles database.
+
+• View: Contains logic.
+
+• Template: Manages frontend (using DTL).
+
+Databases
+
+• SQLite3 (default) for development.
+
+• Supports MySQL, PostgreSQL, Oracle.
+
+• Configure in settings.py using database credentials.
+
+Microservices
+
+• Flask: Lightweight, for small applications.
+
+• FastAPI: Fast and asynchronous API development.
+
+• CherryPy: Minimalistic web framework.
+
+MVT vs MVC
+
+• MVT (Model-View-Template) - Django follows this pattern. 
+
+o Model: Handles database (data storage).
+
+o View: Contains logic to process data.
+
+o Template: Displays the data using HTML.
+
+• MVC (Model-View-Controller) - Used in other frameworks like Flask. 
+
+o Model: Manages data and database.
+
+o View: Displays data using UI.
+
+o Controller: Handles user input and business logic.
+
+In Django, the Controller part is handled by the framework itself (Django’s built-in functions).
+
+Django ORM vs SQL
+
+• Django ORM (Object Relational Mapping)
+
+o Python-based way to interact with the database.
+
+o Example: 
+
+User.objects.create(name='John', age=25)
+
+• SQL (Structured Query Language)
+
+o Direct query to the database.
+
+o Example: 
+
+INSERT INTO User (name, age) VALUES ('John', 25);
+
+ORM is easier to write, maintain, and reduces errors compared to raw SQL.
