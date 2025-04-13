@@ -75,3 +75,82 @@ o Example:
 INSERT INTO User (name, age) VALUES ('John', 25);
 
 ORM is easier to write, maintain, and reduces errors compared to raw SQL.
+Django vs Flask vs FastAPI
+
+• Django: Best for large projects with pre-built features (Admin Panel, ORM).
+
+• Flask: Lightweight and flexible, ideal for small projects or APIs.
+
+• FastAPI: Best for real-time applications with excellent API support and speed.
+
+Virtual Environment Setup (Python)
+
+A virtual environment is a self-contained directory that contains Python installations and 
+
+packages, allowing you to manage dependencies for different projects.
+
+Commands to Create and Activate Virtual Environment
+
+1. Create Virtual Environment
+
+py -m venv env
+
+o py → Runs Python
+
+o -m venv → Module to create a virtual environment
+
+o env → Environment folder name
+
+2. Navigate to Environment Folder
+
+cd env
+
+cd Scripts
+
+3. Activate Virtual Environment
+
+./activate
+
+o (env) → Indicates the virtual environment is active.
+
+Fixing Execution Policy Issues
+
+If you face issues activating the environment due to restricted execution policies:
+
+1. Check Execution Policy (in Windows PowerShell run as Administrator)
+
+get-executionpolicy
+
+o It may show Restricted.
+
+2. Change Execution Policy (Run as Administrator in Windows PowerShell)
+
+set-executionpolicy unrestricted
+
+o Choose Y to confirm.
+
+Folder Structure of Virtual Environment
+
+• env/ → Root folder for environment 
+
+o Include/ → C/C++ packages
+
+o Lib/ → Python packages
+
+o Scripts/ → Executable files (activate)
+
+o pyvenv.cfg → Configuration file
+
+Interview Tips - Common Questions
+
+1. What is a Python virtual environment?
+
+o A virtual environment is a self-contained Python setup for project-specific 
+
+dependencies.
+
+2. Why use a virtual environment instead of installing globally?
+
+o It prevents package conflicts, ensures project isolation, and avoids system-level 
+
+changes.
