@@ -154,3 +154,99 @@ dependencies.
 o It prevents package conflicts, ensures project isolation, and avoids system-level 
 
 changes.
+Django Project Setup and Notes
+
+Prerequisites 
+
+ Python and Pip (Python's package manager) must be installed.
+
+Required Packages
+
+• asgiref: For asynchronous support (ASGI - Asynchronous Server Gateway Interface)
+
+• sqlparse: For SQL query parsing
+
+• tzdata: Provides timezone data
+
+• Django: The main framework for web development
+
+Installation Steps
+
+Create a Virtual Environment
+
+py -m venv env
+
+Activate the Virtual Environment
+
+.\env\Scripts\
+
+./activate
+
+cd ../../
+
+Install Django (in Main Folder)
+
+pip install django
+
+Verify Installation
+
+django-admin --version
+
+Create a Django Project
+
+Start a New Project
+
+django-admin startproject project_name
+
+Navigate to the Project Directory
+
+cd project_name
+
+How to Run Django
+
+• Use the following command to run the server on port 8000:
+
+python manage.py runserver
+
+• Access the project at http://127.0.0.1:8000.
+
+• Ctrl + C to stop the server.
+
+Directory Structure After Creation project_name 
+
+project_name/ (Outer Project)
+
+│
+
+├── manage.py # Command-line utility for managing the project
+├── project_name/ # Project settings and configurations
+
+│ ├── __init__.py # Marks this directory as a Python package
+
+│ ├── asgi.py # Entry point for ASGI applications
+
+│ ├── settings.py # Project settings
+
+│ ├── urls.py # URL routing
+
+│ ├── wsgi.py # Entry point for WSGI applications
+
+├── db.sqlite3 # Default Database
+
+Additional Notes
+
+• cd ../ → Move to the previous directory
+
+• cd ./ → Remain in the current directory
+
+• Dependencies like asgiref, sqlparse, and tzdata are installed automatically with Django.
+
+Managing Virtual Environment
+
+• Always run .\activate from the Scripts directory to activate the virtual environment.
+
+• All installed packages are available in lib\site-packages.
+
+Update Pip (optional)
+
+python.exe -m pip install --upgrade pip
