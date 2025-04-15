@@ -250,3 +250,315 @@ Managing Virtual Environment
 Update Pip (optional)
 
 python.exe -m pip install --upgrade pip
+Django Project Structure - Interview Notes
+
+Outer Project Structure
+
+•	manage.py
+
+o	Acts as the heart or brain of a Django project.
+
+o	Used as a utility tool for administrative operations (e.g., running the server, migrations).
+
+o	Do not modify it.
+
+•	db.sqlite3 (Default Database)
+
+o	SQLite is the default relational database in Django.
+
+o	Data is stored in a tabular format (rows and columns).
+
+o	Relational Database: Prevents memory wastage by storing structured data efficiently.
+
+o	Non-Relational Database: Uses key-value pair storage (e.g., NoSQL), leading to memory wastage if columns are added without data.
+
+o	Row: Referred to as an Instance in Django ORM.
+
+ 
+
+Inner Project Folder
+
+Contains essential files and configurations to manage the application.
+
+•	__init__.py
+
+o	An empty file that makes the directory a Python package.
+
+•	asgi.py (Asynchronous Server Gateway Interface)
+
+o	Handles multiple requests at a time (asynchronous).
+
+o	Suitable for real-time applications like: 
+
+Live Streaming, Trading Platforms, WebSockets, Live Cricket Score Updates.
+
+•	wsgi.py (Web Server Gateway Interface)
+
+o	Handles single requests at a time (synchronously).
+
+o	Suitable for normal websites and applications.
+
+o	Django supports WSGI by default.
+
+•	settings.py
+
+o	The core configuration file for the project.
+
+o	Manages: 
+
+	Port management
+
+	Application settings
+
+	Database configurations
+
+	Middleware and Installed Apps
+
+•	urls.py
+
+o	Handles URL routing.
+
+o	Maps URLs to views.
+
+ 
+
+Django Project Essentials – Quick Notes
+
+📂 File Location: settings.py
+
+📌 BASE_DIR
+
+•	BASE_DIR represents the root directory of your Django project.
+
+•	It helps in defining paths for templates, static files, database, and more.
+
+⚡ Secret Key
+
+•	SECRET_KEY = 'django-insecure-79zs...'
+
+•	Used for encryption (cookies, CSRF tokens, sessions).
+
+•	❌ Never expose in production! Use .env file or environment variables.
+
+🐞 Debug Mode
+
+•	DEBUG = True → Shows detailed errors (for development).
+
+•	DEBUG = False → Hides errors in production (for security).
+
+🌐 Allowed Hosts
+
+•	ALLOWED_HOSTS = [] → Defines which domains can access the app.
+
+•	Example for production: ['example.com', 'www.example.com'].
+
+ 
+
+📂 File Location: settings.py
+
+📦 Installed Apps
+
+•	INSTALLED_APPS → Lists all built-in and custom Django apps.
+
+•	Example:
+
+python
+
+CopyEdit
+
+INSTALLED_APPS = [
+
+    'django.contrib.admin',   # Admin Panel
+
+    'django.contrib.auth',    # Authentication System
+
+    'myapp',                  # Custom App
+
+]
+
+🧱 Middleware
+
+•	Middleware processes requests before they reach views.
+
+•	Example: CsrfViewMiddleware (prevents CSRF attacks).
+
+ 
+
+📂 File Location: project/urls.py
+
+📌 Root URL Configuration
+
+•	ROOT_URLCONF = 'project.urls' → Points to the main urls.py.
+
+•	Example URL mapping:
+
+python
+
+CopyEdit
+
+from django.urls import path
+
+from myapp import views
+
+
+
+urlpatterns = [
+
+    path('', views.home, name='home'),
+
+    path('about/', views.about, name='about'),
+
+]
+
+ 
+
+📂 File Location: settings.py
+
+🎭 Templates
+
+•	Stores HTML files for rendering the frontend.
+
+•	Example configuration:
+
+python
+
+CopyEdit
+
+TEMPLATES = [
+
+    {
+
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+
+        'DIRS': ['templates'],  # Custom templates directory
+
+        'APP_DIRS': True,
+
+    },
+
+]
+
+ 
+
+📂 File Location: wsgi.py & asgi.py
+
+🖥️ WSGI Application
+
+•	wsgi.py → Used for deploying Django apps with WSGI servers (Gunicorn, uWSGI).
+
+⚡ ASGI Application
+
+•	asgi.py → Supports real-time features (WebSockets, chat, live updates).
+
+ 
+
+📂 File Location: settings.py
+
+🗄️ Database Configuration
+
+•	Default: SQLite (db.sqlite3).
+
+•	Can switch to PostgreSQL, MySQL, etc.
+
+python
+
+CopyEdit
+
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.sqlite3',
+
+        'NAME': BASE_DIR / 'db.sqlite3',
+
+    }
+
+}
+
+🔒 Password Validators
+
+•	Ensures strong passwords (length, no common words, complexity).
+
+🌍 Internationalization & Time Zone
+
+•	LANGUAGE_CODE = 'en-us', TIME_ZONE = 'UTC'.
+
+🖼️ Static Files
+
+•	STATIC_URL = 'static/' → Stores CSS, JS, and images.
+
+🆔 Default Primary Key Field
+
+•	DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' → Default primary key type.
+
+ 
+
+📂 File Location: manage.py
+
+🧑‍💻 manage.py
+
+•	Runs Django commands like:
+
+bash
+
+CopyEdit
+
+python manage.py runserver      # Start server
+
+python manage.py migrate        # Apply database migrations
+
+python manage.py startapp myapp # Create a new app
+
+ 
+
+Final Revision Summary
+
+✔ manage.py → Runs Django commands.
+
+✔ wsgi.py → Deploys app with WSGI.
+
+✔ asgi.py → Supports real-time features.
+
+✔ urls.py → Handles URL routing.
+
+✔ settings.py → Configures database, security, static files, and middleware.
+
+💡 Tip: Set DEBUG = False in production for security. 🚀
+
+ 
+
+✅ Summary for Revision
+
+o	BASE_DIR: Project path management.
+
+o	SECRET_KEY: Used for security, keep it private.
+
+o	DEBUG: Enables detailed error reports in development.
+
+o	ALLOWED_HOSTS: Controls which domains can access your site.
+
+o	INSTALLED_APPS: Pre-installed and custom apps.
+
+o	MIDDLEWARE: Security and functionality management.
+
+o	ROOT_URLCONF: Directs to URL routing file.
+
+o	TEMPLATES: Manages HTML templates for frontend.
+
+o	WSGI_APPLICATION: Interface for deploying the app.
+
+o	DATABASES: Configures database using SQLite by default.
+
+o	AUTH_PASSWORD_VALIDATORS: Ensures strong passwords.
+
+o	LANGUAGE_CODE & TIME_ZONE: Controls language and time settings.
+
+o	STATIC_URL: Path for serving static files.
+
+
+
+
+
+
+
