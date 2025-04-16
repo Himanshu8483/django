@@ -556,6 +556,268 @@ o	LANGUAGE_CODE & TIME_ZONE: Controls language and time settings.
 
 o	STATIC_URL: Path for serving static files.
 
+Django Project and App Structure Notes
+
+Creating an App
+
+Start a New App:
+
+python manage.py startapp app_name
+
+App Structure:
+
+app_name/
+
+├── __init__.py
+
+├── admin.py        # Manage data via Admin Panel
+
+├── apps.py         # App configuration
+
+├── migrations/     # Tracks database changes
+
+├── models.py       # Database Models (ORM)
+
+├── tests.py        # Testing application
+
+├── views.py        # Logic for handling requests
+
+Explanation:
+
+admin.py → Register models to view in Admin Panel.
+
+apps.py → Configures app settings.
+
+migrations/ → Contains files that record model changes (e.g., 0001_initial.py).
+
+models.py → Define database tables using ORM.
+
+tests.py → Write unit tests.
+
+views.py → Contains functions or class-based views for request handling.
+
+ 
+
+Migrations
+
+ORM (Object-Relational Mapping)
+
+Converts Python code (models) into SQL queries.
+
+Communicates with the database using Python objects.
+
+Steps for Migrations:
+
+Create Migrations:
+
+python manage.py makemigrations
+
+Converts models to SQL queries.
+
+Apply Migrations:
+
+python manage.py migrate
+
+Applies the SQL queries to the database.
+
+Example Workflow:
+
+python manage.py makemigrations   # Generate migration files
+
+python manage.py migrate           # Apply migrations to database
+
+Tip: Use SQLite Viewer Extension in VS Code to view database content.
+
+ 
+
+Importing and Using
+
+In Admin Panel
+
+First, register the model in admin.py:
+
+from django.contrib import admin
+
+from .models import ModelName
+
+
+
+admin.site.register(ModelName)
+
+Then run:
+
+python manage.py createsuperuser
+
+python manage.py runserver
+
+Access the Admin Panel at http://127.0.0.1:8000/admin
+
+In Views
+
+Example function in views.py:
+
+from django.http import HttpResponse
+
+
+
+def home(request):
+
+    return HttpResponse("Hello, Django!")
+
+Add it to urls.py:
+
+from django.urls import path
+
+from .views import home
+
+
+
+urlpatterns = [
+
+    path('', home),
+
+]
+
+ 
+
+Quick Summary for Interview Prep:
+
+Command	Description
+
+python manage.py startproject project_name	Create a new Django project
+
+python manage.py startapp app_name	Create a new app within the project
+
+python manage.py runserver	Run the development server
+
+python manage.py makemigrations	Convert model changes into SQL queries
+
+python manage.py migrate	Apply SQL queries to the database
+
+python manage.py createsuperuser	Create an admin user
+
+python manage.py shell	Open an interactive Python shell with project settings loaded
+
+ 
+
+Port Number Management in Django
+
+Static Port Change:
+
+You can change the port statically by modifying the server run command in the following path:
+
+env/lib/site-packages/django/core/management/commands/
+
+1.	open 40 line approx.
+
+2.	Locate the line defining the default port:
+
+3.	default_port = '8000'
+
+4.	Change it to your desired port:
+
+5.	default_port = '8080'  # Example static port
+
+6.	Save the file and run the server using:
+
+7.	python manage.py runserver
+
+Dynamic Port Management:
+
+•	You can specify a different port dynamically using the runserver command:
+
+python manage.py runserver 8002
+
+•	This will start the server on 127.0.0.1:8002.
+
+ 
+
+Basic Concepts
+
+•	Create Project Environment: Virtual environment created using venv
+
+•	Structure:
+
+o	env/lib/site-packages (includes Django, Core Packages)
+
+o	Management commands with manage.py
+
+ 
+
+Dynamic Management with manage.py
+
+•	manage.py runs the server on port 8000 by default or on the specified port.
+
+•	Multiple servers can run on different ports.
+
+•	Entry Point for commands: manage.py
+
+Server Concept:
+
+•	WSGI (Web Server Gateway Interface): Interface for communication between web servers and Python applications.
+
+•	Debug using print() in:
+
+o	wsgi.py
+
+o	manage.py
+
+o	settings.py
+
+ 
+
+Create a Project and App
+
+•	Create Project:
+
+•	django-admin startproject project_name
+
+•	Create App:
+
+•	python manage.py startapp app_name
+
+ 
+
+ Virtual Environment Management
+
+1.	Create Environment:
+
+2.	python -m venv env
+
+3.	Activate Environment:
+
+4.	cd env/Scripts/
+
+5.	activate
+
+6.	Install Django:
+
+7.	pip install django
+
+ 
+
+Run Server
+
+•	Start Server:
+
+•	python manage.py runserver
+
+•	Check Port (Default: 127.0.0.1:8000)
+
+•	If Red Color Error -> Port Conflict
+
+ 
+
+Database Management
+
+•	Migrate Changes:
+
+•	python manage.py migrate
+
+•	Make Migrations (Reflect App in DB):
+
+•	python manage.py makemigrations app_name
+
 
 
 
