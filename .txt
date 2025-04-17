@@ -819,6 +819,274 @@ Database Management
 •	python manage.py makemigrations app_name
 
 
+Django MVT Pattern
+
+•	MVT stands for Model, View, and Template.
+
+•	Model-> Database Structure, Views->Logic, Templates->DTL(for html).
+
+•	It is a design pattern used by Django for web application development.
+
+Components of MVT
+
+1.	Model (Python):
+
+o	Manages the database.
+
+o	Represents data in a structured format.
+
+o	Example: Tables, fields, and relationships.
+
+2.	View (Python):
+
+o	Contains business logic.
+
+o	Handles HTTP requests and responses.
+
+o	Interacts with models and renders templates.
+
+3.	Template (HTML):
+
+o	Defines the structure and layout of the web pages.
+
+o	Uses Django Template Language (DTL) for dynamic content.
+
+ 
+
+Basic Project Structure in Django
+
+•	Project files include:
+
+o	settings.py: Configures the project.
+
+o	urls.py: Maps URLs to views.
+
+o	views.py: Contains view functions.
+
+o	templates/: Stores HTML files.
+
+ 
+
+Django Workflow Example
+
+1.	Create a Project
+
+	django-admin startproject project_name
+
+2.	Create an App
+
+python manage.py startapp app_name
+
+3.	Add App to Installed Apps
+
+o	Go to settings.py
+
+o	Add 'app_name', to INSTALLED_APPS
+
+4.	Define URL Patterns
+
+o	urls.py in project folder:
+
+from django.urls import path
+
+from app_name import views
+
+
+
+urlpatterns = [
+
+    path('', views.home, name='home'),
+
+]
+
+5.	Create a View
+
+o	views.py in the app folder:
+
+python
+
+CopyEdit
+
+from django.shortcuts import render
+
+
+
+def home(request):
+
+    return render(request, 'home.html')
+
+6.	Create Templates
+
+o	In your app folder:
+
+app_name/
+
+└── templates/
+
+    └── home.html
+
+o	Example home.html:
+
+<h1>Welcome to My Website!</h1>
+
+ 
+
+
+
+✅ Form Attributes
+
+•	action → URL to send form data
+
+•	method → GET or POST request
+
+•	enctype → Encode data (e.g., multipart/form-data for file uploads)
+
+•	target → Open result in new tab or same tab
+
+•	autocomplete → Enable/disable autofill (on/off)
+
+•	novalidate → Disable form validation
+
+•	name → Form identifier
+
+ 
+
+✅ Table Attributes
+
+•	border → Table border
+
+•	cellpadding → Space inside cells
+
+•	cellspacing → Space between cells
+
+•	width → Table width
+
+•	height → Table height
+
+•	align → Align table (left, right, center)
+
+•	bgcolor → Background color
+
+•	colspan → Merge columns
+
+•	rowspan → Merge rows
+
+✅ **Attributes of <thead>, <tbody> and <tfoot>
+
+•	These elements don’t have many special attributes. They mainly help in organizing table content.
+
+•	align → Align content (left, right, center)
+
+•	valign → Vertical alignment (top, middle, bottom)
+
+•	bgcolor → Background color (Not recommended, use CSS instead)
+
+ 
+
+✅ Attributes of <th> (Table Header) and <td> (Table Data)
+
+These two elements share similar attributes.
+
+•	colspan → Merges columns ("column span")
+
+o	Example: <td colspan="2"> Merges 2 columns
+
+•	rowspan → Merges rows ("row span")
+
+o	Example: <td rowspan="3"> Merges 3 rows
+
+•	align → Horizontal alignment (left, right, center)
+
+•	valign → Vertical alignment (top, middle, bottom)
+
+•	bgcolor → Background color
+
+•	width → Set column width
+
+•	height → Set row height
+
+•	abbr → Abbreviation for accessibility (e.g., screen readers)
+
+•	scope → Defines which cells a header applies to (col, row, colgroup, rowgroup)
+
+o	Example: <th scope="col"> for column header
+
+ 
+
+✅ Attributes of <tr> (Table Row)
+
+•	align → Align row content (left, right, center)
+
+•	valign → Vertical alignment (top, middle, bottom)
+
+•	bgcolor → Row background color
+
+•	height → Row height
+
+
+
+ 
+
+✅ Image Attributes
+
+•	src → Image URL
+
+•	alt → Alternative text (if image fails to load)
+
+•	width → Image width
+
+•	height → Image height
+
+•	title → Tooltip on hover
+
+•	loading → Lazy or eager loading
+
+•	crossorigin → For external images (anonymous or use-credentials)
+
+ 
+
+✅ Anchor (Link) Attributes
+
+•	href → URL to navigate
+
+•	target → Open link in new tab (_blank) or same tab (_self)
+
+•	title → Tooltip on hover
+
+•	rel → Relationship (e.g., nofollow, noopener)
+
+•	download → Download file instead of opening
+
+•	type → Specify link type (e.g., text/html)
+
+ 
+
+✅ Input Attributes
+
+•	type → Text, password, email, number, file, etc.
+
+•	placeholder → Hint inside input field
+
+•	value → Default value
+
+•	name → Input field identifier
+
+•	required → Makes field mandatory
+
+•	disabled → Disable input
+
+•	readonly → Make input non-editable
+
+•	maxlength → Limit character count
+
+•	min / max → Set number or date range
+
+•	pattern → Regex for validation
+
+•	autocomplete → Enable/disable autofill
+
+•	checked → Pre-select checkboxes or radio buttons
+
 
 
 
