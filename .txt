@@ -1573,6 +1573,290 @@ python manage.py collectstatic
 
 Note: Always use internet for pip file only in Django.
 
+Django Request-Response Lifecycle
+
+1.	Request → Sent by the user (browser/client).
+
+2.	WSGI (wsgi.py) → Handles the request and passes it to Django.
+
+3.	Settings (settings.py) → Configures the project (DB, debug, installed apps, etc.).
+
+4.	URLs (project/urls.py) → Matches the request URL to a view function/class.
+
+5.	Views (app/views.py) → Processes logic and interacts with:
+
+o	Models (models.py) → Handles database operations.
+
+o	Templates (templates/) → Renders HTML response.
+
+6.	Response → Sent back to the user via views → urls → settings → wsgi.
+
+
+
+MVT Pattern in Django
+
+•	Models (models.py) → Database structure.
+
+•	Views (views.py) → Business logic.
+
+•	Templates (templates/) → Frontend (HTML).
+
+Note: Logic is handled in views.py.
+
+
+
+Debug Mode (settings.py)
+
+•	DEBUG = True → Shows errors (for development).
+
+•	DEBUG = False → Hides errors (for production).
+
+
+
+Development & Deployment
+
+•	Development: Local system (Run python manage.py runserver).
+
+•	Deployment: Use hosting services like PythonAnywhere, set DEBUG = False.
+
+
+
+Django Installation Example
+
+pip install django
+
+pip freeze  # To check installed packages
+
+Example Output:
+
+Successfully installed asgiref-3.8.1 django-5.1.7 sqlparse-0.5.3 tzdata-2025.2
+
+
+
+URLs in Django (urls.py)
+
+from django.urls import path
+
+from app.views import function_name  # Import views
+
+
+
+urlpatterns = [
+
+    path('route/', function_name, name='optional_name'),
+
+]
+
+
+
+Format: path('route/', function_name_or_class, template_related).
+
+
+
+	
+
+
+
+Django Dictionary Format Notes 
+
+1. Form Data Submission (POST Method)
+
+# In an HTML form, always use POST method for submission.
+
+# If GET method is used, data will be sent in the URL, which is not secure.
+
+
+
+<form method="post">
+
+    <input type="text" name="name">
+
+    <button type="submit">Submit</button>
+
+</form>
+
+Why use POST?
+
+•	POST method does not expose data in the URL.
+
+•	GET method appends data to the URL, which is insecure for sensitive information.
+
+ 
+
+2. Rendering Dynamic Data in Django
+
+a. Passing Data as Dictionary (Key-Value Pair)
+
+Django uses key-value pairs (dictionaries) for passing data from the backend (views) to the frontend (templates).
+
+•	Dictionaries ({key: value}) are easy to manage:
+
+o	key is the variable name used in the template.
+
+o	value is the actual data being passed.
+
+def home(request):
+
+    data = {'name': 'Himanshu', 'age': 22, 'quali': 'MTech'}
+
+    return render(request, 'home.html', data)
+
+Template (home.html):
+
+<h1>{{ name }}</h1>
+
+<h2>{{ age }}</h2>
+
+<h3>{{ quali }}</h3>
+
+
+
+Django automatically replaces {{ name }} with "Himanshu" because it matches the key in the dictionary.
+
+Django uses double curly braces ({{ }}) for variable interpolation, meaning it replaces the placeholder with actual values from the backend.
+
+Context in Django
+
+🔹 Context is a dictionary that passes data from views to templates.
+
+•	The context dictionary is passed inside the render() function.
+
+	Eg., return render(request, 'home.html', context)
+
+•	Data(context) is then accessed in the Django template using {{ key }}.
+
+✅ Why Context?
+
+•	Context connects Django views and templates.
+
+•	It allows dynamic content instead of hardcoding values in HTML.
+
+
+
+ 
+
+b. Sending Multiple Data Items (List of Dictionaries)
+
+def home(request):
+
+    data = [
+
+        {'name': 'Himanshu', 'age': 22, 'quali': 'BTech'},
+
+        {'name': 'Vijay', 'age': 23, 'quali': 'BTech'},
+
+        {'name': 'Jatin', 'age': 24, 'quali': 'MA'}
+
+    ]
+
+    return render(request, 'home.html', {'key1': data})
+
+Template:
+
+<h5>{{ key1 }}</h5>  <!-- Displays the entire list -->
+
+
+
+How to Loop Through the List in HTML
+
+{% for person in key1 %}
+
+    <p>Name: {{ person.name }}, Age: {{ person.age }}, Qualification: {{ person.quali }}</p>
+
+{% endfor %}
+
+
+
+What is {% for person in key1 %} {% endfor %}?
+
+This is a Django template tag used for looping over a list.
+
+✅ Why Use This Loop?
+
+•	If key1 contains multiple dictionaries (list of people), looping is required to display each person's details.
+
+•	Without {% for %} {% endfor %}, only one value could be displayed at a time.
+
+
+
+ 
+
+3. Passing Multiple Dictionaries
+
+def cart(request):
+
+    data = [{'name': 'Himanshu', 'age': 22}]
+
+    user = {'city': 'Rewa', 'name': 'Vijay'}
+
+    return render(request, 'home.html', {'key2': data, 'key3': user})
+
+Template:
+
+<h5>{{ key2 }}</h5>  <!-- List data -->
+
+<h5>{{ key3 }}</h5>  <!-- Dictionary data -->
+
+<h5>{{ key3.name }}</h5>  <!-- Access specific dictionary key -->
+
+Breakdown:
+
+•	key2 contains a list of dictionaries.
+
+•	key3 contains a single dictionary { 'city': 'Rewa', 'name': 'Vijay' }.
+
+•	To access name from key3, use {{ key3.name }}.
+
+ 
+
+4. Cookies and Sessions (Client & Server Data Storage)
+
+a. Cookies (Stored in Browser)
+
+def set_cookie(request):
+
+    response = HttpResponse("Cookie Set")
+
+    response.set_cookie('username', 'Himanshu', max_age=3600)  # Expires in 1 hour
+
+    return response
+
+def get_cookie(request):
+
+    username = request.COOKIES.get('username', 'Guest')
+
+    return HttpResponse(f'Hello, {username}')
+
+Cookies are stored on the client-side and sent with each request.
+
+b. Sessions (Stored in Server)
+
+def set_session(request):
+
+    request.session['user'] = 'Himanshu'
+
+    return HttpResponse("Session Set")
+
+def get_session(request):
+
+    user = request.session.get('user', 'Guest')
+
+    return HttpResponse(f'Welcome, {user}')
+
+Sessions are stored on the server-side and more secure than cookies.
+
+ 
+
+Summary Table:
+
+Feature	Type	Storage	Security
+
+Cookies	Client-Side	Browser	Less Secure
+
+Sessions	Server-Side	Server	More Secure
+
+
+
 
 
 
