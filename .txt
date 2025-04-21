@@ -1,4 +1,2390 @@
-post has text content
-file has binary data 
-static content: 
-all things use in html are static like css, js, images, audio, video 
+# PYTHON NOTES 
+# C python Compiler use 
+# ADVANTAGES OF PYTHON:
+# 1. Easy to learn due to simple syntax.
+# 2. Dynamically typed language: No need to define variable types.
+# 3. Extensive library support (e.g., NumPy, Pandas, Flask).
+# 4. Compatible with other programming languages.
+# 5. Platform-independent: Write once, run anywhere.
+# 6. Strong community support (e.g., Stack Overflow).
+
+# DISADVANTAGES OF PYTHON:
+# 1. Slower than compiled languages (e.g., C++).
+# 2. Prone to runtime errors due to dynamic typing.
+# 3. Cannot create web applications directly; requires third-party frameworks like Django or Flask.
+#    Explanation: Python itself lacks built-in web development capabilities. 
+#    To create web applications, developers use frameworks like Django (full-stack) or Flask (lightweight).
+# 4. Relatively weak in memory management compared to lower-level languages.
+
+# TOKENS IN PYTHON:
+# A token is the smallest unit in a program. Examples include:
+# 1. Keywords (e.g., if, else, while).
+# 2. Identifiers (e.g., variable names).
+# 3. Literals (e.g., numbers, strings).
+# 4. Operators (e.g., +, -, *, /).
+# 5. Delimiters (e.g., :, {}, []).
+
+# Input in Python is always taken as a string by default
+print("Hello.........")
+
+# Taking input and checking its type
+y = input("Enter any number: ")
+print(y)
+print(type(y))  # <class 'str'>
+
+# Converting input to integer
+x = int(input("Enter any number: "))
+print(x)
+print(type(x))  # <class 'int'>
+
+# COMMONLY USED FUNCTIONS:
+# print(): Outputs data to the console.
+print("Hello, World!")  # Output: Hello, World!
+
+# input(): Takes user input as a string.
+name = "John"  # Simulating input for understanding
+print("Hello,", name)  # Output: Hello, John
+
+# type(): Returns the data type of a variable.
+x = 10
+print(type(x))  # Output: <class 'int'>
+
+# id(): Returns the memory address of an object.
+print(id(x))  # Example Output: 140718351963152 (unique memory address)
+
+# max(), min(), sum(), len():
+numbers = [5, 10, 15, 20]
+print(max(numbers))  # Output: 20
+print(min(numbers))  # Output: 5
+print(sum(numbers))  # Output: 50
+print(len(numbers))  # Output: 4
+
+# CONVERTING PYTHON SOURCE CODE TO BYTECODE AND EXECUTABLE:
+# 1. Python source code (.py) -> Bytecode (.pyc) -> Machine code (via PVM and JIT).
+
+# Example of creating bytecode:
+# Command: py -m py_compile yourfile.py
+# This generates a compiled .pyc file in the __pycache__ folder.
+
+# 2. Creating an executable file:
+# Command: pyinstaller --onefile yourfile.py
+# Steps:
+# a) Install PyInstaller: `pip install pyinstaller`.
+# b) Run: `pyinstaller --onefile yourfile.py`.
+# c) Find the executable in the `dist` folder.
+
+# WORKING WITH PICKLING AND UNPICKLING:
+# Pickling: Converting Python objects to byte streams (used for saving data).
+# Unpickling: Loading data from byte streams back into Python objects.
+
+# BASIC COMMANDS AND USAGE:
+# 1. Open terminal: Press Ctrl + Backtick (`) in most IDEs like VS Code.
+# 2. Execute Python file: `python filename.py` or `py filename.py`.
+# 3. Change directory in terminal: `cd path_to_directory`.
+# 4. Check Python version: `python --version`.
+
+# PYTHON'S INTERNAL WORKINGS:
+# 1. Python is an interpreted + compiled language:
+#    - Source code (.py) is first compiled to Bytecode (.pyc).
+#    - The Bytecode is interpreted by the Python Virtual Machine (PVM) and executed.
+# 2. JIT (Just-In-Time Compiler):
+#    - Part of some Python implementations (e.g., PyPy).
+#    - Converts Bytecode to machine code during runtime for better performance.
+
+# PYTHON AS AN OPEN-SOURCE BACKEND LANGUAGE:
+# 1. Open-source: Freely available with a strong community.
+# 2. Backend development: Used for APIs, databases, and server-side logic.
+#    Frameworks include Flask, Django, and FastAPI.
+
+# PYTHON FILE EXECUTION SUMMARY:
+# 1. Source Code (.py) -> Compiled to Bytecode (.pyc) -> Interpreted by PVM.
+# 2. Use `pyinstaller` to create a standalone executable from a Python script.
+#    This allows you to run Python programs on systems without Python installed.
+
+
+# CONCLUSION:
+# 1. Python is versatile and widely used for web development, data science, and automation.
+# 2. Understanding Python's internal workflow (Source Code -> Bytecode -> Machine Code) is crucial for interviews.
+# 3. Practice the commands, frameworks, and functions above to strengthen your knowledge.
+
+
+# COMMONLY USED FUNCTIONS:
+# print(): Outputs data to the console.
+print("Hello, World!")  # Output: Hello, World!
+
+# input(): Takes user input.
+# Uncomment the next line to test:
+# name = input("Enter your name: ")  # Enter: John
+name = "John"  # Simulated input
+print("Hello,", name)  # Output: Hello, John
+
+# type(): Shows the data type of a variable.
+x = 10
+print(type(x))  # Output: <class 'int'>
+
+# id(): Displays the memory address of a variable.
+print(id(x))  # Example Output: 140718351963152
+
+# max(), min(), sum(), len():
+numbers = [5, 10, 15, 20]
+print(max(numbers))  # Output: 20
+print(min(numbers))  # Output: 5
+print(sum(numbers))  # Output: 50
+print(len(numbers))  # Output: 4
+
+# WORKING WITH KEYWORDS
+import keyword
+
+# Lists of Python keywords and soft keywords
+x = keyword.kwlist
+y = keyword.softkwlist
+
+# Uncomment to view keywords
+# print(x)      # ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+# print(y)      # ['_', 'case', 'match', 'type']
+
+# Count of keywords
+print("Number of keywords:", len(x))        # Number of keywords: 35
+print("Number of soft keywords:", len(y))       # Number of soft keywords: 4
+
+# PUNCTUATIONS:
+# Punctuations in Python are used as delimiters, operators, etc.
+import string
+print(string.punctuation)  
+# Output: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+print(len(string.punctuation))  # Output: 32
+
+# IDENTIFIERS:
+# Rules for naming:
+# 1. Must begin with a letter or an underscore.
+# 2. Cannot start with a number.
+# 3. Can contain letters, numbers, and underscores.
+# 4. Case-sensitive (e.g., "Name" and "name" are different).
+
+_x = 10  # Valid
+print(_x)  # Output: 10
+
+# Invalid identifier example:
+# x y = 10  # Space not allowed in identifiers
+
+him_8483 = 'himanshu_kushwaha'
+print("Identifier him_8483:", him_8483)
+print("Memory address of him_8483:", id(him_8483))
+
+# OPERATORS:
+# 1. Arithmetic Operators:
+# +, -, *, /, %, // (floor division), ** (exponent)
+a, b = 10, 3
+print(a + b)  # Output: 13
+print(a - b)  # Output: 7
+print(a * b)  # Output: 30
+print(a / b)  # Output: 3.3333333333333335
+print(a // b)  # Output: 3
+print(a ** b)  # Output: 1000
+
+# 2. Comparison Operators:
+# ==, !=, >, <, >=, <=
+x, y = 10, 20
+print(x == y)  # Output: False
+print(x != y)  # Output: True
+
+# 3. Logical Operators:
+# and, or, not
+print(x < y and y > 15)  # Output: True
+print(not (x > y))       # Output: True
+
+# 4. Bitwise Operators:
+# &, |, ~, ^, <<, >>
+x, y = 5, 3  # Binary: x=101, y=011
+print(x & y)  # Output: 1 (binary AND)
+print(x | y)  # Output: 7 (binary OR)
+# Applying the bitwise NOT operator '~' (to get the 2's complement)
+# The ~ operator inverts the bits, and then adding 1 gives the negative version (2's complement).
+# ~num is equivalent to -num - 1
+print(~x)     # Output: -6 (bitwise NOT)
+print(x << 1) # Output: 10 (left shift)     num*2^no. of shift
+print(x >> 1) # Output: 2 (right shift)     num/2^no. of shift
+
+# Comparing addresses using 'is' and comparing values using '=='
+
+x = [10]  # A list with one element 10
+y = [10]  # Another list with the same element 10
+
+# '==' compares the values inside the objects, so both lists have the same value
+print(x == y)  # True: because the values inside both lists are equal (10)
+
+# 'is' compares the memory addresses (i.e., if both variables point to the same object in memory)
+print(x is y)  # False: because they are two different objects in memory, even though their values are same.
+
+# NUMBER SYSTEMS:
+# Types: Binary (0b), Octal (0o), Decimal, Hexadecimal (0x)
+x = 10
+print(bin(x))  # Output: 0b1010
+print(oct(x))  # Output: 0o12
+print(hex(x))  # Output: 0xa
+
+# DATA TYPES AND LITERALS:
+# 1. Numeric Types: int, float, complex
+x = 10
+y = 3.14
+z = 1 + 2j
+print(type(x))  # Output: <class 'int'>
+print(type(y))  # Output: <class 'float'>
+print(type(z))  # Output: <class 'complex'>
+
+# 2. String:
+string = "Hello, Python!"
+print(type(string))  # Output: <class 'str'>
+
+# 3. List:
+my_list = [1, 2, 3, "Python"]
+print(my_list)       # Output: [1, 2, 3, 'Python']
+print(type(my_list)) # Output: <class 'list'>
+
+# 4. Tuple:
+my_tuple = (1, 2, 3, "Python")
+print(my_tuple)       # Output: (1, 2, 3, 'Python')
+print(type(my_tuple)) # Output: <class 'tuple'>
+
+# 5. Dictionary:
+my_dict = {"name": "John", "age": 30}
+print(my_dict)       # Output: {'name': 'John', 'age': 30}
+print(type(my_dict)) # Output: <class 'dict'>
+
+# 6. Set:
+my_set = {1, 2, 3, 2, "Python"}
+print(my_set)       # Output: {1, 2, 3, 'Python'} (unique values only)
+print(type(my_set)) # Output: <class 'set'>
+
+# 7. Frozenset:
+my_frozenset = frozenset([1, 2, 3, "Python"])
+print(my_frozenset)       # Output: frozenset({1, 2, 3, 'Python'})
+print(type(my_frozenset)) # Output: <class 'frozenset'}
+
+# Set: A set is mutable, meaning you can add or remove elements from a set after it is created.
+# Frozenset: A frozenset is immutable, meaning once it's created, you cannot modify it (i.e., no adding or removing elements).
+
+
+# Python: Call by Value vs. Call by Reference vs. Call by Object Reference
+
+# Python does not use "Call by Value" or "Call by Reference" in the traditional sense.
+# Instead, it uses "Call by Object Reference," which means:
+# - If you pass a mutable object (like list, dict), modifications inside the function will affect the original object.
+# - If you pass an immutable object (like int, str, tuple), modifications inside the function will not affect the original object.
+
+# Mutable and Immutable Object Types in Python
+# Immutable objects:
+# Once created, their memory address (id) does not change, even if assigned to new variables.
+
+# Integer Example:
+x = 10
+y = 10
+print("Integer:")
+print(id(10))  # Memory address of literal 10
+print(id(x))   # Memory address of variable x (same as 10)
+print(id(y))   # Memory address of variable y (same as 10)
+
+# String Example:
+x = "Him"
+y = "Him"
+print("\nString:")
+print(id(x), id(y))  # Both x and y point to the same memory address since strings are immutable.
+
+# Tuple Example:
+x = (10, 20, 30, 'Him')
+y = (10, 20, 30, 'Him')
+print("\nTuple:")
+print(id(x), id(y))  # Both x and y point to the same memory address since tuples are immutable.
+
+# Mutable objects:
+# Their memory address changes for different instances, even if the content is identical.
+
+# List Example:
+l1 = [10, 20, 30, 'Him']
+l2 = [10, 20, 30, 'Him']
+print("\nList:")
+print(id(l1), id(l2))  # Different memory addresses because lists are mutable.
+
+# Dictionary Example:
+d1 = {'name': 'Him', 'age': 37}
+d2 = {'name': 'Him', 'age': 37}
+print("\nDictionary:")
+print(id(d1), id(d2))  # Different memory addresses because dictionaries are mutable.
+
+# Set Example:
+s1 = {10, 20, 30, 'Him'}
+s2 = {10, 20, 30, 'Him'}
+print("\nSet:")
+print(id(s1), id(s2))  # Different memory addresses because sets are mutable.
+print(s1, s2)          # Set elements may be displayed in a different order.
+
+
+The key difference between a set and a frozenset in Python lies in their mutability and usage:
+
+# Set
+# Mutable: A set can be modified after its creation (e.g., adding or removing elements).
+# Unordered: The order of elements is not guaranteed, and it may change as the set is modified.
+# Unique Elements: Sets only allow unique elements (no duplicates).
+# Operations: You can perform operations like adding (add()), removing (remove()), and updating elements.
+# Use Cases: Use sets when you need a collection of unique items that you may modify (e.g., dynamic membership testing, removing duplicates).
+
+# Frozenset Example:
+fx = frozenset({10, 20, 30, 'Him'})
+fy = frozenset({10, 20, 30, 'Him'})
+print("\nFrozenset:")
+print(fx, fy)          # Order remains consistent, but the object is immutable.
+print(id(fx), id(fy))  # Memory addresses are different even though frozensets are immutable.
+
+# Frozenset
+# Immutable: A frozenset cannot be modified after its creation.
+# Unordered: Like sets, the order of elements is not guaranteed.
+# Unique Elements: Frozensets also allow only unique elements.
+# Operations: Since frozensets are immutable, you cannot add, remove, or modify elements. However, you can perform set operations like union, intersection, and difference.
+# Use Cases: Use frozensets when you need a collection of unique items that should remain constant and hashable (e.g., keys in dictionaries or elements in other sets).
+
+# Indexing in Collections
+# Used to fetch specific elements in sequences like lists, strings, tuples.
+
+# Positive Indexing:
+# - Starts from 0.
+# - Write direction: Left to Right.
+# - Read direction: Left to Right.
+# - Stop point: end - 1.
+# - First object is accessed with index 0.
+
+# Negative Indexing:
+# - Starts from -1.
+# - Write direction: Left to Right.
+# - Read direction: Right to Left.
+# - Stop point: end + 1.
+# - Last object is accessed with index -1.
+
+# Syntax for Indexing:
+# collection.index('object')          # Finds the index of the first occurrence.
+# collection.index('object', start, stop)  # Searches within a range.
+
+# Example:
+lst = [10, 20, 30, 40, 50]
+print("\nIndexing Example:")
+print("Positive Indexing:", lst[0], lst[1])  # Access using positive indexes.
+print("Negative Indexing:", lst[-1], lst[-2])  # Access using negative indexes.
+
+# Indexing and Slicing in Python
+
+# Indexing: It is used to access an element from an ordered collection (string, list, tuple).
+# It is not supported by unordered collections (set, frozenset, dictionary).
+# Syntax for indexing:
+# collection.index('obj')
+# collection.index('obj', start_point)
+# collection.index('obj', start, end)
+
+# Example with a string:
+str1 = 'python'
+print(str1.index('h'))  # Output: 3 (index of 'h')
+print(str1.index('p', 0, 1))  # Output: 0 (valid range is start to end-1)
+# print(str1.index('p', 1))  # Error: 'p' is not found from index 1 to the end
+print(str1.index('python'))  # Output: 0 ('python' starts at index 0 as a whole string)
+
+# Accessing elements by index:
+print(str1[0])  # Output: 'p' (first element)
+print(str1[-1])  # Output: 'n' (last element using negative indexing)
+
+# Using max() function:
+print(max(str1))  # Output: 'y' (max based on ASCII value)
+
+# Example with a list:
+l1 = [10, 20, 'Him', -1, 'and', 40]
+print(l1.index('Him'))  # Output: 2
+print(l1.index(10, 0))  # Output: 0
+print(l1.index('Him', 1, 4))  # Output: 2
+
+# Example with a tuple:
+tup = (10, 20, 'Him', -1, 'and', 40)
+print(tup.index('Him'))  # Output: 2
+print(tup.index(10, 0))  # Output: 0
+print(tup.index('Him', 1, 4))  # Output: 2
+
+# Slicing: Used to extract a portion of a collection.
+# Syntax: collection[start:stop:step/Jump/Direction]
+
+#  for Positive Step:
+# start: Starting index (inclusive, defaults to 0 if not provided).
+# stop: Ending index (exclusive, defaults to the end of the collection if not provided).
+# step: The interval or direction (defaults to +1 if not provided).
+
+#  for Negative Step:
+# start: Starting index (inclusive, defaults to -1 if not provided, i.e., the last element of the collection).
+# stop: Ending index (exclusive, defaults to one before the first element of the collection, i.e., -len(collection) - 1).
+# step: The interval or direction (negative, must be explicitly provided, e.g., -1).
+# - For a collection of length n, it means -n - 1.
+# - Going one before the first means an index of -n - 1.
+
+# Rules for slicing:
+# 1. Check the direction of the step.
+#    - If empty, step defaults to +1 (positive direction).
+#    - If step is positive, slicing works from left to right.
+#    - If step is negative, slicing works from right to left.
+# 2. Check the start to stop direction:
+#    - If step and start to stop directions match, slicing produces output.
+#    - If they don’t match, slicing returns an empty result.
+
+# Examples of slicing with a string:
+str1 = 'python'
+print(str1[::-1])  # Output: 'nohtyp' (reverse string because step is -1)
+print(str1[0::-1])  # Output: 'p' (start at 0, step is -1, so only one element)
+print(str1[0::1])  # Output: 'python' (start from 0, step is +1)
+print(str1[::])  # Output: 'python' (default start, stop, and step)
+print(str1[0:-1])  # Output: 'pytho' (stop at -1, exclusive)
+print(str1[5:5])  # Output: '' (empty because start and stop are the same)
+print(str1[-3:5])  # Output: 'ho' (start at -3, stop at 5, step defaults to +1)
+print(str1[5:-3])  # Output: '' (empty because step direction conflicts)
+print(str1[1:5:3])  # Output: 'yo' (start at 1, stop at 5, step is +3)
+print(str1[-1:0])  # Output: '' (empty because step defaults to +1 but direction conflicts)
+
+# Examples of slicing with a list:
+l1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(l1[-8:-1:2])  # Output: [2, 4, 6, 8] (start at -8, stop at -1, step is +2)
+# Example :
+l1=[10,20,2,4,6,8,10,20,30]
+print(l1[1:7:-1])       # [] empty 
+print(l1[::][::-1][1:7][::-1])      # [2, 4, 6, 8, 10, 20]
+
+# Notes:
+# - Always consider the direction of slicing (step and start/stop).
+# - Positive step works left to right; negative step works right to left.
+# - Stop index is exclusive.
+# - If start == stop, the slice is always empty because the slicing operation doesn't include the stop index.
+
+# Summary Table: If start and stop indices are empty, slicing works based on the step's direction:
+# Parameter	Default for step > 0	Default for step < 0
+# start	      0 (beginning)	         -1 (last element)
+# stop	   len(collection) (end)	-len(collection) - 1
+# step	          +1	                   -1
+
+# Data Types in Python
+
+# Numeric Types: Integer, Float, Complex
+x = 10            # Integer
+y = 20.           # Float (due to the decimal point)
+print(type(x))    # Output: <class 'int'>
+print(type(y))    # Output: <class 'float'>
+print(type(x / y)) # Division always results in float -> <class 'float'>
+z = x * y
+print(type(z))    # Multiplication of int and float gives float -> <class 'float'>
+
+# Complex Numbers
+x = 10 + 3j       # Complex number (10 is real, 3j is imaginary)
+y = 20.01 + 3j    # Another complex number
+print(type(x / y)) # Output: <class 'complex'> (complex division)
+
+# String Data Type
+# Strings in Python are immutable and can use single or double quotes
+x = 'Him'         # Single-quoted string
+y = "ANSHU"       # Double-quoted string
+print(x + y)      # String concatenation: Output -> 'HimANSHU'
+print(type(x + y))# Output: <class 'str'>
+
+# Inbuilt Functions in Python
+x = 'python'      # String for demonstration
+print(x)          # Output: python
+# input()          # Used to take user input (commented to avoid interruption)
+# print(input("Enter Name: ")) # Takes input from the user and displays it
+print(type(x))    # Output: <class 'str'> (type of the variable)
+print(id(x))      # Returns unique memory address of the variable
+print(type('10')) # Output: <class 'str'> ('10' as string)
+print(max(x))     # Finds the max character ('y' in 'python')
+print(len(x))     # Finds the length of the string: Output -> 6
+print(x.index('y')) # Finds the index of 'y' in 'python': Output -> 1
+
+# Functions vs. Methods
+
+# Functions: General-purpose and work on inputs
+print(len("hello")) # Function directly called, returns length of string
+
+# Methods: Called on objects (associated with specific data types)
+x = "hello"        # String object
+print(x.upper())   # Converts string to uppercase: Output -> 'HELLO'
+# Note: Methods use dot (.) notation and depend on the data type
+
+# Summary:
+# 1. Functions like len(), print(), input() are called directly.
+# 2. Methods like str.upper(), list.append() are called on specific objects.
+
+# Key Data Types:
+# - Numeric: int, float, complex
+# - String: str (no char type; single character is also a string)
+# - Collection types: list, tuple, dict, set, frozenset
+# - Boolean: bool (True/False)
+
+# Examples to explore more:
+# - List: Mutable collection: [1, 2, 3]
+# - Tuple: Immutable collection: (1, 2, 3)
+# - Dictionary: Key-value pairs: {"key": "value"}
+# - Set: Unique, unordered collection: {1, 2, 3}
+# - Frozenset: Immutable set: frozenset({1, 2, 3})
+
+
+# 🔹 Quick Trick to Remember
+# 1️⃣ If the object is mutable (list, set, dict), the method changes it directly.
+# 2️⃣ If the object is immutable (string, tuple, int, frozenset), the method returns a new one.
+# 3️⃣ Lists, Sets, and Dicts change directly (methods return None) 
+# 4️⃣ Strings, Tuples, Integers, and Frozensets never change (methods return new objects) 
+# String Methods
+str1 = 'I Love python'  # Sample string to apply methods
+
+# Convert the string to lowercase
+print(str1.lower())  # Output: 'i love python'
+
+# Convert the string to uppercase
+print(str1.upper())  # Output: 'I LOVE PYTHON'
+
+# Capitalize the first letter of each word
+print(str1.title())  # Output: 'I Love Python'
+
+# Capitalize only the first letter of the string
+print(str1.capitalize())  # Output: 'I love python'
+
+# Swap uppercase to lowercase and vice versa
+print(str1.swapcase())  # Output: 'i lOVE PYTHON'
+
+# Find the index of the first occurrence of 'p'
+print(str1.find('p'))  # Output: 7 (index of 'p' in the string)
+
+# Find the index of 'x' (not found, returns -1)
+print(str1.find('x'))  # Output: -1 (not found in the string)
+
+# Find the index of the first occurrence of 'L'
+print(str1.index('L'))  # Output: 2 (index of 'L')
+# Uncomment the next line to test when substring is not found
+# print(str1.index('x'))  # Raises ValueError (substring not found)
+
+# Split the string into a list of words (default split on spaces)
+print(str1.split())  # Output: ['I', 'Love', 'python']
+
+# Split the string into parts based on 'o'
+print(str1.split('o'))  # Output: ['I L', 've pyth', 'n']
+
+# Split the string into only 1 part based on 'o'
+print(str1.split('o', 1))  # Output: ['I L', 've python']
+
+# Count how many times 'o' appears in the string
+print(str1.count('o'))  # Output: 2 (there are 2 'o' in the string)
+
+# List example
+l1 = ['Himanshu', 'Kushwaha', 'in Python']  # List of strings
+
+# Join the list elements with a space in between
+print(' '.join(l1))  # Output: 'Himanshu Kushwaha in Python'
+
+# Check the type of the joined result (it becomes a string)
+print(type(' '.join(l1)))  # Output: <class 'str'>
+
+# List is a collection that can store homogeneous or heterogeneous data
+# Example of homogeneous list:
+homogeneous_list = [1, 2, 3, 4]  # All integers
+print(homogeneous_list)  # Output: [1, 2, 3, 4]
+
+# Example of heterogeneous list:
+heterogeneous_list = [1, 'Python', 3.14, True]  # Mixed data types
+print(heterogeneous_list)  # Output: [1, 'Python', 3.14, True]
+
+# Functions (e.g., len(), max(), sum()):
+# Standalone utilities that work on collections or other objects.
+# Called with the collection as an argument: function(collection).
+
+# Methods (e.g., .append(), .remove(), .update()):
+# Specific to a particular type of collection (e.g., list, set).
+# Called directly on the collection object: collection.method().
+
+# del Statement:
+# Deletes a collection or specific elements from a collection.
+
+# Functions
+s = "hello"
+print(len(s))  # Function: Length of the string => 5
+
+# Methods
+print(s.upper())  # Method: Converts to uppercase => "HELLO"
+print(s.replace("h", "H"))  # Method: Replace 'h' with 'H' => "Hello"
+
+# `del`
+# Strings are immutable; you cannot delete a part of them directly.
+del s  # Deletes the entire string object
+# print(s)  # Raises an error because 's' is deleted
+
+# Functions
+l = [1, 2, 3]
+print(len(l))  # Length of the list => 3
+print(max(l))  # Maximum value => 3
+print(sum(l))  # Sum of elements => 6
+
+# Methods
+l.append(4)  # Adds 4 to the end of the list
+print(l)  # Output: [1, 2, 3, 4]
+l.remove(2)  # Removes the first occurrence of 2
+print(l)  # Output: [1, 3, 4]
+
+# `del`
+del l[0]  # Deletes the first element
+print(l)  # Output: [3, 4]
+del l  # Deletes the entire list
+
+# List: An ordered, mutable collection in Python.
+# It supports indexing, slicing, and can hold heterogeneous elements (e.g., int, float, str).
+# Lists are represented using square brackets [] with comma-separated values.
+
+# Example of list creation
+x = [10]  # Single element list
+y = [10]  # Another single element list
+print(id(x), id(y))  # Different memory addresses (mutable objects have different IDs)
+
+# Example of a heterogeneous list
+my_list = [10, 1.5, 'Him']
+print(my_list)  # Output: [10, 1.5, 'Him']
+print(type(my_list))  # Output: <class 'list'>
+
+# Inbuilt functions for lists
+# Works for homogeneous lists (elements of the same type like all integers or floats)
+l1 = [1, 3, 2.5, 11]
+l2 = [10, 30, 1, 2]
+
+print(max(l1))  # Max value: 11
+print(min(l1))  # Min value: 1
+print(sum(l1))  # Sum: 17.5
+print(len(l1))  # Length: 4
+print(id(l1), type(l2))  # Memory ID of l1 and type of l2
+print(sum(l1 + l2))  # Sum of combined lists: 60.5
+
+# Common methods of lists
+# append(): Add one item to the end of the list
+# sort(): Sort the list in ascending order
+# extend(): Add multiple items to the end of the list
+# insert(): Add one item at a specified position
+# pop(): Remove and return the last item
+# remove(): Remove a specific item
+# reverse(): Reverse the list order
+# clear(): Remove all items but keep the list object
+# copy(): Create a shallow copy of the list (different memory address)
+# count(): Count occurrences of an item
+# index(): Find the index of the first occurrence of an item
+
+# Example usage of methods
+l3 = [11, 32]
+print(id(l3))  # Memory ID of the list
+print(id(l3.copy))  # Memory ID of the copy method (different)
+
+# List operations
+l4 = [10, 10.5, 'Him', 2]
+x = (10, 20, 30, 40)  # Tuple
+l1.append(x)  # Append tuple to the list
+print(l1)  # Output: [1, 3, 2.5, 11, (10, 20, 30, 40)]
+
+x = 10, 'Him'  # Another tuple
+l1.append(x)  # Append tuple
+print(l1)  # Output: [1, 3, 2.5, 11, (10, 20, 30, 40), (10, 'Him')]
+
+x = [10, 20, 10]  # Another list
+l1.append(x)  # Append list
+print(l1)  # Output: [1, 3, 2.5, 11, (10, 20, 30, 40), (10, 'Him'), [10, 20, 10]]
+
+x = 'Him'  # String
+l1.extend(x)  # Extend the list by iterating through the string
+print(l1)  # Output: [1, 3, 2.5, 11, (10, 20, 30, 40), (10, 'Him'), [10, 20, 10], 'H', 'i', 'm']
+
+# Insert: Add an item at a specific position
+l1.insert(0, 'Hello')  # Insert 'Hello' at the beginning
+print(l1)  # Output: ['Hello', 1, 3, 2.5, 11, (10, 20, 30, 40), (10, 'Him'), [10, 20, 10], 'H', 'i', 'm']
+
+# List: collection of elements in a single object.
+# Lists are mutable, ordered collections, support indexing and slicing.
+l1 = [10, 20, 11, 12.4, 1, 3]
+print(l1)  # [10, 20, 11, 12.4, 1, 3]
+
+# Reverse the list
+# print(l1.reverse())  # none because reverse() method does not create a new reversed list. It modifies the original list and returns None.
+l1.reverse()
+print(l1)  # [3, 1, 12.4, 11, 20, 10]
+
+# Sort the list in ascending order
+l1.sort()
+print(l1)  # [1, 3, 10, 11, 12.4, 20]
+
+# Sort the list in descending order
+# 🔹 Why Doesn't l3.sort().reverse() Work?
+# l3.sort() sorts the list in place but returns None.
+# Then, calling .reverse() on None gives an AttributeError.
+
+# l1.sort(reverse=True)     # or
+l1.sort()
+l1.reverse()
+print(l1)  # [20, 12.4, 11, 10, 3, 1]
+
+# Remove the last element
+l1.pop()
+print(l1)  # [20, 12.4, 11, 10, 3]
+
+# Remove a specific element (12.4)
+l1.remove(12.4)
+print(l1)  # [20, 11, 10, 3]
+
+# Clear all elements in the list
+l1.clear()
+print(l1)  # []
+
+# Copy a list
+l1 = [10, 20, 11, 12.4, 1, 3]
+l2 = l1.copy()      # creates a new list with the same elements but does not modify the original list.
+print(l2)  # [10, 20, 11, 12.4, 1, 3]
+
+# Count occurrences of an element
+print(l1.count(20))  # 1
+
+# Find the index of an element
+print(l1.index(3))  # 5
+
+# Tuple: collection of elements in a single object.
+# Ordered collection, indexing and slicing supported, immutable.
+# Represented with () and comma-separated elements.
+t1 = (10, 20, 30, 40, 15)
+print(t1)  # (10, 20, 30, 40, 15)
+
+# Tuples are faster than lists due to immutability and require less memory.
+import sys
+x = ""
+print(sys.getsizeof(x))  # 41
+y = []
+print(sys.getsizeof(y))  # 56
+z = ()
+print(sys.getsizeof(z))  # 40
+
+# Built-in tuple functions
+print(max(t1))  # 40
+print(min(t1))  # 10
+print(sum(t1))  # 115
+print(len(t1))  # 5
+print(id(t1))           # 1729469192432
+print(type(t1))         # <class 'tuple'>
+
+# Tuple indexing and counting
+print(t1.index(30))  # 2
+print(t1.count(10))  # 1
+print(t1[-2])  # 40
+
+# Dictionary in Python
+
+## Key Points:
+# - A dictionary is a collection of **key-value pairs**.
+# - **Indexing and slicing** are not supported.
+# - Keys must be **unique**, but values can be **duplicate**.
+# - Dictionaries are **mutable**.
+# - Represented using `{}` with elements separated by commas `,`.
+# - Dictionaries are a **sequential collection**.
+
+### Syntax:
+d1 = {'key1': 'value1', 'key2': 'value2', 'key3': 'value3'}
+## Example:
+d1 = {'name': 'Him', 'age': 22, 'quali': 'B.Tech'}
+print(d1)  # {'name': 'Him', 'age': 22, 'quali': 'B.Tech'}
+## In-Built Functions for Dictionaries:
+# 1. **`max()`**: Returns the maximum key (based on dictionary keys alphabatically).
+# 2. **`min()`**: Returns the minimum key (based on dictionary keys alphabatically).
+# 3. **`len()`**: Returns the number of key-value pairs.
+# 4. **`type()`**: Returns the type of the object.
+# 5. **`id()`**: Returns the memory address of the dictionary.
+Example:
+print(max(d1))  # quali
+print(min(d1))  # age
+print(len(d1))  # 3
+print(type(d1)) # <class 'dict'>
+print(id(d1))   # e.g., 2517969919616
+
+## In-Built Methods for Dictionaries:
+
+### 1. `clear()`:
+# Removes all elements from the dictionary.
+d1.clear()
+print(d1)  # {}
+
+### 2. `copy()`:
+# Creates a shallow copy of the dictionary.
+d2 = d1.copy()
+print(d2)  # {'name': 'Him', 'age': 22, 'quali': 'B.Tech'}
+
+### 3. `fromkeys()`:
+# Creates a new dictionary with keys from a list and a specified default value.
+l1 = ['name', 'email', 'contact']
+d2 = dict.fromkeys(l1)
+print(d2)  # {'name': None, 'email': None, 'contact': None}
+
+d3 = dict.fromkeys(l1, 100)        # pass only maximum 2 arguments : If you want different values for each key in the dictionary, dict.fromkeys() won't work because it only assigns one default value to all keys.
+print(d3)  # {'name': 100, 'email': 100, 'contact': 100}
+print(l1)       # ['name', 'email', 'contact'] not changed
+### 4. `get()`:
+# Returns the value for a specified key. Returns `None` if the key does not exist.
+print(d1.get('name'))  # 'Him'
+
+### 5. `items()`:
+# Returns a view object with key-value pairs as tuples inside a list-like structure.
+print(d1.items())  # dict_items([('name', 'Him'), ('age', 22), ('quali', 'B.Tech')])    : d1.items() returns a view object, which behaves like a list of tuples.
+
+### 6. `values()`:
+# Returns a view object with all values.
+print(d1.values())  # dict_values(['Him', 22, 'B.Tech'])
+
+### 7. `keys()`:
+# Returns a view object with all keys.
+print(d1.keys())  # dict_keys(['name', 'age', 'quali'])
+
+### 8. `pop(key)`:
+# Removes the specified key and returns its value.
+# 💡 dict.pop(key) removes key and returns the value if the key exists; otherwise, it raises a KeyError.
+print(d1.pop('name'))  # 'Him'
+print(d1)  # {'age': 22, 'quali': 'B.Tech'}
+
+### 9. `popitem()`:
+# Removes and returns the last inserted key-value pair as a tuple.
+print(d1.popitem())  # e.g., ('quali', 'B.Tech')
+print(d1)  # {'name': 'Him', 'age': 22}
+
+### 10. `setdefault()`:
+# Returns the value of a key if it exists. If not, inserts the key with a specified value. not insert if already assigned key of that name with any value. setdefault at most 2 arguments.
+d1.setdefault('place', 'Rewa')        # because of attribute we use comma(,)
+print(d1)  # {'name': 'Him', 'age': 22, 'quali': 'B.Tech', 'place': 'Rewa'}
+
+### 11. `update()`:
+# Updates the dictionary with key-value pairs from another dictionary or iterable.
+d2 = {'course': 'FSD'}
+d1.update(d2)
+print(d1)  # {'name': 'Him', 'age': 22, 'quali': 'B.Tech', 'course': 'FSD'}
+
+# Set in Python
+
+# Collection of unique elements.
+# Unordered collection, indexing and slicing not supported & collection of unique elements.
+# Mutable in nature, represented with {} and comma-separated elements.
+
+# Example:
+my_set = {'HIMANSHU', 10, 20, 'Jatin', 30, 40, 'Yash'}
+print(my_set)       # {'Jatin', 20, 'HIMANSHU', 40, 10, 30, 'Yash'}
+print(type(my_set)) # <class 'set'>
+
+# Functions: max, min, type, id, len, sum
+s1 = {'Himanshu', 'Yash', 'Jatin'}
+s2 = {10, 20, 30, 40.5, 50}
+
+print(max(s1), max(s2))  # Yash 50
+print(min(s1), min(s2))  # Himanshu 10
+print(type(s1), type(s2)) # <class 'set'> <class 'set'>
+print(id(s1), id(s2))    # Unique IDs for the sets
+print(len(s1), len(s2))  # 3 5
+print(sum(s2))           # 150.5
+
+# Normal Operations: copy, clear, add, update, pop, remove, discard
+
+s1_copy = s1.copy()       # {'Yash', 'Himanshu', 'Jatin'}
+s1.clear()                # set()
+s1.add(50)                # {50, 'Himanshu', 'Jatin', 'Yash'}
+s2.add(50)                # {50, 20, 40.5, 10, 30} (adds only unique elements)
+
+l1 = [2, 4, 6, 8, 10]
+s1.update(l1)             # {2, 4, 6, 8, 10, 'Himanshu', 'Jatin', 'Yash'} : iterate on each element
+s1.pop()                  # Random element removed
+s2.remove(50)             # Removes 50 from the set
+
+# s2.remove(50)           # Error, as 50 is already removed
+s2.discard(30)            # Safely removes 30; no error if not present
+
+print(s2)                 # Final state of s2
+
+# Mathematical Operations:
+A = {1, 2, 3, 4, 5, 6}
+B = {3, 6, 7, 8}
+
+print(A.union(B))          # {1, 2, 3, 4, 5, 6, 7, 8}
+print(A.intersection(B))   # {3, 6}
+print(A)                   # {1, 2, 3, 4, 5, 6} (unchanged)
+print(B)                   # {3, 6, 7, 8} (unchanged)
+
+A.intersection_update(B)   # Modifies A to keep only common elements
+print(A)                   # {3, 6}
+print(B)                   # {3, 6, 7, 8} (unchanged)
+
+# Difference 
+# eg., (Elements in A but not in B)
+A = {1, 2, 3, 4, 5, 6}
+B = {3, 6, 7, 8}
+print(A.difference(B))     # {1, 2, 4, 5}
+A.difference_update(B)     # Modifies A
+print(A)                   # {1, 2, 4, 5}
+
+# Symmetric Difference (Elements unique to either A or B (not in both))
+A = {1, 2, 3, 4, 5, 6}
+B = {3, 6, 7, 8}
+
+print(A.symmetric_difference(B))  # {1, 2, 4, 5, 7, 8}
+B.symmetric_difference_update(A)  # Modifies B
+print(A)                          # {1, 2, 3, 4, 5, 6} (unchanged)
+print(B)                          # {1, 2, 4, 5, 7, 8}
+
+# "Python frozenset: Used to create an immutable (frozen) set from any collection.
+# frozenset is an immutable collection of unique elements. It is unordered, does not support indexing or slicing, and cannot be modified after creation.
+# A frozenset is a special type of set that cannot be changed (immutable) after creation.
+
+# Key Features of frozenset:
+# ✅ Stores unique elements (like a normal set).
+# ✅ Unordered (does not maintain the order of elements).
+# ✅ Immutable (you cannot add, remove, or change elements after creation).
+# ✅ Supports set operations like union, intersection, difference, etc.
+
+
+# Creating frozensets from different collections
+
+# Example collections
+s = 'Himanshu'            # String
+l = [10, 20, 30, 40]      # List
+t = (10, 20, 2, 4, 6, 8)  # Tuple
+d = {'name': 'Himanshu', 'quali': 'B-Tech'}  # Dictionary keys
+se = {'Himanshu', 'Jatin', 'Vijay', 'Yash'}  # Set
+
+# Creating frozensets
+x = frozenset(s)
+print(x)  # frozenset({'i', 'H', 'n', 'u', 'h', 's', 'a', 'm'})
+print(type(x))  # <class 'frozenset'>
+
+x = frozenset(l)
+print(x)  # frozenset({40, 10, 20, 30})
+
+x = frozenset(t)
+print(x)  # frozenset({2, 4, 6, 8, 10, 20})
+
+x = frozenset(d)
+print(x)  # frozenset({'name', 'quali'})
+
+x = frozenset(se)
+print(x)  # frozenset({'Vijay', 'Yash', 'Jatin', 'Himanshu'})
+
+# Set Operations with frozenset
+A = {2, 4, 6, 8}
+B = {1, 3, 5, 7, 6, 8}
+
+x = frozenset(A)
+y = frozenset(B)
+
+# Set operations
+print(x.union(y))       # frozenset({1, 2, 3, 4, 5, 6, 7, 8})
+print(x.intersection(y))  # frozenset({8, 6})
+print(x.difference(y))    # frozenset({2, 4})
+print(x.isdisjoint(y))    # False (because 6 and 8 are common)
+print(y.isdisjoint(x))    # False
+
+A = {6, 8}
+x = frozenset(A)
+
+print(x.issubset(y))      # True (A is a subset of B)
+print(y.issuperset(x))    # True (B is a superset of A)
+
+# ----------------------------
+# Conditional Statements in Python
+# ----------------------------
+# if, if-else, if-elif-else
+# Iterative: while, for
+# Transfer Statements: continue, break, pass
+
+# Example: Check if a number is even or odd
+x = int(input("Enter a number: "))
+if x % 2 == 0:
+    print("Even Number")
+else:
+    print("Odd Number")
+
+# Example: Find the greater of two numbers
+x = int(input("Enter 1st number: "))
+y = int(input("Enter 2nd number: "))
+if x > y:
+    print("x is Greater")
+else:
+    print(f"{y} is Greater")
+
+# Explanation of f-strings
+# The f before the string:
+# The f before the quotation marks (f"...") makes it an f-string (formatted string literal).
+# This allows you to directly embed variables inside a string.
+
+# {y} inside the string:
+# Curly brackets {} are used to insert the value of a variable into the string.
+# Here, {y} gets replaced by the value stored in the variable y.
+
+# Example: Check voting eligibility
+age = int(input("Enter Age: "))
+if age >= 18:
+    print("You Can Vote")
+else:
+    print(f"{age} years old is not eligible to vote")   # 2 year"s old is not eligible for vote
+
+# Example: Nested if conditions
+con1 = 1
+con2 = 1
+con3 = 2
+# if(con1):
+#     if(con2):
+#         if(con3):  #not recommended(nested conditions)  
+#             print("Hello")
+# Instead of deeply nested conditions, use 'and' operator for clarity
+if con1 and con2 and con3:
+    print("Hello")
+print("Enter 3 numbers to find the greatest number")
+x = int(input("Enter First Number x = "))
+y = int(input("Enter Second Number y = "))
+z = int(input("Enter Third Number z = "))
+# Checking if all three numbers are equal
+if x == y == z:
+    print(f'{x}, {y}, and {z} are equal')
+
+# Checking which number is the greatest
+elif x > y and x > z:
+    print(f"{x} is the greatest")
+elif y > x and y > z:
+    print(f"{y} is the greatest")
+elif z > x and z > y:
+    print(f"{z} is the greatest")
+
+# Checking if any two numbers are equal
+elif x == y:
+    print(f'{x} and {y} both are equal')
+elif y == z:
+    print(f'{y} and {z} both are equal')  
+elif x == z:
+    print(f'{x} and {z} both are equal')
+
+# Handling any unexpected cases
+else:
+    print("Invalid Input")
+
+# Python Tutor:
+# Python Tutor is an online tool that helps you visualize Python code step by step. It shows how variables change and loops execute in real time, making it easier to understand program flow.
+# To use it:
+# Go to Python Tutor
+# Select "Python" as the language.
+# Copy and paste your Python code.
+# Click "Visualize Execution."
+# Step through the code to see how it runs.
+
+# Iterative Statements (Loops)
+# While Loop Examples:
+# Print natural numbers up to a given number
+n = int(input("Enter any number: "))
+i = 1
+while i <= n:
+    print(i)
+    i += 1  # Increment i
+
+# Print the multiplication table of any number
+n = int(input("Enter any number: "))
+i = 1
+j=10
+while i <= j:
+    print(f'{n} * {i} = {n * i}')
+    i += 1
+
+# Printing even and odd numbers up to n
+n = int(input("Enter any number: "))
+i = 1
+while i <= n:
+    print(2 * i)  # Even number formula
+    i += 1
+
+# Print first N odd numbers
+n = int(input("Enter any number: "))
+i = 1
+while i <= n:
+    print(2 * i - 1)  # Odd number formula
+    i += 1
+# Print numbers in a sequence format in one line
+n = int(input("Enter any value: "))
+i = 1
+while i <= n:
+    if i < n:
+        print(i, end=', ')  # Print with comma
+    i += 1
+print("Hello")  # Extra statement
+
+# Count the number of digits in a number
+n = int(input("Enter any value: "))
+digit = 0
+x = n  # Store original value
+while n > 0:
+    digit += 1      # digit = digit+1
+    n //= 10  # Remove last digit
+print(f"Number of digits: {digit}")
+
+# Sum of squares of digits
+n = int(input("Enter any value: "))
+sum_of_squares = 0
+x = n  # Store original value
+while n > 0:
+    last_digit = n % 10
+    sum_of_squares += last_digit ** 2
+    n //= 10
+print(f"Sum of squares of digits: {sum_of_squares}")
+
+# Check if a number is an Armstrong number
+n = int(input("Enter any value: "))
+x = n  # Store original value
+digit_count = 0
+y = n  # Copy for counting digits
+while y > 0:
+    digit_count += 1
+    y //= 10
+sum_of_powers = 0
+y = n  # Reset y to original number
+while y > 0:
+    last_digit = y % 10
+    sum_of_powers += last_digit ** digit_count
+    y //= 10
+if x == sum_of_powers:
+    print(f"{x} is an Armstrong number")
+else:
+    print(f"{x} is not an Armstrong number")
+
+# Remove the last digit of a number
+x = 123
+x //= 10  # Removes last digit
+print(x)
+
+# Check if a number is a palindrome (with built-in functions)
+n = int(input("Enter any number: "))
+x = str(n)
+y = x[::-1]  # Reverse string
+if x == y:
+    print("Palindrome")
+else:
+    print("Not a Palindrome")
+
+
+
+# Check if a number is a palindrome (without built-in functions)
+n = int(input("Enter any number: "))
+y = n  # Store original value
+rev_digit = 0
+while n > 0:
+    last_digit = n % 10
+    rev_digit = rev_digit * 10 + last_digit
+    n //= 10
+if rev_digit == y:
+    print("Palindrome")
+else:
+    print("Not a Palindrome")
+
+# Looping through a string using while loop
+n = input("Enter your name: ")
+print(type(n))  # The input is always a string
+i = 0  # Initialize index
+while i < len(n):  # Loop until the end of the string
+    print(n[i])  # Print each character
+    i += 1  # Move to the next character
+
+# Looping through a string using a for loop
+n = input("Enter your name: ")
+print(type(n))  # The input is always a string
+for i in n:  # Loop through each character in the string
+    print(i)  # Print each character on a new line
+
+# Encrypting a string by shifting characters by 5 positions
+n = input("Enter Any String: ")
+for i in n:
+    x = ord(i) + 5  # Get ASCII value of character and shift by 5
+    y = chr(x)  # Convert back to character
+    print(y, end='')  # Print without a newline
+print()
+
+# Checking if a string is a palindrome
+n = input("Enter Any String: ")
+if n == n[::-1]:  # Compare string with its reverse
+    print("Palindrome")
+else:
+    print("Not a palindrome")
+
+# Using range() function
+n = range(1, 11)  # Create a range from 1 to 10 (exclusive ending)
+print(list(n))  # Convert range to list and print
+print(tuple(n))  # Convert range to tuple and print
+
+n = range(-1, -11, -1)  # Create a decreasing range from -1 to -10
+print(list(n))  # Convert range to list and print
+
+n = range(-10, 0)  # Create a range from -10 to -1
+print(list(n))  # Convert range to list and print
+
+# Printing even and odd numbers up to n
+n = int(input("Enter num: "))
+x = range(2, n+1, 2)  # Even numbers from 2 to n
+print(list(x))
+x = range(1, n+1, 2)  # Odd numbers from 1 to n
+print(list(x))
+
+# Reverse printing numbers using range()
+l = 10
+x = range(l-1, -1, -1)  # Create a decreasing range from 9 to 0
+print(list(x))  # Print the list of numbers
+for i in range(l-1, -1, -1):  # Loop to print each number
+    print(i)
+
+# Find Reverse of string (by Google)
+s = input("enter Digit or String without "": ")
+reversed_str = ""
+for i in s:
+    reversed_str = i + reversed_str  # Prepend each character and i is in start so it can take last char and add on it reversely
+
+print(reversed_str)  # Output: "olleh"
+
+# Checking palindrome using a loop and range
+n = input("Enter any String: ")
+l = len(n)
+print(l)
+x = ''
+for i in range(l-1, -1, -1):  # Loop to reverse the string
+    x = x + n[i]
+if n == x:  # Compare reversed string with original
+    print(f'Given string {n} is a palindrome')
+else:
+    print('Not a palindrome')
+
+# Transfer Statements in Python
+# Keywords are : 
+# 1. break    → Exits the loop immediately
+# 2. continue → Skips the current iteration and moves to the next
+# 3. pass     → Does nothing, used as a placeholder to maintain correct syntax
+
+# Example 1: Using break (Stops loop when i == 6)
+n = int(input("Enter any Num: "))
+i = 1
+while i <= n:
+    if i == 6:
+        break  # Exits the loop when i is 6
+    print(i)
+    i = i + 1
+print("Hello")  # Runs after loop ends
+
+# Example 2: Using continue (Skips i == 6)
+n = int(input("Enter any Num: "))
+i = 1
+while i <= n:
+    if i == 6:
+        i = i + 1
+        continue  # Skips printing 6 and moves to the next iteration
+    print(i)
+    i = i + 1
+print("Hello")
+
+# Example 3: Using pass (Does nothing, just a placeholder)
+n = int(input("Enter any Num: "))
+i = 1
+while i <= n:
+    if i == 6:
+        pass  # Placeholder (does nothing)
+    print(i)
+    i = i + 1
+
+# eval() function → Converts input into correct data type (int, float, list, tuple, etc.)
+x = eval(input("Enter any Value: "))
+print(x)
+print(type(x))  # Prints the data type of x
+
+# Pattern Printing
+# Pattern Printing in Python
+# Example for n = 5:
+
+# 1. Left-Aligned Pattern
+# *
+# **
+# ***
+# ****
+# *****
+n = int(input("Enter any Value: "))
+i = 1
+while i <= n:
+    print(i * "*")
+    i += 1
+
+# 2. Right-Aligned Pattern
+#     *
+#    **
+#   ***
+#  ****
+# *****
+n = int(input("Enter any Value: "))
+i = 1
+while i <= n:
+    print(" " * (n - i) + "*" * i)
+    i += 1
+
+# Explanation: 
+# - Spaces (' ') are used to align stars ('*') to the right.
+# - The number of spaces decreases as the number of '*' increases.
+
+# 3. Pyramid Pattern
+#     *
+#    * *
+#   * * *
+#  * * * *
+# * * * * *
+n = int(input("Enter any Value: "))
+i = 1
+while i <= n:
+    print(" " * (n - i) + " *" * i)
+    i += 1
+
+# Explanation:
+# - Spaces align the pyramid to the center.
+# - Each row prints '*' with a space in between.
+
+# 4. Inverted Pyramid Pattern
+# * * * * *
+#  * * * *
+#   * * *
+#    * *
+#     *
+n = int(input("Enter any Value: "))
+i = n
+while i >= 1:
+    print(" " * (n - i) + " *" * i)
+    i -= 1
+
+# Explanation:
+# - Starts with the maximum number of '*' and reduces each row.
+# - Spaces (' ') increase to maintain alignment.
+
+# 5. Inverted Left-Aligned Pattern
+# *****
+# ****
+# ***
+# **
+# *
+n = int(input("Enter any Value: "))
+i = n
+while i >= 1:
+    print("*" * i)
+    i -= 1
+
+# Explanation:
+# - Starts with 'n' number of '*' and decreases each row.
+
+# 6. Inverted Right-Aligned Pattern
+# *****
+#  ****
+#   ***
+#    **
+#     *
+n = int(input("Enter any Value: "))
+i = n
+while i >= 1:
+    print(" " * (n - i) + "*" * i)
+    i -= 1
+# or ======================
+n=int(input("Enter any Value: "))
+i = 0
+while i<n:
+    print(" "*i+"*"*(n-i))
+    i=i+1
+  
+# 7. Triangle with Increasing & Decreasing Order
+# *
+# **
+# ***
+# ****
+# *****
+# ****
+# ***
+# **
+# *
+n = int(input("Enter any Value: "))
+i = 1
+while i < n:
+    print("*" * i)
+    i += 1
+while i >= 1:
+    print("*" * i)
+    i -= 1
+
+# 8. Triangle with Increasing & Decreasing Order from right Side
+#     *
+#    **
+#   ***
+#  ****
+# *****
+#  ****
+#   ***
+#    **
+#     *
+n=int(input("Enter any Value: "))
+i =1
+while i<n:
+    print(" "*(n-i)+"*"*i)
+    i=i+1
+while i>=1:
+    print(" "*(n-i)+"*"*i)
+    i=i-1
+# Explanation:
+# - First half increases from 1 to n-1.
+# - Second half decreases from n to 1.
+
+# 9. Triangle with Spaces Between Stars
+#     *
+#    * *
+#   * * *
+#  * * * *
+# * * * * *
+#  * * * *
+#   * * *
+#    * *
+#     *
+n = int(input("Enter any Value: "))
+i = 1
+while i < n:
+    print(" " * (n - i) + " *" * i)
+    i += 1
+while i >= 1:
+    print(" " * (n - i) + " *" * i)
+    i -= 1
+
+# Explanation:
+# - First half increases stars with spaces.
+# - Second half mirrors the first half to form a full pattern.
+
+# 10. Diamond Pattern
+#     *
+#    ***
+#   *****
+#  *******
+# *********
+#  *******
+#   *****
+#    ***
+#     *
+n = int(input("Enter any Value: "))
+i = 1
+while i < n:
+    print(" " * (n - i) + "*" * (2 * i - 1))
+    i += 1
+while i >= 1:
+    print(" " * (n - i) + "*" * (2 * i - 1))
+    i -= 1
+
+# Explanation:
+# - First half increases stars in odd numbers.
+# - Second half mirrors the first half to create a diamond shape.
+
+# 11. Left-Aligned Symmetric Triangle
+# *
+# **
+# ***
+# ****
+# *****
+#  ****
+#   ***
+#    **
+#     *
+n= int(input("Enter Number: "))
+i=1
+while i<n:
+    print("*"*i)
+    i=i+1
+while i>=1:
+    print(" "*(n-i)+"*"*i)
+    i=i-1
+
+# 12. Right-Aligned Symmetric Triangle
+#     *
+#    **
+#   ***
+#  ****
+# *****
+# ****
+# ***
+# **
+# *
+n=int(input("Enter Number: "))
+i=1
+while i<n:
+    print(" "*(n-i)+"*"*i)
+    i=i+1
+while i>=1:
+    print("*"*i)
+    i=i-1
+
+
+
+# Calculator using while loop:
+while True:         # Keeping the calculator running until the user chooses to exit.
+    print("1.add\n2.sub\n3.multiply\n4.divide\n5.off")
+    n=int(input("enter your choise: "))
+    if n==1:
+        x=int(input("enter 1st no: "))
+        y=int(input("enter 2nd no: "))
+        z=x+y 
+        # print("Addition is = ", z)
+        print(f'Addition of {x} and {y} is {z}')
+    elif n==2:
+        x=int(input("enter 1st no: "))
+        y=int(input("enter 2nd no: "))
+        z=x-y
+        print(f'Substraciton of {x} and {y} is {z}')
+    elif n==3:
+        x=int(input("enter 1st no: "))
+        y=int(input("enter 2nd no: "))
+        z=x*y
+        print(f'Multiplication of {x} and {y} is {z}')
+    elif n==4:
+        x=int(input("enter 1st no: "))
+        y=int(input("enter 2nd no: "))
+        z=x/y
+        print(f'Division of {x} and {y} is {z}')
+    elif n==5:
+        break 
+    else:
+        print("Please enter Valid Option")
+# Problem: Repeated Input for Numbers. Redundancy and lack of input validation made it inefficient.
+# Solution: Take x and y only once when the choice is valid.
+
+# Simple Calculator using while loop 
+while True:          # Keeping the calculator running until the user chooses to exit.
+    print("1. Add\n2. Subtract\n3. Multiply\n4. Divide\n5. Exit")
+    n = int(input("Enter your choice: "))
+    p=(1,2,3,4)
+    if n in p:  # Using membership operator to check valid choices
+        x = int(input("Enter first number: "))
+        y = int(input("Enter second number: "))
+    
+    if n == 1:
+        print(f'Addition of {x} and {y} is {x + y}')
+    elif n == 2:
+        print(f'Subtraction of {x} and {y} is {x - y}')
+    elif n == 3:
+        print(f'Multiplication of {x} and {y} is {x * y}')
+    elif n == 4:
+        if y != 0:  # Avoid division by zero error
+            print(f'Division of {x} and {y} is {x / y}')
+        else:
+            print("Division by zero is not allowed.")
+    elif n == 5:
+        print("Exiting Calculator.")
+        break
+    else:
+        print("Please enter a valid option.")
+
+
+# LCM(Least Common Multiple) Calculation
+x = int(input("Enter first number: "))
+y = int(input("Enter second number: "))
+max_no = max(x, y)  # Start checking from the maximum of both numbers
+
+while True:         #use for break
+    if max_no % x == 0 and max_no % y == 0:  # Checking divisibility
+        break
+    max_no += 1  # Increment to find the LCM
+print(f'LCM of {x} and {y} is {max_no}')
+
+# hcf (highest common factor)
+# Method 1: Using while loop and min function
+x = int(input("Enter first num: "))
+y = int(input("Enter second num: "))
+minn = min(x, y)  # Start from the smaller number
+while True:
+    if x % minn == 0 and y % minn == 0:  # Check if `minn` divides both numbers
+        print("HCF:", minn)
+        break
+    minn -= 1  # Decrease to find the hcf
+
+# Method 2: Using while loop and iteration
+x = int(input("Enter first number: "))
+y = int(input("Enter second number: "))
+z = int(input("Enter third number: "))
+minn = min(x, y, z)
+i = 1
+hcf = 1
+while i <= minn:
+    if x % i == 0 and y % i == 0 and z % i == 0:
+        hcf = i
+    i += 1
+print("HCF:", hcf)
+
+# Palindrome check 
+x = eval(input("Enter a string, number, list, or tuple to check for palindrome: "))
+
+if type(x) in [list, tuple]:  # Check if x is a list or tuple
+    print("Palindrome" if x == x[::-1] else "Not a Palindrome")
+else:
+    print("Palindrome" if str(x) == str(x)[::-1] else "Not a Palindrome")
+
+# or 
+
+x = eval(input("Enter a string, number, list, or tuple to check for palindrome: "))  # Accepts multiple types
+
+if type(x) == list or type(x) == tuple:  # Check if x is a list or tuple
+    if x == x[::-1]:  # Compare original with reversed
+        print("Palindrome")
+    else:
+        print("Not a Palindrome")
+else:
+    if str(x) == str(x)[::-1]:  # Convert to string for numbers and strings
+        print("Palindrome")
+    else:
+        print("Not a Palindrome")
+
+
+
+
+
+# Function =====================================
+
+# Functions in Python
+# A function is a reusable block of code.
+# It has a declaration part (definition) and a call part.
+# Arguments vs Parameters
+# - Arguments are passed when calling a function.
+# - Parameters are declared in the function definition.
+
+# 1.Positional Arguments
+def sum_numbers(x, y):
+    return x + y
+
+result = sum_numbers(2, 1)
+print("Sum:", result)
+
+# 2.Keyword Arguments
+def sum_numbers(x, y):
+    "This function adds two numbers."    # Docstring explaining the function not error just for developer to know what function work
+    print("Value of x:", x)
+    print("Value of y:", y)
+    return x + y
+
+result = sum_numbers(y=3, x=6)  # Keyword arguments (order doesn't matter)
+print("Sum:", result)
+print(sum_numbers.__doc__)  # Prints the docstring of the function
+print(dir(sum_numbers))  # Shows all attributes and methods of the function
+
+
+# 📌 3.Default Arguments in Python
+# Default arguments assign a default value to function parameters.
+# If an argument(value) is provided, it replaces the default value.
+# If not provided, the default value is used.
+
+# Function with default arguments
+def fun_name(x=0, y=0, z=0):
+    p = x + y + z  # Adds all values
+    print("x =", x)
+    print("y =", y)
+    print("z =", z)
+    return p  # Returns sum
+
+# Function call without arguments (uses defaults)
+print(fun_name())   # Output: 0
+
+# Function call with one argument
+x = fun_name(1)     # y and z will use default 0
+print(x)            # Output: 1
+
+# Function call with all arguments
+x = fun_name(1, 2, 3)  
+print(x)            # Output: 6
+
+# 📌 4.Variable-Length Arguments (*args)
+# *args allows a function to accept any number of arguments.
+# *args collects all values into a tuple.
+# It is useful when the number of inputs is not fixed. We can pass any number of arguments.
+# ⚠️ Limitations
+# Dictionaries ({}) are not supported with *args.
+    
+# Function with *args (Variable-length argument)
+def add(*n):
+    print(n)  # Prints tuple of all arguments
+    print(type(n))  # Output: <class 'tuple'>
+    sum = 0
+    for i in n:
+        sum += i  # Adding all values
+    return sum
+
+# Function call with multiple values
+num = add(2, 4, 6, 8, 10)  
+print(num)  # Output: 30
+
+# Function call with no arguments
+x = add()
+print(x)  # Output: 0
+
+
+# 📌 Taking User Input with *args
+# 🔹 Handling Tuples and Lists
+
+# Function with Variable-Length Positional Arguments (*args)
+def add(*n):  
+    print(n)  # 'n' is a tuple containing all arguments
+    print(type(n))  # Display the type (tuple)
+    
+    sum = 0  # Initialize sum to 0
+    for x in n:
+        sum = sum + x  # Add each value in 'n' to sum
+    return sum  # Return the final sum
+
+# Taking user input
+x = eval(input("Enter numbers collection to add: "))  
+result = add(*x)  # Unpacking tuple and passing it as arguments
+print(result)  # Displaying the sum
+
+# or =========================================================
+
+# Function with *args to handle user input by nesting loop
+def add(*n):
+    print(n)  # Printing the received arguments
+    print(type(n))  # Output: <class 'tuple'>
+    sum = 0
+    for i in n:  
+        for x in i:  # Nested loop to extract numbers from a tuple/list
+            sum += x  
+        # return sum      # Not use return here because If n has multiple elements,it stops after the first iteration.
+    return sum  
+
+# Taking user input
+p = eval(input("Enter tuple or list of numbers: "))         # normal number pass with comma's are also a tuple
+x = add(p)
+print(x)
+
+# ✅ How It Works?
+# *n treats p as a single argument inside a tuple.
+# n = ([1,2,3,4],) (a tuple containing a list inside).
+# First loop: Extracts the list [1,2,3,4] from n.
+# Second loop: Extracts numbers from the list and adds them.
+# Returns the sum.
+# 📌 Why the nested loop?
+# Since n = ([1, 2, 3, 4],), we first access the list, then loop through its elements.
+
+# Eg., p = [1, 2, 3, 4]  # This is a list passing as a input
+# n = ([1, 2, 3, 4],)  # Tuple with a single list inside
+# i = [1, 2, 3, 4]  # Outer loop takes this list
+# x = 1, 2, 3, 4  # Inner loop extracts each number
+# sum = 1 + 2 + 3 + 4 = 10
+
+# Output:
+# ([1, 2, 3, 4],)  # n contains a single list inside a tuple
+# <class 'tuple'>   # Type of n is a tuple
+# 10                # Sum of elements
+
+
+# Instead of using *args, directly pass p without unpacking: (by Positional Argument)
+def add(n):  # No need for *
+    print(type(n))      # When you assign values like p = 1,2,3 without parentheses, Python treats it as a tuple. If you pass list it's type is list.
+    sum = 0
+    for x in n:  # Directly loop over the list
+        sum += x  
+    return sum  
+
+# Taking user input
+p = eval(input("Enter a tuple or list of numbers: "))
+x = add(p)  
+print(x)
+
+# ✅ How It Works?
+# p is directly a list/tuple (e.g., [1,2,3,4] or (1,2,3,4)).
+# The function receives n = [1, 2, 3, 4] (instead of a tuple).
+# Loops directly through n without needing a nested loop.
+# Returns the sum.
+# 📌 Why No Nested Loop?
+# Since p is already [1, 2, 3, 4], we don’t need to extract it from a tuple first.
+
+
+# 5. Function with Variable-Length Keyword Arguments (**kwargs: Keyword Arguments)
+# When use **kwargs, it accepts keyword arguments and stores them as a dictionary inside the function.
+
+def show_data(**n):  
+    print(n)  # 'n' is a dictionary containing all keyword arguments
+    print(type(n))  # Display the type (dict)
+    
+    l = []  # Initialize an empty list
+    
+    # Iterating through dictionary items (key-value pairs)
+    print("\nUsing .items():")
+    for k, v in n.items():
+        print(f"My {k} is {v}")  # Printing key-value pairs
+        l.append(v)  # Storing values in the list
+
+    # Iterating through dictionary keys
+    print("\nUsing .keys():")
+    for k in n.keys():
+        print(f"Key: {k}")  # Printing only keys
+
+    # Iterating through dictionary values
+    print("\nUsing .values():")
+    for v in n.values():
+        print(f"Value: {v}")  # Printing only values
+
+    return l  # Returning the list of values
+
+# Calling function 
+
+# Calling function with a predefined dictionary
+show_data(name="Himanshu", age=22, quali="BTech")  # ✅ Work: Directly passing keyword arguments
+# or 
+# data = {"name": "Himanshu", "age": 22, "quali": "BTech"}
+# show_data(data)     # ❌ Not work here we passed a dictionary as a positional argument. Here data is a dictionary, but the function expects keyword arguments. 
+
+# use  this
+data = {"name": "Himanshu", "age": 22, "quali": "BTech"}
+show_data(**data)       # ✅ Work: The **data unpacks the dictionary into separate keyword arguments:
+     
+# or 
+# Taking user input as a dictionary
+x = eval(input("Enter any Dict: "))  
+# show_data(**x)  # ✅ Work: Unpacking dictionary and passing it as keyword arguments
+data=show_data(**x)  # ✅ Work: store in other variable for use
+
+# ✅ Printing the returned list (to call the return l)
+print("\nReturned List:", data)     # Returned List: ['Himanshu', 22, 'BTech']
+
+
+# Scope of Variables in Python
+
+# 1. Local Scope: Can be accessed only within the function/block where it is defined.
+# 2. Global Scope: Can be accessed throughout the program.
+
+x = 10  # Global variable
+
+def add():
+    global x, y  # Making x and y global
+    print("Global x before modification:", x)  # Output: 10
+    x = 15  # Modifying global x
+    y = 20  # Defining a new global variable y
+    print("Modified x inside function:", x)  # Output: 15
+
+add()
+print("Global x after function call:", x)  # Output: 15
+print("Global y after function call:", y)  # Output: 20
+
+# Accessing Global Variables inside Function with globals()
+x = 10
+
+def new():
+    global y, z
+    x = 20  # Local x (not modifying global x)
+    y = 10  # New global variable
+    z = 30  # New global variable
+    print("Global x using globals():", globals()['x'])  # Output: 10
+    print("Local x:", x)  # Output: 20
+    print("Global y:", y)  # Output: 10
+
+new()
+print("Global x:", x)  # Output: 10
+print("Global y, z:", y, z)  # Output: 10, 30
+
+
+
+# Missed Classes Questions 
+
+# -------------------------
+# Q1 - Harshad Number Check
+# A Harshad number is a number that is divisible by the sum of its digits.
+# Example: 18 (1+8=9, 18 is divisible by 9)
+# -------------------------
+n = int(input("Enter Any Number: "))
+x = n
+sum_digits = 0
+while n > 0:
+    sum_digits += n % 10  # Extract last digit and add to sum
+    n //= 10  # Remove last digit
+if x % sum_digits == 0:
+    print("Harshad Number")
+else:
+    print("Not A Harshad Number")
+
+# -------------------------
+# Q5 - Spy Number Check
+# A Spy number is a number where the sum of digits is equal to the product of digits.
+# Example: 112 (1+1+2=4, 1*1*2=4)
+# -------------------------
+n = int(input("Enter Any Number: "))
+sum_digits, prod_digits = 0, 1
+while n > 0:
+    ld = n % 10  # Extract last digit
+    sum_digits += ld
+    prod_digits *= ld
+    n //= 10
+if sum_digits == prod_digits:
+    print("Spy Number")
+else:
+    print("Not A Spy Number")
+
+# -------------------------
+# Vowel and Consonant Count
+# -------------------------
+string = input("Enter Any String: ")
+vowels = "aeiouAEIOU"
+vowel_count, consonant_count = 0, 0
+for charac in string:
+    if charac.isalpha():  # Check if the character is a letter (Sir Not Use)
+        if charac in vowels:
+            vowel_count += 1
+        else:
+            consonant_count += 1
+print("Vowels:", vowel_count, "Consonants:", consonant_count)
+
+# -------------------------
+# Count Capital Letters, Small Letters, and Numbers
+# -------------------------
+string = input("Enter Any String: ")
+capital, small, num = 0, 0, 0
+
+for char in string:
+    if char.isupper():
+        capital += 1
+    elif char.islower():
+        small += 1
+    elif char.isdigit():
+        num += 1
+print("Capital Letters:", capital, "Small Letters:", small, "Numbers:", num)
+# or (by Sir)
+str2=input("Enter = ")
+capital=0
+small=0
+num=0
+for x in str2:
+    if x>=chr(65) and x<=chr(90):
+        capital=capital+1
+
+    elif x>=chr(97) and x<=chr(122):
+        small=small+1
+
+    elif int(x)>=0 and int(x)<=9:
+        num=num+1
+print("Capital Letters:", capital, "Small Letters:", small, "Numbers:", num)
+
+
+"""
+Interview questions Like:
+    1. Object Types
+Immutable Objects: Cannot be changed after creation (e.g., int, float, str, tuple).
+Mutable Objects: Can be modified after creation (e.g., list, dict, set).
+2. Operator Types
+Boolean & Return Value Operators
+True/False results (e.g., ==, !=, >, <, is, in).
+Arithmetic, Bitwise, and Others
+Arithmetic: +, -, *, /, %, //, **.
+Bitwise: &, |, ^, <<, >>.
+3. Range for Pattern Printing
+range(start, stop, step) is used for loops and pattern printing.
+Example:
+python
+Copy
+Edit
+for i in range(1, 6):  
+    print("*" * i)  
+4. Loop Control Statements
+continue → Skips the rest of the current iteration and moves to the next.
+pass → Placeholder that does nothing (used for empty blocks).
+break → Exits the loop immediately.
+5. Function Example
+python
+Copy
+Edit
+def hi():
+    print("hello")
+
+hi()  # Correct way to call the function
+Your line print(hi()) was printing None because hi() doesn't return anything.
+that's why we use return for printing.
+
+from google
+1. What are the key features of Python?
+✅ Answer:
+
+Easy to read and write
+Dynamically typed (no need to declare variables)
+Interpreted (runs line by line)
+Supports OOP (Object-Oriented Programming)
+Large community and built-in libraries
+2. What is the difference between is and ==?
+✅ Answer:
+
+== checks values (e.g., 5 == 5 → True)
+is checks memory location (e.g., a is b → True only if a and b refer to the same object)
+python
+Copy
+Edit
+a = [1, 2, 3]
+b = a  
+print(a == b)  # True (same values)  
+print(a is b)  # True (same memory)  
+3. What are mutable and immutable objects?
+✅ Answer:
+
+Mutable: Can be changed (e.g., list, dict, set).
+Immutable: Cannot be changed (e.g., int, str, tuple).
+python
+Copy
+Edit
+x = (1, 2, 3)  # Immutable  
+y = [1, 2, 3]  # Mutable  
+y[0] = 99  # Allowed  
+4. What are break, continue, and pass?
+✅ Answer:
+
+break: Stops the loop.
+continue: Skips the current iteration.
+pass: Does nothing (placeholder) (skips the block).
+python
+Copy
+Edit
+for i in range(5):
+    if i == 2:
+        continue  # Skips 2
+    print(i)
+5. What is the difference between a list and a tuple?
+✅ Answer:
+
+List: Mutable, uses [].
+Tuple: Immutable, uses ().
+python
+Copy
+Edit
+list1 = [1, 2, 3]  
+tuple1 = (1, 2, 3)  
+list1[0] = 10  # Works  
+# tuple1[0] = 10  # Error  
+6. What is the difference between append() and extend() in a list?
+✅ Answer:
+
+append() adds a single element.
+extend() adds multiple elements.
+python
+Copy
+Edit
+lst = [1, 2, 3]
+lst.append([4, 5])  # [1, 2, 3, [4, 5]]  
+lst.extend([6, 7])  # [1, 2, 3, [4, 5], 6, 7]  
+7. What are Python functions and how do you define one?
+✅ Answer:
+Functions are reusable blocks of code.
+
+python
+Copy
+Edit
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Alice"))  # Output: Hello, Alice!
+8. What is lambda function in Python?
+✅ Answer:
+A one-line anonymous function.
+
+python
+Copy
+Edit
+square = lambda x: x * x  
+print(square(4))  # Output: 16  
+9. What is the difference between pop() and remove() in lists?
+✅ Answer:
+
+pop(index): Removes by index (default last).
+remove(value): Removes by value.
+python
+Copy
+Edit
+lst = [1, 2, 3, 4]
+lst.pop(2)  # Removes element at index 2 (3)  
+lst.remove(4)  # Removes element with value 4  
+10. How do you handle exceptions in Python?
+✅ Answer:
+Using try-except blocks.
+
+python
+Copy
+Edit
+try:
+    x = 10 / 0  # Error
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+    
+🔹 OOP (Object-Oriented Programming) Questions
+1. What are the four pillars of OOP?
+✅ Answer:
+
+Encapsulation → Hiding data using private/protected variables.
+Abstraction → Hiding implementation details, showing only necessary features.
+Inheritance → Reusing code by deriving a class from another.
+Polymorphism → Same method name, different implementations.
+2. What is the difference between class and object?
+✅ Answer:
+
+Class: A blueprint for objects.
+Object: An instance of a class.
+python
+Copy
+Edit
+class Car:
+    def __init__(self, brand):
+        self.brand = brand  # Instance variable
+
+car1 = Car("Tesla")  # Object
+print(car1.brand)  # Tesla
+3. What is method overloading and method overriding?
+✅ Answer:
+
+Method Overloading → Same function name, different arguments (Not directly supported in Python).
+Method Overriding → Redefining a method in a child class.
+python
+Copy
+Edit
+class Parent:
+    def show(self):
+        print("Parent")
+
+class Child(Parent):
+    def show(self):  # Overriding
+        print("Child")
+
+obj = Child()
+obj.show()  # Output: Child
+4. What are self and __init__ in Python?
+✅ Answer:
+
+self → Represents the instance of the class.
+__init__ → Constructor, called when an object is created.
+python
+Copy
+Edit
+class Person:
+    def __init__(self, name):
+        self.name = name  # Instance variable
+
+p = Person("Alice")
+print(p.name)  # Alice
+5. What is multiple inheritance?
+✅ Answer:
+A class inherits from multiple parent classes.
+
+python
+Copy
+Edit
+class A:
+    def methodA(self):
+        print("Class A")
+
+class B:
+    def methodB(self):
+        print("Class B")
+
+class C(A, B):  # Multiple Inheritance
+    pass
+
+obj = C()
+obj.methodA()  # Class A
+obj.methodB()  # Class B
+🔹 Data Structures Questions
+6. What is the difference between a list and a set?
+✅ Answer:
+
+List: Allows duplicates, ordered, indexable ([]).
+Set: No duplicates, unordered ({}).
+python
+Copy
+Edit
+lst = [1, 2, 2, 3]
+s = {1, 2, 2, 3}
+
+print(lst)  # [1, 2, 2, 3]
+print(s)    # {1, 2, 3}  (removes duplicates)
+7. How does a dictionary work in Python?
+✅ Answer:
+
+Stores key-value pairs.
+Uses a hash table for fast lookups.
+python
+Copy
+Edit
+d = {"name": "Alice", "age": 25}
+print(d["name"])  # Alice
+print(d.get("age"))  # 25
+8. What is a linked list, and how is it different from an array?
+✅ Answer:
+
+Linked List: Each element (node) contains data + pointer to next node.
+Array/List: Continuous memory allocation.
+Python Example:
+
+python
+Copy
+Edit
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None  # Pointer to next node
+
+node1 = Node(10)
+node2 = Node(20)
+node1.next = node2  # Linking nodes
+9. How do you implement a stack in Python?
+✅ Answer:
+
+Uses LIFO (Last In, First Out).
+Can be implemented using list or collections.deque.
+python
+Copy
+Edit
+stack = []
+stack.append(1)
+stack.append(2)
+print(stack.pop())  # Output: 2 (Last in, first out)
+10. How do you implement a queue in Python?
+✅ Answer:
+
+Uses FIFO (First In, First Out).
+Best implemented with collections.deque.
+python
+Copy
+Edit
+from collections import deque
+
+queue = deque()
+queue.append(1)
+queue.append(2)
+print(queue.popleft())  # Output: 1 (First in, first out)
+🔹 Advanced Python Questions
+11. What is a generator in Python?
+✅ Answer:
+
+A function that yields values one at a time using yield.
+Saves memory by not storing all values at once.
+python
+Copy
+Edit
+def my_gen():
+    yield 1
+    yield 2
+    yield 3
+
+gen = my_gen()
+print(next(gen))  # 1
+print(next(gen))  # 2
+12. What is a decorator in Python?
+✅ Answer:
+
+A function that modifies another function without changing its code.
+python
+Copy
+Edit
+def decorator(func):
+    def wrapper():
+        print("Before function call")
+        func()
+        print("After function call")
+    return wrapper
+
+@decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+13. What is the difference between deepcopy() and copy()?
+✅ Answer:
+
+copy() → Creates a shallow copy (nested objects share memory).
+deepcopy() → Creates a full copy (nested objects are also copied).
+python
+Copy
+Edit
+import copy
+lst1 = [[1, 2], [3, 4]]
+lst2 = copy.deepcopy(lst1)
+
+lst1[0][0] = 99  # Changes lst1, but not lst2
+print(lst2)  # [[1, 2], [3, 4]]
+14. How does memory management work in Python?
+✅ Answer:
+
+Uses Garbage Collection (GC) to free unused memory.
+Reference Counting → When an object’s reference count reaches 0, it’s deleted.
+python
+Copy
+Edit
+import sys
+x = [1, 2, 3]
+print(sys.getrefcount(x))  # Shows reference count
+15. What is the Global Interpreter Lock (GIL)?
+✅ Answer:
+
+Prevents multiple threads from running Python bytecode at the same time.
+Multithreading in Python is not true parallel execution due to GIL.
+python
+Copy
+Edit
+import threading
+
+def hello():
+    print("Hello from thread")
+
+t = threading.Thread(target=hello)
+t.start()
+"""
+
+"""
+1️⃣ Using a Loop to Print Lists (More Readable & Compact)
+python
+Copy
+Edit
+for _ in range(3):
+    print([1, 2, 3])
+    
+
+🔹 Output:
+
+csharp
+Copy
+Edit
+[1, 2, 3]
+[1, 2, 3]
+[1, 2, 3]
+2️⃣ Using List Comprehension (With User Input)
+python
+Copy
+Edit
+n = int(input("Enter Num: "))  
+res = [[j for j in range(1, n + 1)] for _ in range(n)]
+print(res)
+🔹 Example Input & Output:
+
+lua
+Copy
+Edit
+Enter Num: 4
+[[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
+Improvements Made:
+✅ More Readable: The first example directly prints the desired list.
+✅ More Dynamic: The second example correctly includes the input number (n) in the range.
+
+# or 
+res = []  # Empty list to store results
+
+for _ in range(3):  
+    res.append(list(range(1, 4)))  # Append the list [1, 2, 3] in each iteration
+
+print(res)
+
+"""
+
+21 apr
+Django Model Field Types and Their Attributes: 
+new column cannot add after creation so it fill as null by null = true so if it required to fill data it will null the previous data 
+
+example of a charfield in a model: 
+app-folder ke andar ----models.py: -- for response fast
+from django.db import  models
+class UserProfile(models.Model)
+
+from django.db import models
+
+# Create your models here.
+quali = [(1, 'B.tech'), (2, 'M.Tech')]
+class UserProfile(models.Model):
+    username = models.CharField(max_length = 30, null = True, unique=True, db_index=True, blank=False, help_text="Enter a unique username")
+    email = models.EmailField(max_length=255, unique=True, blank=False, db_index=True)
+    bio = models.CharField(max_length=50, blank=True, null=True, db_index=True, help_text="Write a short bio about yourself")
+    is_activate = models.BooleanField(default = False, db_index=True)
+    Qualification = models.CharField(max_length = 100, choices=quali, null=True, verbose_name='Quali', db_index=True)
