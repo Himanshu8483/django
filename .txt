@@ -1885,3 +1885,5 @@ class UserProfile(models.Model):
 model iheritance:
 3 types by django: abstract model, proxy
 abstract model iheritance
+
+Multi table Model iheritance
