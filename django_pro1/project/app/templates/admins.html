@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block title %} admin {% endblock %}
+{% block content %}
+<a href="{% url 'login' %}">Login Page</a>
+{% include 'table.html' %}
+{% endblock %}

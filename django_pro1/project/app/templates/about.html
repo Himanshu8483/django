@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} About {% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+
+<div>
+    <div style="background-image: url('/static/image/django1.jpeg'); background-size: contain;">
+            <h5>Div with style</h5>
+            <button>View More</button>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Home Page {% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+<div>
+    <p>Search Here <input type="search"><button>Search</button></p>
+</div>
+<div>
+    <video autoplay muted loop height="500px" src="{% static 'video/djangovid.mp4' %}" ></video>
+</div>
+<div>
+    <h1><acronym title="">Dotted by acronym</acronym></h1>
+</div>
+{% endblock  %}
