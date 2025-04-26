@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} user {% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+
+<div class="userbox">
+  <h2>Welcome, {{ userdata.name }}</h2>
+
+  <table class="usertable" border="1">
+    <tr>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>DOB</th>
+      <th>Gender</th>
+      <th>Education</th>
+      <th>Details</th>
+      {% if userdata.image %}
+        <th>Profile Picture</th>
+      {% endif %}
+      {% if userdata.resume %}
+        <th>Resume</th>
+      {% endif %}
+    </tr>
+    <tr>
+      <td>{{ userdata.email }}</td>
+      <td>{{ userdata.phone }}</td>
+      <td>{{ userdata.dob }}</td>
+      <td>{{ userdata.gender }}</td>
+      <td>{{ userdata.sub }}</td>
+      <td>{{ userdata.des }}</td>
+      {% if userdata.image %}
+        <td><img src="{{ userdata.image.url }}" alt="Profile"></td>
+      {% endif %}
+      {% if userdata.resume %}
+        <td><a href="{{ userdata.resume.url }}" target="_blank">Download</a></td>
+      {% endif %}
+    </tr>
+  </table>
+</div>
+
+
+
+
+{% endblock %}

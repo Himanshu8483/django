@@ -6,5 +6,54 @@
 {% block title %} admin {% endblock %}
 {% block content %}
 <a href="{% url 'login' %}">Login Page</a>
-{% include 'table.html' %}
+{% comment %} {% include 'table.html' %} {% endcomment %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">All Registered Users</h2>
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>DOB</th>
+          <th>Gender</th>
+          <th>Education</th>
+          <th>Details</th>
+          <th>Profile</th>
+          <th>Resume</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.stuname }}</td>
+          <td>{{ user.stuemial }}</td>
+          <td>{{ user.stuphone }}</td>
+          <td>{{ user.studob }}</td>
+          <td>{{ user.stugender }}</td>
+          <td>{{ user.stuedu }}</td>
+          <td>{{ user.studetails }}</td>
+          <td>
+            {% if user.stuimage %}
+              <img src="{{ user.stuimage.url }}" width="50" height="50">
+            {% else %}
+              No Image
+            {% endif %}
+          </td>
+          <td>
+            {% if user.sturesume %}
+              <a href="{{ user.sturesume.url }}" target="_blank">Download</a>
+            {% else %}
+              No Resume
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
 {% endblock %}

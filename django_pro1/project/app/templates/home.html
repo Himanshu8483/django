@@ -6,6 +6,13 @@
 {% endblock %}
 {% block content %}
 <div>
+    {% if userdata %}
+
+  <h2>Welcome, {{ userdata.name }}</h2>
+  {% else %}
+    <h2>Login User </h2>
+    {% endif %}
+
     <p>Search Here <input type="search"><button>Search</button></p>
 </div>
 <div>

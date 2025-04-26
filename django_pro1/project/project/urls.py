@@ -26,8 +26,12 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('registration/', views.registration, name='registration'),
     path('service/', views.service, name='service'),
-    path('user/', views.user, name='user'),
     
+    path('logindata/', views.logindata, name='logindata'),
+    path('register/', views.register, name='register'),
+    path('dashboard/<int:pk>/', views.dashboard, name='dashboard'),
+
+    path('home1/<int:pk>/', views.home1, name='home1'),
 
     
 ]

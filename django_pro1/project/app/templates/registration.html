@@ -6,5 +6,53 @@
 {% endblock %}
 {% block content %}
 
-registration
+<h1>This Is Registration Section</h1>
+{% if key %}
+  <h2 style="color: red;">{{ key }}</h2>
+{% endif %}
+
+<form action="{% url 'register' %}" method="post" enctype="multipart/form-data"  style="max-width: 600px; margin: auto; background-color: #f7f7f7; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  {% csrf_token %}
+
+  <label for="username">Name:</label>
+  <input type="text" name="username" placeholder="Enter your name" required><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" name="email" placeholder="Enter your email" required><br><br>
+
+  <label for="detail">Description:</label><br>
+  <textarea name="detail" cols="20" rows="5" placeholder="Tell us about yourself"></textarea><br><br>
+
+  <label for="phone">Contact:</label>
+  <input type="tel" name="phone" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number" required><br><br>
+
+  <label for="dob">DOB:</label>
+  <input type="date" name="dob" min="1934-01-01" max="2024-01-01" required><br><br>
+
+  <label>Education:</label><br>
+  <input type="checkbox" name="subscribe" value="one"> B.Tech
+  <input type="checkbox" name="subscribe" value="two"> M.Tech
+  <input type="checkbox" name="subscribe" value="three"> P.hd<br><br>
+
+  <label>Gender:</label><br>
+  <input type="radio" name="gender" value="male"> Male
+  <input type="radio" name="gender" value="female"> Female<br><br>
+
+  <label for="profile-pic">Profile Picture:</label>
+  <input type="file" name="profile-pic" accept=".jpeg,.png"><br><br>
+
+  <label for="resume">Resume:</label>
+  <input type="file" name="resume" accept=".pdf,.doc"><br><br>
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" required><br><br>
+
+  <label for="cpassword">Confirm Password:</label>
+  <input type="password" name="cpassword" required><br><br>
+
+  <input type="submit" value="Register" style="padding: 10px 20px; background-color: #28a745; border: none; color: white; border-radius: 5px; cursor: pointer;">
+</form>
+
+
+
 {% endblock %}
