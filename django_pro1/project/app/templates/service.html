@@ -5,5 +5,39 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 {% block content %}
-services
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold">Our Services</h2>
+    <p class="lead">Explore the features that make EduManage powerful and user-friendly.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow border-warning">
+        <div class="card-body">
+          <h5 class="card-title text-success">Online Admissions</h5>
+          <p class="card-text">Students can apply online, upload documents, and track their application status in real-time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow border-warning">
+        <div class="card-body">
+          <h5 class="card-title text-success">Role-Based Login</h5>
+          <p class="card-text">Dynamic navigation for admins and users. Admins can view all data, while users see only their details.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow border-warning">
+        <div class="card-body">
+          <h5 class="card-title text-success">Student Profile Management</h5>
+          <p class="card-text">Admin can edit/delete student records and view all submissions easily from the dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

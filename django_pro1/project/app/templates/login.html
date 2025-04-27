@@ -1,25 +1,35 @@
 {% extends "base.html" %}
-{% block title %} Login {% endblock %}
+{% block title %}Login{% endblock %}
 {% load static %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
+
 {% block content %}
-<form action="{% url 'logindata' %}" method="post" class="loginform" autocomplete="off">
-    {% csrf_token %}
-  
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" placeholder="Enter your email" required 
-           value="{{ email|default:'' }}" autocomplete="off">
-  
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" placeholder="Enter your password" required 
-           autocomplete="new-password">
-  
-    <input type="submit" value="Login">
-  </form>
-  
-  
-  
-  
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Login</h1>
+
+  <div class="card shadow-lg p-4" style="max-width: 400px; margin: auto;">
+    <form action="{% url 'logindata' %}" method="post" autocomplete="off">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email" required 
+               value="{{ email|default:'' }}" autocomplete="off">
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required 
+               autocomplete="new-password">
+      </div>
+
+      <div class="text-center">
+        <input type="submit" value="Login" class="btn btn-success w-100" style="padding: 10px;">
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

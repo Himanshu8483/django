@@ -1945,3 +1945,8 @@ URL	Directory	Delete
 /static/	/home/himanshubkp0/project/app/static	 
 Enter URL	Enter path	
 Force HTTPS: enabled
+
+<int:pk>
+<str:pk>
+<slug:pk>
+dfd: data flow diagram: important to make project

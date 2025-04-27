@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Students
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -19,6 +20,9 @@ def service(request):
 
 
 def dashboard(request, pk):
+    if not request.session.get('user_id'):
+        return redirect('login')
+
     student = Students.objects.get(id=pk)
     context = {
         "id": student.id,
@@ -36,25 +40,28 @@ def dashboard(request, pk):
     return render(request, 'dashboard.html', {'userdata': context})
 
 
-
 def logindata(request):
     if request.method == 'POST':
         email = request.POST.get('email')
-        pasw = request.POST.get('password')
+        password = request.POST.get('password')
         user = Students.objects.filter(stuemial=email).first()
 
-        if user:
-            if pasw == user.stupass:
-                return redirect('dashboard', pk=user.id)
-            else:
-                msg = 'Email and Password Not Matched'
+        if user and password == user.stupass:
+            # Save login info in session
+            request.session['user_id'] = user.id
+            request.session['user_name'] = user.stuname
+            return redirect('dashboard', pk=user.id)
         else:
-            msg = "Email Not Registered"
-
-        return render(request, 'login.html', {'msg': msg, 'email': email})
+            msg = "Invalid email or password"
+            return render(request, 'login.html', {'msg': msg, 'email': email})
 
     return render(request, 'login.html')
 
+
+def logout(request):
+    request.session.flush()  # Clears all session data
+    messages.success(request, "Logged out successfully.")
+    return redirect('login')
 
 
 
