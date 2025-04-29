@@ -13,6 +13,5 @@ class Citizen(models.Model):
     email = models.EmailField(max_length=254)
     contact = models.IntegerField()
     aadhar_no = models.OneToOneField(Aadhar, on_delete=models.PROTECT)
-    # , to_field='aadhar', related_name='student')
     def __str__(self):
         return str(self.name)
