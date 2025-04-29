@@ -1954,3 +1954,11 @@ dfd: data flow diagram: important to make project
 
 refrencial intigrity ko maintain karne ke liye foreign key use karte hai
 primary key only one and it is roll 
+
+29 apr 
+Model RelationShip: one to one 
+one to many 
+many to one 
+many to many 
+alot or assign 
+adhar alot not asign 
