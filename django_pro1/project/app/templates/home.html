@@ -49,16 +49,18 @@
 </div>
 
 <!-- Video Section -->
-{% comment %} <div class="container my-5">
-  <div class="row">
-      <div class="col text-center">
-          <video autoplay muted loop class="rounded" style="width: 100%;" src="{% static 'video/djangovid.mp4' %}"></video>
-      </div>
-      <div class="col text-center">
-          <video autoplay muted loop class="rounded" style="width: 100%;" src="{% static 'video/djangovideo.mp4' %}"></video>
-      </div>
+{% load static %}
+<div class="container">
+  <div class="row g-2">
+    <div class="col-12 col-md-6 text-center">
+      <video autoplay muted loop class="rounded w-100" src="{% static 'video/djangovid.mp4' %}"></video>
+    </div>
+    <div class="col-12 col-md-6 text-center">
+      <video autoplay muted loop class="rounded w-100" src="{% static 'video/djangovideo.mp4' %}"></video>
+    </div>
   </div>
-</div> {% endcomment %}
+</div>
+
 
 
 <div class="container mt-5">
@@ -142,7 +144,35 @@
     </div>
   </div>
   
+  <section class="container-fluid py-5">
+    <div class="row align-items-center">
+      
+      <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
+        <video autoplay muted loop class="rounded w-100 animate__animated animate__fadeInLeft" style="max-height: 400px;" src="{% static 'video/djangovid.mp4' %}"></video>
+      </div>
+      
+      <div class="col-12 col-md-6 text-center text-md-start animate__animated animate__fadeInRight">
+        <h2 class="mb-3">This is from EduManage</h2>
+        <p class="mb-4">Learn full-stack development using Django and React. Manage users, handle forms, and create secure dashboards easily.</p>
+        <a href="{% url 'registration' %}" class="btn btn-success px-4 py-2">Get Started</a>
+      </div>
+  
+    </div>
+  </section>
+  <section class="container-fluid py-5">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 text-center text-md-start">
+        <h2 class="mb-3">Build Powerful Knowledge</h2>
+        <p class="mb-4">Learn full-stack development using Django and React. Manage users, handle forms, and create secure dashboards easily.</p>
+        <a href="{% url 'registration' %}" class="btn btn-success px-4 py-2 mb-4">Get Started</a>
+      </div>
+      <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
+        <div class="image-slider rounded w-100 mx-auto "></div>
+      </div>
 
+    </div>
+  </section>
+  
 <!-- Features Section -->
 <div class="container my-5">
   <h3 class="text-center mb-4">Our Features</h3>
