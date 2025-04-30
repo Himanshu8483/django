@@ -1962,3 +1962,7 @@ many to one
 many to many 
 alot or assign 
 adhar alot not asign 
+
+double underscore called magic or render method 
+
+query dict data only pass in dict cannot use list 

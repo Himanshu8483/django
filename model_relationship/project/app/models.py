@@ -10,8 +10,8 @@ class Aadhar(models.Model):
 
 class Citizen(models.Model):
     name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254)
+    email = models.EmailField(max_length=254, unique=True)
     contact = models.IntegerField()
-    aadhar_no = models.OneToOneField(Aadhar, on_delete=models.PROTECT)
+    aadhar_no = models.OneToOneField(Aadhar, on_delete=models.PROTECT, to_field='aadhar_no')
     def __str__(self):
-        return str(self.name)
+        return self.name+' '+str(self.aadhar_no)
