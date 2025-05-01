@@ -1966,3 +1966,6 @@ adhar alot not asign
 double underscore called magic or render method 
 
 query dict data only pass in dict cannot use list 
+
+related name for reverse access 
+reverse access forward access 
