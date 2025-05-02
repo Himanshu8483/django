@@ -33,3 +33,8 @@ def citizen(request):
     print(x.aadhar_no)
     print(x.created_by)
     print(x.alloted_date)
+    print('--------------')
+    citizen = Citizen.objects.get(id=1)
+    aadhar = citizen.aadhar_no
+    print(aadhar.created_by)
+    print(aadhar.alloted_date)
