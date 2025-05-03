@@ -1955,3 +1955,4 @@ dfd: data flow diagram: important to make project
 refrencial intigrity ko maintain karne ke liye foreign key use karte hai
 primary key only one and it is roll 
 
+one to many 
