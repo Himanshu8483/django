@@ -1,0 +1,15 @@
+<h2>All Departments</h2>
+<ul>
+  {% for dept in departments %}
+    <li>{{ dept.dep_name }} - {{ dept.dep_dis }} - {{ dept.dep_hod }}</li>
+  {% endfor %}
+</ul>
+
+<h2>Students in {{ target_department.dep_name }}</h2>
+<ul>
+  {% for stu in students_in_department %}
+    <li>{{ stu.stu_name }} | {{ stu.stu_email }} | {{ stu.stu_contact }}</li>
+  {% empty %}
+    <li>No students found in this department.</li>
+  {% endfor %}
+</ul>
