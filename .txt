@@ -1956,3 +1956,10 @@ refrencial intigrity ko maintain karne ke liye foreign key use karte hai
 primary key only one and it is roll 
 
 one to many 
+
+
+
+kisi bhi class ka internal behaviour change karne ke liye meta class use karte hai 
+Query:
+1. return multiple objects: all, filter, orderby , exclude , 
+2. return single object : get 
