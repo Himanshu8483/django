@@ -1,7 +1,10 @@
 
 <h1>Common Table</h1>
 <div>
+    {% if data %}
+    <a href="{% url 'index' %}">Go Back</a>
 <table>
+
     <thead>
         <tr>
             <th>S No</th>
@@ -13,7 +16,7 @@
         
     </thead>
     <tbody>
-        {% for i in data %}
+    {% for i in data %}
         <tr>
             <td>{{i.s_no}}</td>
             <td>{{i.name}}</td>
@@ -25,4 +28,8 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+  <tr><td colspan="6">No records found.</td></tr>
+{% endif %}
+
 </div>
