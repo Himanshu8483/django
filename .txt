@@ -1963,3 +1963,6 @@ kisi bhi class ka internal behaviour change karne ke liye meta class use karte h
 Query:
 1. return multiple objects: all, filter, orderby , exclude , 
 2. return single object : get 
+
+
+for loop . counter 

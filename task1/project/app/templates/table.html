@@ -1,0 +1,28 @@
+
+<h1>Common Table</h1>
+<div>
+<table>
+    <thead>
+        <tr>
+            <th>S No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>City</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        {% for i in data %}
+        <tr>
+            <td>{{i.s_no}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.city}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>

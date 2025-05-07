@@ -18,6 +18,9 @@ def student(request):
     data = Student.objects.last()
     # data.delete()          # it delete first data
     data.update(stu_name='Neetu', stu_email='n@gmail.com')
+    data = Student.objects.first()
+    data.stu_name= 'Updated'
+    data.stu_city= 'New'
     print(all_data)
     print(all_data.values())
     print(all_data.values_list())
