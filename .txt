@@ -1963,3 +1963,28 @@ kisi bhi class ka internal behaviour change karne ke liye meta class use karte h
 Query:
 1. return multiple objects: all, filter, orderby , exclude , 
 2. return single object : get 
+
+
+pickling, unpickling
+load
+custom model create 
+django official documanetation
+
+
+(env) D:\z_notes\django\task1\project>py manage.py shell
+
+>>> from app.models import Student                                                                    
+>>> data = Student.objects.all()                                                                      
+>>> data     
+>>> print(data)                                                                                                                                                                                
+>>> print(data.values())                                                                              
+>>> print(data.values_list())                                                                         
+>>> Student.objects.create(name='Dhruv', email='dhruv@gmail.com', contact=212132332, city = 'Maugang')
+>>> x = Student.objects.get(id=4)
+>>> print(x)
+>>> x.delete()
+>>> x = Student.objects.get(id=4)
+>>> x.name = 'Himm'
+>>> x.save()       
+>>> x.name        
+ 

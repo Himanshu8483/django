@@ -10,7 +10,7 @@ def first(request):
     return render(request, 'index.html', {'data':data})
 
 def last(request):
-    data = Student.objects.order_by('-s_no')[:5]
+    data = Student.objects.order_by('-id')[:5]
     print(data)
     print(data)
     return render(request, 'index.html', {'data': data})

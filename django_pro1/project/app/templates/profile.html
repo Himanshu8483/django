@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Landing Page{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    {% if userdata %}
+        <!-- User Info Section -->
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="text-center mb-4">
+                <a href="{% url 'dashboard' pk=userdata.id %}" class="text-decoration-none text-dark">{{ userdata.stuname }}</a>
+            </h2>
+            <a href="{% url 'dashboard' pk=userdata.id %}" class="btn btn-success">Go To User Dashboard</a>
+
+          </div>
+        <hr>
+        <!-- Profile Image Section -->
+        <div class="row justify-content-center mb-2">
+            <div class="col-auto">
+                <a href="{% url 'dashboard' pk=userdata.id %}">
+                    {% if userdata.stuimage %}
+                        <img src="{{ userdata.stuimage.url }}" alt="Profile Picture" class="img-fluid rounded-circle border" style="width: 120px; height: 120px; object-fit: cover;">
+                    {% else %}
+                        <p class="text-muted">No profile image uploaded.</p>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+
+        <!-- Book Data Buttons Section -->
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-10 text-center">
+                <h4 class="mb-4">Student Book Data</h4>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center flex-wrap">
+                    <a href="{% url 'first1' pk=userdata.id %}" class="btn btn-outline-primary mb-2 px-4 py-2">First 5 Data</a>
+                    <a href="{% url 'last1' pk=userdata.id %}" class="btn btn-outline-secondary mb-2 px-4 py-2">Last 5 Data</a>
+                    <a href="{% url 'all1' pk=userdata.id %}" class="btn btn-outline-success mb-2 px-4 py-2">All Data</a>
+                    <a href="{% url 'asc1' pk=userdata.id %}" class="btn btn-outline-info mb-2 px-4 py-2">Ascending Data</a>
+                    <a href="{% url 'desc1' pk=userdata.id %}" class="btn btn-outline-warning mb-2 px-4 py-2">Descending Data</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Data Section -->
+        <div class="table-responsive mb-5">
+            {% include "table.html" %}
+        </div>
+
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            Please log in to view your profile.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

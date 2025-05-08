@@ -22,21 +22,33 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Public Pages
     path('', views.home, name='home'),
     path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('admins/', views.admins, name='admins'),
-    path('login/', views.login, name='login'),
-    path('registration/', views.registration, name='registration'),
     path('service/', views.service, name='service'),
-    
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+    path('registration/', views.registration, name='registration'),
+
+    # Auth actions
     path('logindata/', views.logindata, name='logindata'),
     path('register/', views.register, name='register'),
+
+    # Dashboard
     path('dashboard/<int:pk>/', views.dashboard, name='dashboard'),
-
     path('home1/<int:pk>/', views.home1, name='home1'),
-    path('logout/', views.logout, name='logout'),
 
+    # Admins page
+    path('admins/', views.admins, name='admins'),
 
-    
+    # Student-Specific Book Views
+    path('profile/', views.profile, name='profile'),
+    path('profile1/<int:pk>/', views.student_profile, name='profile1'),
+    path('first1/<int:pk>/', views.student_books_first, name='first1'),
+    path('last1/<int:pk>/', views.student_books_last, name='last1'),
+    path('all1/<int:pk>/', views.student_books_all, name='all1'),
+    path('asc1/<int:pk>/', views.student_books_asc, name='asc1'),
+    path('desc1/<int:pk>/', views.student_books_desc, name='desc1'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
