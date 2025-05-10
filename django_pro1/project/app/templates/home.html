@@ -4,27 +4,6 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
-{% comment %} {% block content %}
-<div>
-    {% if userdata %}
-
-  <h2>Welcome, {{ userdata.name }}</h2>
-  {% else %}
-    <h2>Login User </h2>
-    {% endif %}
-
-    <p>Search Here <input type="search"><button>Search</button></p>
-</div>
-<div>
-    <video autoplay muted loop height="500px" src="{% static 'video/djangovid.mp4' %}" ></video>
-</div>
-<div>
-    <h1><acronym title="">Dotted by acronym</acronym></h1>
-</div>
-
-
-{% endblock  %} {% endcomment %}
-
 
 {% block content %}
 <!-- Welcome Section -->
