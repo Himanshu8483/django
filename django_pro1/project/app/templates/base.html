@@ -17,7 +17,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
 
-      <a class="navbar-brand fw-bold text-success" href="{% url 'admins' %}">EduManage</a>
+      <strong class="navbar-brand fw-bold text-success">EduManage</strong>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -28,30 +28,36 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-          <!-- Common Links -->
-
-
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'about' %}">About</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'service' %}">Services</a>
-          </li>
 
           <!-- Authenticated User -->
-          {% if request.session.user_id %}
+          {% if userdata %}
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'home1' pk=request.session.user_id %}">Home</a>
+            <a class="nav-link active" href="{% url 'home1' pk=userdata.id %}">Home</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'profile1' pk=request.session.user_id %}">Profile</a>
+            <a class="nav-link active" href="{% url 'about1' pk=userdata.id %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'service1' pk=userdata.id %}">Services</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+            <a class="nav-link active" href="{% url 'profile1' pk=userdata.id %}">Profile</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'registration1' pk=userdata.id %}">Registration</a>
+          </li>
+          <!-- Admin Panel -->
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'admins1' pk=userdata.id %}">Admin Panel</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'home' %}">Logout</a>
+          </li>
+
 
           <!-- Guest User -->
           {% else %}
@@ -60,21 +66,30 @@
             <a class="nav-link active" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'service' %}">Services</a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link active" href="{% url 'profile' %}">Profile</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'registration' %}">Registration</a>
+          </li>
+          <!-- Admin Panel -->
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'admins' %}">Admin Panel</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'login' %}">Login</a>
           </li>
           {% endif %}
 
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'registration' %}">Registration</a>
-          </li>
 
-          <!-- Admin Panel -->
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'admins' %}">Admin Panel</a>
-          </li>
         </ul>
 
         <!-- Search -->

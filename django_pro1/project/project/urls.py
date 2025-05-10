@@ -29,7 +29,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('service/', views.service, name='service'),
     path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
     path('registration/', views.registration, name='registration'),
 
     # Auth actions
@@ -39,16 +38,20 @@ urlpatterns = [
     # Dashboard
     path('dashboard/<int:pk>/', views.dashboard, name='dashboard'),
     path('home1/<int:pk>/', views.home1, name='home1'),
+    path('about1/<int:pk>/', views.about1, name='about1'),
+    path('service1/<int:pk>/', views.service1, name='service1'),
+    path('registration1/<int:pk>/', views.registration1, name='registration1'),
+    path('admins1/<int:pk>/', views.admins1, name='admins1'),
 
     # Admins page
     path('admins/', views.admins, name='admins'),
 
     # Student-Specific Book Views
     path('profile/', views.profile, name='profile'),
-    path('profile1/<int:pk>/', views.student_profile, name='profile1'),
-    path('first1/<int:pk>/', views.student_books_first, name='first1'),
-    path('last1/<int:pk>/', views.student_books_last, name='last1'),
-    path('all1/<int:pk>/', views.student_books_all, name='all1'),
-    path('asc1/<int:pk>/', views.student_books_asc, name='asc1'),
-    path('desc1/<int:pk>/', views.student_books_desc, name='desc1'),
+    path('profile1/<int:pk>/', views.profile1, name='profile1'),
+    path('first1/<int:pk>/', views.first1, name='first1'),
+    path('last1/<int:pk>/', views.last1, name='last1'),
+    path('all1/<int:pk>/', views.all1, name='all1'),
+    path('asc1/<int:pk>/', views.asc1, name='asc1'),
+    path('desc1/<int:pk>/', views.desc1, name='desc1'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

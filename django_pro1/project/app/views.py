@@ -22,15 +22,11 @@ def admins(request):
     users = Students.objects.all()
     return render(request, 'admins.html', {'users': users})
 
-
-# Session-based Dashboard
+# Dashboard
 def dashboard(request, pk):
-    if not request.session.get('user_id'):
-        return redirect('login')
-
     student = Students.objects.get(id=pk)
-    return render(request, 'dashboard.html', {'userdata': get_user_dict(student.id)})
-
+    return render(request, 'profile.html', {'userdata': get_user_dict(student.id), 'show_profile': True
+})
 
 # Login logic
 def logindata(request):
@@ -40,20 +36,11 @@ def logindata(request):
         user = Students.objects.filter(stuemail=email).first()
 
         if user and password == user.stupass:
-            request.session['user_id'] = user.id
-            request.session['user_name'] = user.stuname
-            return redirect('dashboard', pk=user.id)
+            return redirect('profile1', pk=user.id)
         else:
             msg = "Invalid email or password"
             return render(request, 'login.html', {'msg': msg, 'email': email})
     return render(request, 'login.html')
-
-
-# Logout
-def logout(request):
-    request.session.flush()
-    messages.success(request, "Logged out successfully.")
-    return redirect('login')
 
 
 # Registration logic
@@ -93,7 +80,6 @@ def register(request):
 
     return render(request, 'registration.html')
 
-
 # Utility function
 def get_user_dict(pk):
     user = Students.objects.get(id=pk)
@@ -114,44 +100,57 @@ def get_user_dict(pk):
 # Home1
 def home1(request, pk):
     return render(request, 'home.html', {'userdata': get_user_dict(pk)})
+# about1
+def about1(request, pk):
+    return render(request, 'about.html', {'userdata': get_user_dict(pk)})
+# service1
+def service1(request, pk):
+    return render(request, 'service.html', {'userdata': get_user_dict(pk)})
+# registration1
+def registration1(request, pk):
+    return render(request, 'registration.html', {'userdata': get_user_dict(pk)})
+# admins1
+def admins1(request, pk):
+    users = Students.objects.all()
+    return render(request, 'admins.html', {'userdata': get_user_dict(pk), 'users': users})
 
 # --------------------- BOOK VIEWS -------------------------
 
 def profile(request):
     return render(request, 'profile.html')
 
-
 # --------------------- STUDENT BOOK VIEWS -------------------------
-def student_profile(request, pk):
+def profile1(request, pk):
     user = Students.objects.get(id=pk)
-    return render(request, 'profile.html', {'userdata': user})
+    return render(request, 'profile.html', {'userdata': user, 'show_profile': False
+})
 
-def student_books_first(request, pk):
+def first1(request, pk):
     user = Students.objects.get(id=pk)
     data = Book.objects.all()[:5]
+    print(data)
     return render(request, 'profile.html', {'userdata': user, 'data': data})
-# def student_books_last(request, pk):
+
+# or with this way but image not show   : -------------------------------
+# def last1(request, pk):
 #     return render(request, 'profile.html', {'userdata': get_user_dict(pk), 'data': Book.objects.order_by('-id')[:5]})
 
-# def student_books_all(request, pk):
-#     return render(request, 'profile.html', {'userdata': get_user_dict(pk), 'data': Book.objects.all()})
-
-def student_books_last(request, pk):
+def last1(request, pk):
     user = Students.objects.get(id=pk)
-    data = Book.objects.order_by('-id')[:5]
+    data = Book.objects.order_by('-id')[:5]     # Last 5 books in descending order
     return render(request, 'profile.html', {'userdata': user, 'data': data})
 
-def student_books_all(request, pk):
+def all1(request, pk):
     user = Students.objects.get(id=pk)
-    data = Book.objects.all()
+    data = Book.objects.all()       # all books
     return render(request, 'profile.html', {'userdata': user, 'data': data})
 
-def student_books_asc(request, pk):
+def asc1(request, pk):
     user = Students.objects.get(id=pk)
-    data = Book.objects.order_by('student_name')
+    data = Book.objects.order_by('student_name')       # in ascending order by name
     return render(request, 'profile.html', {'userdata': user, 'data': data})
 
-def student_books_desc(request, pk):
+def desc1(request, pk):
     user = Students.objects.get(id=pk)
-    data = Book.objects.order_by('-student_name')
-    return render(request, 'profile.html', {'userdata': user, 'data': data})
+    data = Book.objects.order_by('-student_name')       # in descending order by name
+    return render(request, 'profile.html', {'userdata': user, 'data': data}) 

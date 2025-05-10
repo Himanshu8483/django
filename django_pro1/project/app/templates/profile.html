@@ -4,55 +4,101 @@
 {% block title %}Landing Page{% endblock %}
 
 {% block content %}
+{% if show_profile %}
 <div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">User Dashboard</h1>
+    <a href="{% url 'profile1' pk=userdata.id %}" class="btn btn-success">Go To Profile</a>
+  </div>
 
-    {% if userdata %}
-        <!-- User Info Section -->
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <h2 class="text-center mb-4">
-                <a href="{% url 'dashboard' pk=userdata.id %}" class="text-decoration-none text-dark">{{ userdata.stuname }}</a>
-            </h2>
-            <a href="{% url 'dashboard' pk=userdata.id %}" class="btn btn-success">Go To User Dashboard</a>
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <h2 class="mb-4">Welcome, <span class="text-primary">{{ userdata.name }}</span></h2>
 
-          </div>
-        <hr>
-        <!-- Profile Image Section -->
-        <div class="row justify-content-center mb-2">
-            <div class="col-auto">
-                <a href="{% url 'dashboard' pk=userdata.id %}">
-                    {% if userdata.stuimage %}
-                        <img src="{{ userdata.stuimage.url }}" alt="Profile Picture" class="img-fluid rounded-circle border" style="width: 120px; height: 120px; object-fit: cover;">
-                    {% else %}
-                        <p class="text-muted">No profile image uploaded.</p>
-                    {% endif %}
-                </a>
-            </div>
-        </div>
-
-        <!-- Book Data Buttons Section -->
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-10 text-center">
-                <h4 class="mb-4">Student Book Data</h4>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center flex-wrap">
-                    <a href="{% url 'first1' pk=userdata.id %}" class="btn btn-outline-primary mb-2 px-4 py-2">First 5 Data</a>
-                    <a href="{% url 'last1' pk=userdata.id %}" class="btn btn-outline-secondary mb-2 px-4 py-2">Last 5 Data</a>
-                    <a href="{% url 'all1' pk=userdata.id %}" class="btn btn-outline-success mb-2 px-4 py-2">All Data</a>
-                    <a href="{% url 'asc1' pk=userdata.id %}" class="btn btn-outline-info mb-2 px-4 py-2">Ascending Data</a>
-                    <a href="{% url 'desc1' pk=userdata.id %}" class="btn btn-outline-warning mb-2 px-4 py-2">Descending Data</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Table Data Section -->
-        <div class="table-responsive mb-5">
-            {% include "table.html" %}
-        </div>
-
-    {% else %}
-        <div class="alert alert-warning text-center" role="alert">
-            Please log in to view your profile.
-        </div>
-    {% endif %}
-
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle text-center">
+          <thead class="table-light">
+            <tr>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>Education</th>
+              <th>Details</th>
+              {% if userdata.image %}<th>Profile Picture</th>{% endif %}
+              {% if userdata.resume %}<th>Resume</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ userdata.email }}</td>
+              <td>{{ userdata.phone }}</td>
+              <td>{{ userdata.dob }}</td>
+              <td>{{ userdata.gender }}</td>
+              <td>{{ userdata.sub }}</td>
+              <td>{{ userdata.des }}</td>
+              {% if userdata.image %}
+              <td>
+                <img src="{{ userdata.image.url }}" alt="Profile" class="img-thumbnail rounded" style="max-width: 100px;">
+              </td>
+              {% endif %}
+              {% if userdata.resume %}
+              <td>
+                <a href="{{ userdata.resume.url }}" class="btn btn-sm btn-outline-primary" target="_blank">Download</a>
+              </td>
+              {% endif %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
+
+{% else %}
+<div class="container py-5">
+  {% if userdata %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">
+      <a href="{% url 'dashboard' pk=userdata.id %}" class="text-decoration-none text-dark">{{ userdata.stuname }}</a>
+    </h2>
+    <a href="{% url 'dashboard' pk=userdata.id %}" class="btn btn-success">Go To User Dashboard</a>
+  </div>
+  <hr>
+
+<div class="text-center mb-4">
+  {% if userdata.stuimage %}
+    <a href="{% url 'dashboard' pk=userdata.id %}">
+      <img src="{{ userdata.stuimage.url }}" alt="Profile Picture"
+           class="rounded-circle border shadow"
+           style="width: 120px; height: 120px; object-fit: cover;">
+    </a>
+  {% else %}
+    <p class="text-muted">No profile image uploaded.</p>
+  {% endif %}
+</div>
+
+
+  <div class="text-center mb-4">
+    <h4 class="mb-3">Student Book Data</h4>
+    <div class="d-grid gap-2 d-sm-flex justify-content-center flex-wrap">
+      <a href="{% url 'first1' pk=userdata.id %}" class="btn btn-outline-primary px-4 py-2 mb-2">First 5 Data</a>
+      <a href="{% url 'last1' pk=userdata.id %}" class="btn btn-outline-secondary px-4 py-2 mb-2">Last 5 Data</a>
+      <a href="{% url 'all1' pk=userdata.id %}" class="btn btn-outline-success px-4 py-2 mb-2">All Data</a>
+      <a href="{% url 'asc1' pk=userdata.id %}" class="btn btn-outline-info px-4 py-2 mb-2">Ascending Data</a>
+      <a href="{% url 'desc1' pk=userdata.id %}" class="btn btn-outline-warning px-4 py-2 mb-2">Descending Data</a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    {% include "table.html" %}
+  </div>
+
+  {% else %}
+  <div class="alert alert-success text-center" role="alert">
+    Please log in to view your profile.
+  </div>
+  {% endif %}
+</div>
+{% endif %}
 {% endblock %}
