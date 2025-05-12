@@ -54,4 +54,10 @@ urlpatterns = [
     path('all1/<int:pk>/', views.all1, name='all1'),
     path('asc1/<int:pk>/', views.asc1, name='asc1'),
     path('desc1/<int:pk>/', views.desc1, name='desc1'),
+    
+    
+    path('edit/<int:pk1>/<int:pk>/', views.edit, name='edit'),
+    path('delete/<int:pk1>/<int:pk>/', views.delete, name='delete'),
+    path('editdata/<int:pk1>/<int:pk>/', views.editdata, name='editdata'),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

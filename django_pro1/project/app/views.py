@@ -154,3 +154,42 @@ def desc1(request, pk):
     user = Students.objects.get(id=pk)
     data = Book.objects.order_by('-student_name')       # in descending order by name
     return render(request, 'profile.html', {'userdata': user, 'data': data}) 
+
+def edit(request, pk1, pk):
+    print(pk1)
+    print(pk)
+    userdata = Students.objects.get(id = pk1)
+    userdata = {
+        "id": userdata.id,
+        "name": userdata.stuname,
+        "email": userdata.stuemail,
+        "des": userdata.studetails,
+        "phone": userdata.stuphone,
+        "dob": userdata.studob,
+        "sub": userdata.stuedu,
+        "gender": userdata.stugender,
+        "image": userdata.stuimage,
+        "resume": userdata.sturesume,
+        "pass": userdata.stupass,
+    }
+    editdata = Book.objects.get(id=pk)
+    return render(request, 'profile.html', {'userdata': userdata, 'editdata': editdata})
+    
+    
+def delete(request, pk1, pk):
+    print(pk1)
+    print(pk)
+    
+
+def editdata(request, pk1, pk):
+    if request.method == 'POST':
+        edit = Book.objects.get(id=pk)
+        edit.student_name = request.POST.get('student_name')
+        edit.clas = request.POST.get('clas')
+        edit.section = request.POST.get('section')
+        edit.book_title = request.POST.get('book_title')
+        edit.issue_date = request.POST.get('issue_date')
+        edit.return_date = request.POST.get('return_date')
+        edit.price = request.POST.get('price')
+        userdata = Students.objects.get(id = pk1)
+        return render(request, 'profile.html', {'userdata': userdata, 'edit': edit})
