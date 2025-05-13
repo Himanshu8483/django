@@ -1,58 +1,81 @@
 <div class="table-responsive">
-    {% if userdata %}
-        {% if editdata %}
-        {% comment %} <form action="" method = 'post'> {% endcomment %}
-        <form action="{% url 'editdata' pk1=userdata.id pk=editdata.id %}" method = 'post'>
-            {% csrf_token %}
-            <input type='text' name='student_name' value = {{editdata.student_name}}>
-            <input type='number' name='clas' value = {{editdata.clas}}>
-            <input type='text' name='section' value = {{editdata.section}}>
-            <input type='text' name='book_title' value = {{editdata.book_title}}>
-            <input type='date' name='issue_date' value = {{editdata.issue_date}}>
-            <input type='date' name='return_date' value = {{editdata.return_date}}>
-            <input type='number' name='price' value = {{editdata.price}}>
-            <input type='submit' value='update'>
-        {% else %}
+  {% if userdata %}
+    {% if editdata %}
+    <form action="{% url 'editdata' pk1=userdata.id pk=editdata.id %}" method="post" class="row g-3 mb-4">
+      {% csrf_token %}
+      <div class="col-md-4">
+        <input type="text" name="student_name" value="{{ editdata.student_name }}" class="form-control" required>
+      </div>
+      <div class="col-md-2">
+        <input type="number" name="clas" value="{{ editdata.clas }}" class="form-control" required>
+      </div>
+      <div class="col-md-2">
+        <input type="text" name="section" value="{{ editdata.section }}" class="form-control" required>
+      </div>
+      <div class="col-md-4">
+        <input type="text" name="book_title" value="{{ editdata.book_title }}" class="form-control" required>
+      </div>
+      <div class="col-md-4">
+        <input type="date" name="issue_date" value="{{ editdata.issue_date }}" class="form-control" required>
+      </div>
+      <div class="col-md-4">
+        <input type="date" name="return_date" value="{{ editdata.return_date }}" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <input type="number" name="price" value="{{ editdata.price }}" class="form-control" required>
+      </div>
+      <div class="col-md-2">
+        <input type="submit" value="Update" class="btn btn-success w-100">
+      </div>
+    </form>
+    {% endif %}
+{% if data %}
+    <!-- Show table only if data exists -->
     <table class="table table-striped table-hover table-bordered align-middle">
-        <thead class="table-dark">
-            <tr>
-                <th>S.No</th> 
-                <th>Id</th> 
-                <th>Name</th>
-                <th>Class</th>
-                <th>Section</th>
-                <th>Book</th>
-                <th>Issue Date</th>
-                <th>Return Date</th>
-                <th>Price</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in data %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ i.id }}</td>
-                <td>{{ i.student_name }}</td>
-                <td>{{ i.clas }}</td>
-                <td>{{ i.section }}</td>
-                <td>{{ i.book_title }}</td>
-                <td>{{ i.issue_date }}</td>
-                <td>{{ i.return_date }}</td>
-                <td>{{ i.price }}</td>
-                <td>
-                    <a href="{% url 'edit' pk1=userdata.id pk=i.id %}" class="btn btn-primary">Edit</a>
-                </td>
-                <td>
-                    <a href="{% url 'delete' pk1=userdata.id pk=i.id %}" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+      <thead class="table-dark">
+        <tr>
+          <th>S.No</th> 
+          <th>Id</th> 
+          <th>Name</th>
+          <th>Class</th>
+          <th>Section</th>
+          <th>Book</th>
+          <th>Issue Date</th>
+          <th>Return Date</th>
+          <th>Price</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.id }}</td>
+          <td>{{ i.student_name }}</td>
+          <td>{{ i.clas }}</td>
+          <td>{{ i.section }}</td>
+          <td>{{ i.book_title }}</td>
+          <td>{{ i.issue_date }}</td>
+          <td>{{ i.return_date }}</td>
+          <td>{{ i.price }}</td>
+          <td>
+            <form method="get" action="{% url 'edit' pk1=userdata.id pk=i.id %}">
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+          </td>
+          <td>
+            <a href="{% url 'delete' pk1=userdata.id pk=i.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?');">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-    {% endif %}
-    {% else %}
+  {% else %}
+    <!-- Show this if data is empty -->
     <div class="text-center text-muted">No records found.</div>
-    {% endif %}
-</div>
+  {% endif %}
+
+{% else %}
+  <div class="text-center text-muted">User data not found.</div>
+{% endif %}

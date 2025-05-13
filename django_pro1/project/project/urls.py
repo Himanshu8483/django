@@ -60,4 +60,10 @@ urlpatterns = [
     path('delete/<int:pk1>/<int:pk>/', views.delete, name='delete'),
     path('editdata/<int:pk1>/<int:pk>/', views.editdata, name='editdata'),
     
+    path('edituser/<int:pk>/', views.edituser, name='edituser'),
+    # path('deleteuser/<int:pk>/', views.deleteuser, name='deleteuser'),
+    path('edituserdata/<int:pk>/', views.edituserdata, name='edituserdata'),
+    
+    
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

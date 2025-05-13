@@ -40,7 +40,10 @@ def logindata(request):
         else:
             msg = "Invalid email or password"
             return render(request, 'login.html', {'msg': msg, 'email': email})
-    return render(request, 'login.html')
+    
+    else:
+        
+        return render(request, 'login.html')
 
 
 # Registration logic
@@ -112,7 +115,7 @@ def registration1(request, pk):
 # admins1
 def admins1(request, pk):
     users = Students.objects.all()
-    return render(request, 'admins.html', {'userdata': get_user_dict(pk), 'users': users})
+    return render(request, 'admins.html', {'userdata': get_user_dict(pk), 'users': users, 'show_profile': True})
 
 # --------------------- BOOK VIEWS -------------------------
 
@@ -156,40 +159,64 @@ def desc1(request, pk):
     return render(request, 'profile.html', {'userdata': user, 'data': data}) 
 
 def edit(request, pk1, pk):
-    print(pk1)
-    print(pk)
-    userdata = Students.objects.get(id = pk1)
-    userdata = {
-        "id": userdata.id,
-        "name": userdata.stuname,
-        "email": userdata.stuemail,
-        "des": userdata.studetails,
-        "phone": userdata.stuphone,
-        "dob": userdata.studob,
-        "sub": userdata.stuedu,
-        "gender": userdata.stugender,
-        "image": userdata.stuimage,
-        "resume": userdata.sturesume,
-        "pass": userdata.stupass,
+    student = Students.objects.get(id=pk1)
+    book = Book.objects.get(id=pk)
+    books = Book.objects.all()
+    context = {
+        'userdata': get_user_dict(student.id),
+        'editdata': book,
+        'data': books
     }
-    editdata = Book.objects.get(id=pk)
-    return render(request, 'profile.html', {'userdata': userdata, 'editdata': editdata})
-    
-    
-def delete(request, pk1, pk):
-    print(pk1)
-    print(pk)
-    
+    return render(request, 'profile.html', context)
 
 def editdata(request, pk1, pk):
-    if request.method == 'POST':
-        edit = Book.objects.get(id=pk)
-        edit.student_name = request.POST.get('student_name')
-        edit.clas = request.POST.get('clas')
-        edit.section = request.POST.get('section')
-        edit.book_title = request.POST.get('book_title')
-        edit.issue_date = request.POST.get('issue_date')
-        edit.return_date = request.POST.get('return_date')
-        edit.price = request.POST.get('price')
-        userdata = Students.objects.get(id = pk1)
-        return render(request, 'profile.html', {'userdata': userdata, 'edit': edit})
+    if request.method == "POST":
+        book = Book.objects.get(id=pk)
+        book.student_name = request.POST.get('student_name')
+        book.clas = request.POST.get('clas')
+        book.section = request.POST.get('section')
+        book.book_title = request.POST.get('book_title')
+        book.issue_date = request.POST.get('issue_date')
+        book.return_date = request.POST.get('return_date')
+        book.price = request.POST.get('price')
+        book.save()
+        return redirect('all1', pk=pk1)
+        # # or 
+        # user = Students.objects.get(id=pk)
+        # data = Book.objects.all()    
+        # return render(request, 'profile.html', {'userdata': user, 'data': data})
+
+def delete(request, pk1, pk):
+    book = Book.objects.get(id=pk)
+    book.delete()
+    return redirect('profile1', pk=pk1)
+
+def edituser(request, pk):
+    students = Students.objects.all()
+    student =  Students.objects.get(id=pk)
+    context = {
+        'userdata': student,
+        'users': students,
+        'showform': True, 
+        'show_profile': True
+
+    }
+    return render(request, 'admins.html', context)
+
+def edituserdata(request, pk):
+    if request.method == "POST":
+        student = Students.objects.get(id=pk)
+        student.stuname = request.POST.get('stuname')
+        student.stuemail = request.POST.get('stuemail')
+        student.stuphone = request.POST.get('stuphone')
+        student.save()
+        
+        users = Students.objects.all()
+        return render(request, 'admins.html', {'userdata': get_user_dict(pk), 'users': users, 'show_profile': True})
+
+# def deleteuser(request, pk):
+#     student = Students.objects.get(id=pk)
+#     student.delete()
+#     return redirect('admins')
+
+    
