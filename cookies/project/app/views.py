@@ -4,8 +4,8 @@ from django.shortcuts import render
 def set(request):
     data = render(request, 'app/set.html')
     data.set_cookie('name', 'Himanshu')
-    data.set_cookie('age', '23')
-    data.set_cookie('city', 'Rewa')
+    data.set_cookie('age', '23', max_age=20*60*60)
+    data.set_cookie('city', 'Rewa', httponly=True, secure=True)
     
     return data
 
