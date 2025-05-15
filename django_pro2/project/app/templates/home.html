@@ -9,11 +9,14 @@
 <!-- Welcome Section -->
 <div class="container mt-4 text-center">
   {% if userdata %}
-      <h2>Welcome, {{ userdata.name }}!</h2>
+      <h2>Welcome, {{ userdata.stuname }}!</h2>
+  {% elif request.session.user == 'admin' %}
+      <h2>Welcome, Admin!</h2>
   {% else %}
       <h2>Login User</h2>
   {% endif %}
 </div>
+
 
 <!-- Search Section -->
 <div class="container my-4">

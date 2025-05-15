@@ -37,6 +37,15 @@
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'service1' pk=userdata.id %}">Services</a>
     </li>
+    {% if request.session.user == 'admin' %}
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'admin_dashboard1' pk=userdata.id %}">Admin Dashboard</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'student_dashboard1' pk=userdata.id %}">User Dashboard</a>
+    </li>
+    {% endif %}
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
     </li>
@@ -51,6 +60,23 @@
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'service' %}">Services</a>
     </li>
+{% if request.session.user == 'admin' %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'admin_dashboard' %}">Admin Panel</a>
+    </li>
+{% elif request.session.user == 'student' %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'student_dashboard1' pk=request.session.student_id %}">Student Panel</a>
+    </li>
+{% else %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'admin_dashboard' %}">Admin Panel</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'student_dashboard1' pk=0 %}">Student Panel</a>
+    </li>
+{% endif %}
+
     <li class="nav-item">
       {% if request.session.user %}
         <a class="nav-link active" href="{% url 'logout' %}">Logout</a>

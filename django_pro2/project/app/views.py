@@ -53,6 +53,12 @@ def student_dashboard1(request, pk):
     user = Students.objects.get(id=pk)
     return render(request, 'student_dashboard.html', {'userdata': user})
     
+def admin_dashboard1(request, pk):
+    user = Students.objects.get(id=pk)
+    if request.session.get('user') != 'admin':
+        return redirect('login')
+    users = Students.objects.all()
+    return render(request, 'admin_dashboard.html', { 'users': users, 'user':user})    
 
 def admin_dashboard(request):
     if request.session.get('user') != 'admin':

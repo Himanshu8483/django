@@ -37,6 +37,7 @@ urlpatterns = [
     path('registration1/<int:pk>/', views.registration1, name='registration1'),
     path('admins1/<int:pk>/', views.admins1, name='admins1'),
     path('student_dashboard1/<int:pk>/', views.student_dashboard1, name='student_dashboard1'),
+    path('admin_dashboard1/<int:pk>/', views.admin_dashboard1, name='admin_dashboard1'),
         
     path('logindata/', views.logindata, name='logindata'),
 
