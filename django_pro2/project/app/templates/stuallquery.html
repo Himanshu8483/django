@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}All Queries{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>All Submitted Queries</h2>
+  <table class="table table-bordered">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Title</th>
+    <th>Message</th>
+    <th>Response</th>  
+    <th>Date</th>
+  </tr>
+</thead>
+<tbody>
+  {% for query in queries %}
+  <tr>
+    <td>{{ query.stuname }}</td>
+    <td>{{ query.stuemail }}</td>
+    <td>{{ query.title }}</td>
+    <td>{{ query.message }}</td>
+    <td>
+      {% if query.response %}
+    <details class="bg-light p-1 rounded border" style="width: 300px;">
+  <summary class="text-primary fw-semibold mb-1" style="cursor: pointer;">
+    {{ query.response|truncatechars:20 }}...
+  </summary>
+  <div class="text-dark mt-2">
+    {{ query.response }}
+  </div>
+</details>
+
+      {% else %}
+      <span class="text-danger">❌ Not yet responded</span>
+      {% endif %}
+    </td>
+    <td>{{ query.created_at }}</td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="6">No queries found.</td>
+  </tr>
+  {% endfor %}
+</tbody>
+
+  </table>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.db import models
 class Students(models.Model):
     stuname = models.CharField(max_length=50)
     stuemail = models.EmailField()  
-    studetails = models.CharField(max_length=300)
+    studetail = models.CharField(max_length=300)
     stuphone = models.BigIntegerField()  
     studob = models.DateField()
     stuedu = models.CharField(max_length=50)
@@ -15,3 +15,14 @@ class Students(models.Model):
 
     def __str__(self):
         return self.stuname  
+
+class StuQuery(models.Model):
+    stuname = models.CharField(max_length=100)
+    stuemail = models.EmailField()
+    title = models.CharField(max_length=255)
+    message = models.TextField()
+    response = models.TextField(blank=True, null=True)  
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.stuname

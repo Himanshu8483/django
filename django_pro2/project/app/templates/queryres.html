@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Respond to Query{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h3>Query from {{ query.stuname }}</h3>
+  <p><strong>Email:</strong> {{ query.stuemail }}</p>
+  <p><strong>Title:</strong> {{ query.title }}</p>
+  <p><strong>Message:</strong> {{ query.message }}</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="response" class="form-label">Your Response</label>
+      <textarea name="response" id="response" class="form-control" rows="5" required>{{ query.response }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Submit Response</button>
+    <a href="{% url 'allquery' %}" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+{% endblock %}

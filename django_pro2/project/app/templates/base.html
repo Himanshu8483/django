@@ -25,30 +25,42 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  {% if userdata %}
+    <!-- Authenticated User Links -->
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'home1' pk=userdata.id %}">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'about1' pk=userdata.id %}">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'service1' pk=userdata.id %}">Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+    </li>
+  {% else %}
+    <!-- Guest User Links -->
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'home' %}">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'about' %}">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'service' %}">Services</a>
+    </li>
+    <li class="nav-item">
+      {% if request.session.user %}
+        <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a class="nav-link active" href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </li>
+  {% endif %}
+</ul>
 
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'about' %}">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'service' %}">Services</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'registration' %}">Registration</a>
-          </li>
-
-
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'login' %}">Login</a>
-          </li>
-          
-
-
-        </ul>
 
         <!-- Search -->
         <form class="d-flex">

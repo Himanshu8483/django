@@ -30,11 +30,24 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('registration/', views.registration, name='registration'),
     
-    # path('', views.login_view, name='login'),
+        # Dashboard
+    path('home1/<int:pk>/', views.home1, name='home1'),
+    path('about1/<int:pk>/', views.about1, name='about1'),
+    path('service1/<int:pk>/', views.service1, name='service1'),
+    path('registration1/<int:pk>/', views.registration1, name='registration1'),
+    path('admins1/<int:pk>/', views.admins1, name='admins1'),
+    path('student_dashboard1/<int:pk>/', views.student_dashboard1, name='student_dashboard1'),
+        
+    path('logindata/', views.logindata, name='logindata'),
+
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
-    path('logout/', views.logout_view, name='logout'),
+    path('logout/', views.logout, name='logout'),
     path('register/', views.register, name='register'),
     
+    path('allquery/', views.allquery, name='allquery'),
+    path('stuallquery/', views.stuallquery, name='stuallquery'),
+    path('queryres/<int:pk>/', views.queryres, name='queryres'),
+    path('newquery/<int:pk>/', views.newquery, name='newquery'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

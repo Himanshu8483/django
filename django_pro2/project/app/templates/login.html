@@ -1,20 +1,35 @@
 {% extends "base.html" %}
-{% block title %} service {% endblock %}
+{% block title %}Login{% endblock %}
 {% load static %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
+
 {% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Login</h1>
 
-    <h2>Login Page</h2>
-    {% if error %}
-        <p style="color:red">{{ error }}</p>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        Email: <input type="email" name="email" required><br><br>
-        Password: <input type="password" name="password" required><br><br>
-        <button type="submit">Login</button>
+  <div class="card shadow-lg p-4" style="max-width: 400px; margin: auto;">
+    <form action="{% url 'logindata' %}" method="post" autocomplete="off">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="stuemail" class="form-label">Email</label>
+        <input type="text" name="stuemail" id="stuemail" class="form-control" placeholder="Enter your email" required 
+               value="" autocomplete="off">
+      </div>
+
+      <div class="mb-3">
+        <label for="stupass" class="form-label">Password</label>
+        <input type="password" name="stupass" id="stupass" class="form-control" placeholder="Enter your password" required 
+               autocomplete="new-password">
+      </div>
+
+      <div class="text-center">
+        <input type="submit" value="Login" class="btn btn-success w-100" style="padding: 10px;">
+      </div>
     </form>
-
+  </div>
+</div>
 {% endblock %}

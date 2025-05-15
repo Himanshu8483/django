@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Students
+from .models import Students, StuQuery   
 
 def home(request):
     return render(request, 'home.html')
@@ -16,30 +16,49 @@ def login(request):
 def registration(request):
     return render(request, 'registration.html')
 
-def login_view(request):
+# Utility function
+def get_user_dict(pk):
+    user = Students.objects.get(id=pk)
+    return {
+        "id": user.id,
+        "stuname": user.stuname,
+        "stuemail": user.stuemail,
+        "studetail": user.studetail,
+        "stuphone": user.stuphone,
+        "studob": user.studob,
+        "stuedu": user.stuedu,
+        "stugender": user.stugender,
+        "stuimage": user.stuimage,
+        "sturesume": user.sturesume,
+        "stupass": user.stupass,
+    }
     
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+def home1(request, pk):
+    return render(request, 'home.html', {'userdata': get_user_dict(pk)})
 
-        if email == 'admin@gmail.com' and password == 'admin@123':
-            request.session['user'] = 'admin'
-            return redirect('admin_dashboard')
+def about1(request, pk):
+    return render(request, 'about.html', {'userdata': get_user_dict(pk)})
 
-        elif email == 'student@gmail.com' and password == 'student@123':
-            request.session['user'] = 'student'
-            return redirect('student_dashboard')
+def service1(request, pk):
+    return render(request, 'service.html', {'userdata': get_user_dict(pk)})
 
-        else:
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
+def registration1(request, pk):
+    return render(request, 'registration.html', {'userdata': get_user_dict(pk)})
 
-    return render(request, 'login.html')
+def admins1(request, pk):
+    users = Students.objects.all()
+    return render(request, 'admins.html', {'userdata': get_user_dict(pk), 'users': users})
 
+def student_dashboard1(request, pk):
+    user = Students.objects.get(id=pk)
+    return render(request, 'student_dashboard.html', {'userdata': user})
+    
 
 def admin_dashboard(request):
     if request.session.get('user') != 'admin':
         return redirect('login')
-    return render(request, 'admin_dashboard.html')
+    users = Students.objects.all()
+    return render(request, 'admin_dashboard.html', { 'users': users})
 
 
 def student_dashboard(request):
@@ -48,61 +67,109 @@ def student_dashboard(request):
     return render(request, 'student_dashboard.html')
 
 
-def logout_view(request):
+def logout(request):
     request.session.flush()
     return redirect('login')
+
+def logindata(request):
+    if request.method == 'POST':
+        email = request.POST.get('stuemail')
+        password = request.POST.get('stupass')
+
+        # Admin login
+        if email == 'admin@gmail.com' and password == 'admin@123':
+            request.session['user'] = 'admin'
+            return redirect('admin_dashboard')
+
+        # Student login (from database)
+        student = Students.objects.filter(stuemail=email).first()
+        if student and password == student.stupass:
+            request.session['user'] = 'student'
+            request.session['student_id'] = student.id  
+            return redirect('student_dashboard1', pk=student.id)
+
+        # Invalid login
+        msg = "Invalid email or password"
+        return render(request, 'login.html', {'msg': msg, 'stuemail': email})
+
+    return render(request, 'login.html')
 
 
 # Registration logic
 def register(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        detail = request.POST.get('detail')
-        phone = request.POST.get('phone')
-        dob = request.POST.get('dob')
-        subscribe = request.POST.getlist('subscribe')
-        gender = request.POST.get('gender')
-        password = request.POST.get('password')
-        cpassword = request.POST.get('cpassword')
-        profilepic = request.FILES.get('profile-pic')
-        resume = request.FILES.get('resume')
+        stuname = request.POST.get('stuname')
+        stuemail = request.POST.get('stuemail')
+        studetail = request.POST.get('studetail')
+        stuphone = request.POST.get('stuphone')
+        studob = request.POST.get('studob')
+        stuedu = request.POST.getlist('stuedu')
+        stugender = request.POST.get('stugender')
+        stupass = request.POST.get('stupass')
+        cpass = request.POST.get('cpass')
+        stuimage = request.FILES.get('stuimage')
+        sturesume = request.FILES.get('sturesume')
 
-        if Students.objects.filter(stuemail=email).exists():
+        if Students.objects.filter(stuemail=stuemail).exists():
             return render(request, 'registration.html', {'error': "Email Already Exists"})
 
-        if password != cpassword:
+        if cpass != cpass:
             return render(request, 'registration.html', {'error': "Check Password And Confirm Password again"})
 
         Students.objects.create(
-            stuname=username,
-            stuemail=email,
-            studetails=detail,
-            stuphone=phone,
-            studob=dob,
-            stuedu=subscribe,
-            stugender=gender,
-            stuimage=profilepic,
-            sturesume=resume,
-            stupass=password
+            stuname=stuname,
+            stuemail=stuemail,
+            studetail=studetail,
+            stuphone=stuphone,
+            studob=studob,
+            stuedu=stuedu,
+            stugender=stugender,
+            stuimage=stuimage,
+            sturesume=sturesume,
+            stupass=stupass
         )
-        return render(request, 'login.html', {'error': "Registration Successful"})
+        # return render(request, 'admin_dash.html', {'error': "Registration Successful"})
+        return redirect('admin_dashboard')
+    
 
     return render(request, 'registration.html')
 
-# Utility function
-def get_user_dict(pk):
+
+def allquery(request):
+    queries = StuQuery.objects.all().order_by('-created_at')
+    return render(request, 'allquery.html', {'queries': queries})
+
+
+def queryres(request, pk):
+    query = StuQuery.objects.get(id=pk)
+    if request.method == 'POST':
+        response = request.POST.get('response')
+        query.response = response
+        query.save()
+        return redirect('allquery')
+    return render(request, 'queryres.html', {'query': query})
+
+
+def newquery(request, pk):
     user = Students.objects.get(id=pk)
-    return {
-        "id": user.id,
-        "name": user.stuname,
-        "email": user.stuemail,
-        "des": user.studetails,
-        "phone": user.stuphone,
-        "dob": user.studob,
-        "sub": user.stuedu,
-        "gender": user.stugender,
-        "image": user.stuimage,
-        "resume": user.sturesume,
-        "pass": user.stupass,
-    }
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        message = request.POST.get('message')
+
+        StuQuery.objects.create(
+            stuname=user.stuname,
+            stuemail=user.stuemail,
+            title=title,
+            message=message
+        )
+        success_msg = "Query submitted successfully!"
+        if request.session.get('user') != 'student':
+            return redirect('login')
+        return render(request, 'stuallquery.html', {'userdata': user, 'success': success_msg})
+
+    return render(request, 'newquery.html', {'userdata': user})
+
+
+def stuallquery(request):
+    queries = StuQuery.objects.all().order_by('-created_at')
+    return render(request, 'stuallquery.html', {'queries': queries})

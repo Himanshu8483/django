@@ -1,15 +1,78 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Dashboard</title>
-</head>
-<body>
-    <h2>Admin Panel</h2>
-    <p>Welcome Admin!</p>
-    <ul>
-        <li><a href="#">Add New Student</a></li>
-        <li><a href="#">Show All Queries</a></li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}User Dashboard{% endblock %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="text-center mb-4">User Dashboard</h1>
+</div>
+
+ 
+<div class="container mb-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <h2 class="mb-0 flex-grow-1">All Registered Users</h2>
+    <div class="d-flex flex-wrap gap-2">
+      <a href="{% url 'registration' %}" class="btn btn-success">Registration Page</a>
+      <a href="{% url 'allquery' %}" class="btn btn-primary">All Queries</a>
+      {% comment %} <a href="{% url 'queryres' query.pk %}" class="btn btn-warning text-white">New Query</a> {% endcomment %}
+    </div>
+  </div>  
+</div>
+
+
+
+  <div class="card shadow p-4">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>S. No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Education</th>
+            <th>Details</th>
+            <th>Profile</th>
+            <th>Resume</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ user.stuname }}</td>
+            <td>{{ user.stuemail }}</td>
+            <td>{{ user.stuphone }}</td>
+            <td>{{ user.studob }}</td>
+            <td>{{ user.stugender }}</td>
+            <td>{{ user.stuedu }}</td>
+            <td>{{ user.studetails }}</td>
+            <td>
+              {% if user.stuimage %}
+              <img src="{{ user.stuimage.url }}" alt="Profile" class="img-thumbnail" style="max-width: 70px;">
+              {% else %}
+              <span class="text-muted">No Image</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if user.sturesume %}
+              <a href="{{ user.sturesume.url }}" class="btn btn-sm btn-success" target="_blank">Download</a>
+              {% else %}
+              <span class="text-muted">No Resume</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

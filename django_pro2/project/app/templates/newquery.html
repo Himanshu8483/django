@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}New Query{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Submit New Query</h2>
+  <form method="post">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label>Name</label>
+      <input type="text" class="form-control" value="{{ userdata.stuname }}" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" class="form-control" value="{{ userdata.stuemail }}" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Query Title</label>
+      <input type="text" class="form-control" name="title" id="title" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="message" class="form-label">Query Message</label>
+      <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{% url 'student_dashboard1' pk=userdata.id %}" class="btn btn-secondary">Back</a>
+  </form>
+    {% if success %}
+    <div class="alert alert-success">{{ success }}</div>
+    {% endif %}
+
+</div>
+{% endblock %}
