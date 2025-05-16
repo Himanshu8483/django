@@ -66,7 +66,6 @@ def admin_dashboard(request):
     users = Students.objects.all()
     return render(request, 'admin_dashboard.html', { 'users': users})
 
-
 def student_dashboard(request):
     if request.session.get('user') != 'student':
         return redirect('login')

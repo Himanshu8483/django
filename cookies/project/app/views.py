@@ -51,3 +51,11 @@ def gett(request):
         else:
             return render(request, 'register.html')
     return redirect('register')
+
+
+def delete(request):
+    response = redirect('register')  
+    response.delete_cookie('name')
+    response.delete_cookie('email')
+    response.delete_cookie('city')
+    return response
