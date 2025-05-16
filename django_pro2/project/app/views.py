@@ -191,8 +191,6 @@ def edituser(request, pk):
 
     }
     return render(request, 'admin_dashboard.html', context)
-
-
 def edituserdata(request, pk):
     if request.method == "POST":
         student = Students.objects.get(id=pk)
@@ -202,25 +200,26 @@ def edituserdata(request, pk):
         student.stuphone = request.POST.get('stuphone')
         student.studetail = request.POST.get('studetail')
         
-                # Only update if a new value is submitted (non-empty)
         if request.POST.get('studob'):
             student.studob = request.POST.get('studob')
 
-        if request.POST.get('stuedu'):
-            student.stuedu = request.POST.get('stuedu')
+        # if request.POST.getlist('stuedu'):
+        #     student.stuedu = ','.join(request.POST.getlist('stuedu'))
+
+        if request.POST.getlist('stuedu'):
+            student.stuedu = request.POST.getlist('stuedu')
 
         if request.POST.get('stugender'):
             student.stugender = request.POST.get('stugender')
 
-        # Only update image if new file is uploaded
         if 'stuimage' in request.FILES:
             student.stuimage = request.FILES['stuimage']
 
-        # Only update resume if new file is uploaded
         if 'sturesume' in request.FILES:
             student.sturesume = request.FILES['sturesume']
 
-        student.stupass = request.POST.get('stupass')
+        if request.POST.get('stupass'):
+            student.stupass = request.POST.get('stupass')
 
         student.save()
 

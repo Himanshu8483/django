@@ -29,7 +29,7 @@ def sett(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         city = request.POST.get('city')
-
+#  In Django, you cannot set cookies without having a response object first.
         response = render(request, 'login.html')
         response.set_cookie('name', name)
         response.set_cookie('email', email)
