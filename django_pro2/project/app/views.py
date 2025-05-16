@@ -179,3 +179,61 @@ def newquery(request, pk):
 def stuallquery(request):
     queries = StuQuery.objects.all().order_by('-created_at')
     return render(request, 'stuallquery.html', {'queries': queries})
+
+def edituser(request, pk):
+    students = Students.objects.all()
+    student =  Students.objects.get(id=pk)
+    context = {
+        'userdata': student,
+        'users': students,
+        'showform': True, 
+        'show_profile': True
+
+    }
+    return render(request, 'admin_dashboard.html', context)
+
+
+def edituserdata(request, pk):
+    if request.method == "POST":
+        student = Students.objects.get(id=pk)
+        
+        student.stuname = request.POST.get('stuname')
+        student.stuemail = request.POST.get('stuemail')
+        student.stuphone = request.POST.get('stuphone')
+        student.studetail = request.POST.get('studetail')
+        
+                # Only update if a new value is submitted (non-empty)
+        if request.POST.get('studob'):
+            student.studob = request.POST.get('studob')
+
+        if request.POST.get('stuedu'):
+            student.stuedu = request.POST.get('stuedu')
+
+        if request.POST.get('stugender'):
+            student.stugender = request.POST.get('stugender')
+
+        # Only update image if new file is uploaded
+        if 'stuimage' in request.FILES:
+            student.stuimage = request.FILES['stuimage']
+
+        # Only update resume if new file is uploaded
+        if 'sturesume' in request.FILES:
+            student.sturesume = request.FILES['sturesume']
+
+        student.stupass = request.POST.get('stupass')
+
+        student.save()
+
+        users = Students.objects.all()
+        return render(request, 'admin_dashboard.html', {
+            'userdata': student,
+            'users': users,
+            'show_profile': True
+        })
+
+def deleteuser(request, pk):
+    student = Students.objects.get(id=pk)
+    student.delete()
+    return redirect('admin_dashboard')
+
+    

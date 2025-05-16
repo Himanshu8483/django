@@ -190,7 +190,7 @@ def delete(request, pk1, pk):
     book = Book.objects.get(id=pk)
     book.delete()
     return redirect('profile1', pk=pk1)
-
+    
 def edituser(request, pk):
     students = Students.objects.all()
     student =  Students.objects.get(id=pk)

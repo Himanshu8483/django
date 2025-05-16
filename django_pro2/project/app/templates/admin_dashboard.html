@@ -8,24 +8,84 @@
 
 {% block content %}
 
+<div class="container my-5">
+  
+  {% if error %}
+    <h2 class="text-center text-danger">{{ error }}</h2>
+  {% endif %}
 
- 
-<div class="container mb-4">
-  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-    <h2 class="mb-0 flex-grow-1">All Registered Users</h2>
-    <div class="d-flex flex-wrap gap-2">
+  {% if userdata and showform %}
+  <form action="{% url 'edituserdata' pk=userdata.id %}" method="post" enctype="multipart/form-data" class="row g-3 mb-4">
+    {% csrf_token %}
+
+    <div class="col-md-6">
+      <label for="stuname" class="form-label">Name</label>
+      <input type="text" class="form-control" name="stuname" value="{{ userdata.stuname }}" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="stuemail" class="form-label">Email</label>
+      <input type="email" class="form-control" name="stuemail" value="{{ userdata.stuemail }}" required>
+    </div>
+
+    <div class="col-12">
+      <label for="studetail" class="form-label">Description</label>
+      <textarea name="studetail" class="form-control" rows="2" placeholder="Tell us about yourself">{{ userdata.studetail }}</textarea>
+    </div>
+
+    <div class="col-md-6">
+      <label for="stuphone" class="form-label">Contact</label>
+      <input type="tel" class="form-control" name="stuphone" pattern="[0-9]{10}" maxlength="10" value="{{ userdata.stuphone }}" placeholder="10-digit number" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="studob" class="form-label">DOB</label>
+      <input type="date" class="form-control" name="studob" min="1934-01-01" max="2024-01-01" value="{{ userdata.studob }}">
+    </div>
+
+    <div class="col-md-6">
+      <label for="stuimage" class="form-label">Profile Picture</label>
+{% if userdata.stuimage %}
+  <img src="{{ userdata.stuimage.url }}" alt="Current Image" class="mb-2" width="100">
+{% endif %}
+<input type="file" class="form-control" name="stuimage" accept=".jpeg,.png">
+    </div>
+
+    <div class="col-md-6">
+      <label for="sturesume" class="form-label">Resume</label>
+{% if userdata.sturesume %}
+  <p>Current Resume: <a href="{{ userdata.sturesume.url }}" target="_blank">View</a></p>
+{% endif %}
+<input type="file" class="form-control" name="sturesume" accept=".pdf,.doc">
+    </div>
+
+
+    <div class="col-md-6">
+      <label for="stupass" class="form-label">Password</label>
+      <input type="password" class="form-control" name="stupass" required>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">&nbsp;</label>
+      <input type="submit" value="Update" class="btn btn-success w-100">
+    </div>
+
+  </form>
+  {% endif %}
+
+  <!-- Action buttons -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <h2 class="mb-0">All Registered Users</h2>
+    <div class="d-flex gap-2">
       <a href="{% url 'registration' %}" class="btn btn-success">Registration Page</a>
       <a href="{% url 'allquery' %}" class="btn btn-primary">All Queries</a>
-      {% comment %} <a href="{% url 'queryres' query.pk %}" class="btn btn-warning text-white">New Query</a> {% endcomment %}
     </div>
-  </div>  
-</div>
+  </div>
 
-
-
-  <div class="card shadow p-4">
+  <!-- Users Table -->
+  <div class="card shadow p-3">
     <div class="table-responsive">
-      <table class="table table-bordered table-hover align-middle">
+      <table class="table table-bordered table-hover align-middle text-center">
         <thead class="table-dark">
           <tr>
             <th>S. No</th>
@@ -38,6 +98,8 @@
             <th>Details</th>
             <th>Profile</th>
             <th>Resume</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -50,7 +112,7 @@
             <td>{{ user.studob }}</td>
             <td>{{ user.stugender }}</td>
             <td>{{ user.stuedu }}</td>
-            <td>{{ user.studetails }}</td>
+            <td>{{ user.studetail }}</td>
             <td>
               {% if user.stuimage %}
               <img src="{{ user.stuimage.url }}" alt="Profile" class="img-thumbnail" style="max-width: 70px;">
@@ -65,11 +127,21 @@
               <span class="text-muted">No Resume</span>
               {% endif %}
             </td>
+            <td>
+              <form method="get" action="{% url 'edituser' pk=user.id %}">
+                <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+              </form>
+            </td>
+            <td>
+              <a href="{% url 'deleteuser' pk=user.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
   </div>
+
 </div>
+
 {% endblock %}

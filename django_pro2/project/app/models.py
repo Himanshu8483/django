@@ -6,9 +6,10 @@ class Students(models.Model):
     stuemail = models.EmailField()  
     studetail = models.CharField(max_length=300)
     stuphone = models.BigIntegerField()  
-    studob = models.DateField()
-    stuedu = models.CharField(max_length=50)
-    stugender = models.CharField(max_length=50)
+    studob = models.DateField(null=True, blank=True)
+    stuedu = models.CharField(max_length=50, null=True, blank=True)
+    stugender = models.CharField(max_length=50, null=True, blank=True)
+
     stuimage = models.ImageField(upload_to='images/', blank=True, null=True)
     sturesume = models.FileField(upload_to='files/', blank=True, null=True)
     stupass = models.CharField(max_length=50)

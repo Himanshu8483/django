@@ -50,5 +50,10 @@ urlpatterns = [
     path('stuallquery/', views.stuallquery, name='stuallquery'),
     path('queryres/<int:pk>/', views.queryres, name='queryres'),
     path('newquery/<int:pk>/', views.newquery, name='newquery'),
+    
+    path('edituser/<int:pk>/', views.edituser, name='edituser'),
+    path('deleteuser/<int:pk>/', views.deleteuser, name='deleteuser'),
+    path('edituserdata/<int:pk>/', views.edituserdata, name='edituserdata'),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
