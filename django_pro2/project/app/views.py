@@ -45,10 +45,6 @@ def service1(request, pk):
 def registration1(request, pk):
     return render(request, 'registration.html', {'userdata': get_user_dict(pk)})
 
-def admins1(request, pk):
-    users = Students.objects.all()
-    return render(request, 'admins.html', {'userdata': get_user_dict(pk), 'users': users})
-
 def student_dashboard1(request, pk):
     user = Students.objects.get(id=pk)
     return render(request, 'student_dashboard.html', {'userdata': user})
@@ -157,6 +153,8 @@ def queryres(request, pk):
 
 def newquery(request, pk):
     user = Students.objects.get(id=pk)
+    if request.session.get('user') != 'student':
+        return redirect('login')
     if request.method == 'POST':
         title = request.POST.get('title')
         message = request.POST.get('message')
@@ -168,16 +166,17 @@ def newquery(request, pk):
             message=message
         )
         success_msg = "Query submitted successfully!"
-        if request.session.get('user') != 'student':
-            return redirect('login')
-        return render(request, 'stuallquery.html', {'userdata': user, 'success': success_msg})
+
+        return redirect('stuallquery', pk=user.id)
 
     return render(request, 'newquery.html', {'userdata': user})
 
+def stuallquery(request, pk):
+    user = Students.objects.get(id=pk)
+    # Filter queries only for this user
+    queries = StuQuery.objects.filter(stuname=user.stuname, stuemail=user.stuemail).order_by('-created_at')
+    return render(request, 'stuallquery.html', {'queries': queries, 'userdata': user})
 
-def stuallquery(request):
-    queries = StuQuery.objects.all().order_by('-created_at')
-    return render(request, 'stuallquery.html', {'queries': queries})
 
 def edituser(request, pk):
     students = Students.objects.all()
@@ -186,7 +185,6 @@ def edituser(request, pk):
         'userdata': student,
         'users': students,
         'showform': True, 
-        'show_profile': True
 
     }
     return render(request, 'admin_dashboard.html', context)
@@ -234,4 +232,51 @@ def deleteuser(request, pk):
     student.delete()
     return redirect('admin_dashboard')
 
-    
+
+def editquery(request, pk1, pk):
+    student = Students.objects.get(id=pk1)
+    query = StuQuery.objects.get(id=pk)
+    queries = StuQuery.objects.all()
+    context = {
+        'userdata': get_user_dict(student.id),
+        'editdata': query,
+        'data': queries,
+        'showform': True,
+    }
+    return render(request, 'stuallquery.html', context)
+
+
+def edituserquery(request, pk1, pk):
+    if request.method == "POST":
+        query = StuQuery.objects.get(id=pk)
+        query.title = request.POST.get('title')
+        query.message = request.POST.get('message')
+        query.save()
+        return redirect('stuallquery', pk=pk1)
+    return redirect('stuallquery', pk=pk1)
+
+
+def deletequery(request, pk1, pk):
+    query = StuQuery.objects.get(id=pk)
+    query.delete()
+    return redirect('stuallquery', pk=pk1)
+
+
+
+def first1(request):
+    queries = StuQuery.objects.all()[:5]
+    print(queries)
+    return render(request, 'allquery.html', {'queries': queries})
+
+def last1(request):
+    queries = StuQuery.objects.order_by('-id')[:5]     # Last 5 Querys in descending order
+    return render(request, 'allquery.html', {'queries': queries})
+
+def asc1(request):
+    queries = StuQuery.objects.order_by('stuname')       # in ascending order by name
+    return render(request, 'allquery.html', {'queries': queries})
+
+def desc1(request):
+    queries = StuQuery.objects.order_by('-stuname')       # in descending order by name
+    return render(request, 'allquery.html', {'queries': queries}) 
+

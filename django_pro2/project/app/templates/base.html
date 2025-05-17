@@ -45,6 +45,12 @@
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'student_dashboard1' pk=userdata.id %}">User Dashboard</a>
     </li>
+        <li class="nav-item">
+        <a class="nav-link active" href="{% url 'stuallquery' pk=userdata.id  %}">All Queries</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'newquery' pk=userdata.id  %}">New Query</a>
+    </li>
     {% endif %}
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
@@ -63,6 +69,12 @@
 {% if request.session.user == 'admin' %}
     <li class="nav-item">
         <a class="nav-link active" href="{% url 'admin_dashboard' %}">Admin Panel</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'registration' %}">Create Student</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'allquery' %}">All Query</a>
     </li>
 {% elif request.session.user == 'student' %}
     <li class="nav-item">

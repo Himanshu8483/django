@@ -1,6 +1,36 @@
 {% extends "base.html" %}
 {% block title %}All Queries{% endblock %}
 {% block content %}
+
+{% if userdata and showform %}
+<form action="{% url 'edituserquery' pk1=userdata.id pk=editdata.id %}" method="post" class="mb-4">
+    {% csrf_token %}
+    <h2>Edit Query</h2>
+    <div class="mb-3">
+        <label for="title" class="form-label">Query Title</label>
+        <input type="text" class="form-control" name="title" id="title" value="{{ editdata.title }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="message" class="form-label">Query Message</label>
+        <textarea class="form-control" name="message" id="message" rows="4" required>{{ editdata.message }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update Query</button>
+</form>
+{% else %}
+
+
+<div class="container mb-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+  <h1 class="text-center mb-4">User Queries</h1>
+    <div class="d-flex flex-wrap gap-2">
+      <a href="{% url 'student_dashboard1' pk=userdata.id %}" class="btn btn-success">Go To Profile</a>
+      <a href="{% url 'newquery' pk=userdata.id %}" class="btn btn-warning text-white">New Query</a>
+    </div>
+  </div>  
+</div>
+
 <div class="container mt-4">
   <h2>All Submitted Queries</h2>
   <table class="table table-bordered">
@@ -12,6 +42,8 @@
     <th>Message</th>
     <th>Response</th>  
     <th>Date</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
 </thead>
 <tbody>
@@ -37,6 +69,19 @@
       {% endif %}
     </td>
     <td>{{ query.created_at }}</td>
+<td>
+  {% if query.response %}
+    <button class="btn btn-secondary" disabled>Responded</button>
+  {% else %}
+    <form method="get" action="{% url 'editquery' pk1=userdata.id pk=query.id %}">
+      <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+  {% endif %}
+</td>
+
+            <td>
+              <a href="{% url 'deletequery' pk1=userdata.id pk=query.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+            </td>
   </tr>
   {% empty %}
   <tr>
@@ -44,7 +89,7 @@
   </tr>
   {% endfor %}
 </tbody>
-
+{% endif %}
   </table>
 </div>
 {% endblock %}

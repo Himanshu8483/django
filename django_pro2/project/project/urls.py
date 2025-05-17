@@ -35,7 +35,6 @@ urlpatterns = [
     path('about1/<int:pk>/', views.about1, name='about1'),
     path('service1/<int:pk>/', views.service1, name='service1'),
     path('registration1/<int:pk>/', views.registration1, name='registration1'),
-    path('admins1/<int:pk>/', views.admins1, name='admins1'),
     path('student_dashboard1/<int:pk>/', views.student_dashboard1, name='student_dashboard1'),
     path('admin_dashboard1/<int:pk>/', views.admin_dashboard1, name='admin_dashboard1'),
         
@@ -47,13 +46,21 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     
     path('allquery/', views.allquery, name='allquery'),
-    path('stuallquery/', views.stuallquery, name='stuallquery'),
+    path('stuallquery/<int:pk>/', views.stuallquery, name='stuallquery'),
     path('queryres/<int:pk>/', views.queryres, name='queryres'),
     path('newquery/<int:pk>/', views.newquery, name='newquery'),
     
     path('edituser/<int:pk>/', views.edituser, name='edituser'),
     path('deleteuser/<int:pk>/', views.deleteuser, name='deleteuser'),
     path('edituserdata/<int:pk>/', views.edituserdata, name='edituserdata'),
+    path('editquery/<int:pk1>/<int:pk>/', views.editquery, name='editquery'),
+    path('deletequery/<int:pk1>/<int:pk>/', views.deletequery, name='deletequery'),
+    path('edituserquery/<int:pk1>/<int:pk>/', views.edituserquery, name='edituserquery'),
+
+    path('first1/', views.first1, name='first1'),
+    path('last1/', views.last1, name='last1'),
+    path('asc1/', views.asc1, name='asc1'),
+    path('desc1/', views.desc1, name='desc1'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

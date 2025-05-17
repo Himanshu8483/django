@@ -12,8 +12,7 @@
   <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
   <h1 class="text-center mb-4">User Dashboard</h1>
     <div class="d-flex flex-wrap gap-2">
-      <a href="{% url 'student_dashboard1' pk=userdata.id %}" class="btn btn-success">Go To Profile</a>
-      <a href="{% url 'stuallquery' %}" class="btn btn-primary">All Queries</a>
+      <a href="{% url 'stuallquery' pk=userdata.id %}" class="btn btn-primary">All Queries</a>
       <a href="{% url 'newquery' pk=userdata.id %}" class="btn btn-warning text-white">New Query</a>
     </div>
   </div>  

@@ -6,8 +6,18 @@
 {% endblock %}
 
 {% block content %}
+<div class="text-center mb-4">
+  <h4 class="mb-3">All Students Query</h4>
+  <div class="d-grid gap-2 d-sm-flex justify-content-center flex-wrap">
+    <a href="{% url 'first1' %}" class="btn btn-outline-primary px-4 py-2 mb-2">First 5 Query</a>
+    <a href="{% url 'last1' %}" class="btn btn-outline-secondary px-4 py-2 mb-2">Last 5 Query</a>
+    <a href="{% url 'allquery' %}" class="btn btn-outline-success px-4 py-2 mb-2">All Query</a>
+    <a href="{% url 'asc1' %}" class="btn btn-outline-info px-4 py-2 mb-2">Ascending Query</a>
+    <a href="{% url 'desc1' %}" class="btn btn-outline-warning px-4 py-2 mb-2">Descending Query</a>
+  </div>
+</div>
+
 <div class="container mt-4">
-  <h2>All User Queries</h2>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
