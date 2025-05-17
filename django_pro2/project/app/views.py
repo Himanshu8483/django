@@ -280,3 +280,11 @@ def desc1(request):
     queries = StuQuery.objects.order_by('-stuname')       # in descending order by name
     return render(request, 'allquery.html', {'queries': queries}) 
 
+def search(request):
+    query = request.GET.get('q')
+    all_queries = StuQuery.objects.all()  
+    if query:
+        queries = [q for q in all_queries if query.lower() in q.stuname.lower()]
+    else:
+        queries = all_queries
+    return render(request, 'allquery.html', {'queries': queries, 'search_term': query})

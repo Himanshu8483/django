@@ -62,5 +62,8 @@ urlpatterns = [
     path('asc1/', views.asc1, name='asc1'),
     path('desc1/', views.desc1, name='desc1'),
     
+    path('search/', views.search, name='search'),
+
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

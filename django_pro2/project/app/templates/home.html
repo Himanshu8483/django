@@ -1,11 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Home Page {% endblock %}
+{% block title %}HireHub - Home{% endblock %}
 {% load static %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 {% endblock %}
 
 {% block content %}
+
 <!-- Welcome Section -->
 <div class="container mt-4 text-center">
   {% if userdata %}
@@ -13,12 +16,22 @@
   {% elif request.session.user == 'admin' %}
       <h2>Welcome, Admin!</h2>
   {% else %}
-      <h2>Login User</h2>
+      <h2>Welcome to HireHub!</h2>
   {% endif %}
 </div>
 
-
 <!-- Search Section -->
+ {% comment %} <div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="d-flex" method="get" action="{% url 'job_search' %}">
+        <input class="form-control me-2" type="search" name="query" placeholder="Search Jobs or Companies..." aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>  {% endcomment %}
+
 <div class="container my-4">
   <div class="row justify-content-center">
       <div class="col-md-6">
@@ -31,7 +44,6 @@
 </div>
 
 <!-- Video Section -->
-{% load static %}
 <div class="container">
   <div class="row g-2">
     <div class="col-12 col-md-6 text-center">
@@ -43,60 +55,53 @@
   </div>
 </div>
 
+<!-- Welcome Message -->
+<div class="container mt-5 text-center">
+  <h1 class="display-4 fw-bold">Welcome to HireHub</h1>
+  <p class="lead">Connecting talent with opportunity — Find jobs, hire professionals, and grow your career.</p>
+</div>
 
-
-<div class="container mt-5">
-  <div class="text-center mb-5">
-    <h1 class="display-4 fw-bold">Welcome to EduManage</h1>
-    <p class="lead">Your trusted partner for student admissions and user management.</p>
-  </div>
-
-  <div class="row text-center">
-    <div class="col-md-4 mb-4">
-      <div class="card shadow h-100">
-        <div class="card">
-          <img src="{% static 'image/college.jpg' %}" class="card-img-top zoom-effect" alt="Admissions">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">University</h5>
-          <p class="card-text">Easily manage new student applications and view their profiles.</p>
-        </div>
-      </div>
-    </div>
-  
-    <div class="col-md-4 mb-4">
-      <div class="card shadow h-100">
-        <div class="card">
-          <img src="{% static 'image/user.jpg' %}" class="card-img-top zoom-effect" alt="Users">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">User Manual</h5>
-          <p class="card-text">Admins and users can access dynamic pages based on their roles.</p>
-        </div>
-      </div>
-    </div>
-  
-    <div class="col-md-4 mb-4">
-      <div class="card shadow h-100">
-        <div class="card">
-          <img src="{% static 'image/report.jpg' %}" class="card-img-top zoom-effect" alt="Reports">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Enroll Service</h5>
-          <p class="card-text">Generate and download reports for student registrations and services.</p>
-        </div>
+<!-- Services Cards -->
+<div class="row text-center mt-4">
+  <div class="col-md-4 mb-4">
+    <div class="card shadow h-100">
+      <img src="{% static 'image/college.jpg' %}" class="card-img-top zoom-effect" alt="Job Listings">
+      <div class="card-body">
+        <h5 class="card-title">Job Listings</h5>
+        <p class="card-text">Browse thousands of jobs from top companies in multiple sectors.</p>
       </div>
     </div>
   </div>
-  <div class="row text-center">
+
+  <div class="col-md-4 mb-4">
+    <div class="card shadow h-100">
+      <img src="{% static 'image/user.jpg' %}" class="card-img-top zoom-effect" alt="Employers">
+      <div class="card-body">
+        <h5 class="card-title">For Employers</h5>
+        <p class="card-text">Post job vacancies, filter candidates, and manage applications with ease.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4">
+    <div class="card shadow h-100">
+      <img src="{% static 'image/report.jpg' %}" class="card-img-top zoom-effect" alt="Career Tools">
+      <div class="card-body">
+        <h5 class="card-title">Career Tools</h5>
+        <p class="card-text">Build resumes, prepare for interviews, and grow your professional skills.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row text-center">
     <div class="col-md-4 mb-4">
       <div class="card shadow h-100">
         <div class="card">
           <img src="{% static 'image/admission.jpg' %}" class="card-img-top zoom-effect" alt="Admissions">
         </div>
         <div class="card-body">
-          <h5 class="card-title">Admissions</h5>
-          <p class="card-text">Easily manage new student applications and view their profiles.</p>
+          <h5 class="card-title">Process</h5>
+          <p class="card-text">Easily manage new applications and view their profiles.</p>
         </div>
       </div>
     </div>
@@ -126,70 +131,84 @@
     </div>
   </div>
   
-  <section class="container-fluid py-5">
-    <div class="row align-items-center">
-      
-      <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
-        <video autoplay muted loop class="rounded w-100 animate__animated animate__fadeInLeft" style="max-height: 400px;" src="{% static 'video/djangovid.mp4' %}"></video>
-      </div>
-      
-      <div class="col-12 col-md-6 text-center text-md-start animate__animated animate__fadeInRight">
-        <h2 class="mb-3">This is from EduManage</h2>
-        <p class="mb-4">Learn full-stack development using Django and React. Manage users, handle forms, and create secure dashboards easily.</p>
-        <a href="{% url 'registration' %}" class="btn btn-success px-4 py-2">Get Started</a>
-      </div>
-  
+ 
+<!-- About Section -->
+<section class="container-fluid py-5">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
+      <video autoplay muted loop class="rounded w-100 animate__animated animate__fadeInLeft" style="max-height: 400px;" src="{% static 'video/djangovid.mp4' %}"></video>
     </div>
-  </section>
-  <section class="container-fluid py-5">
-    <div class="row align-items-center">
-      <div class="col-12 col-md-6 text-center text-md-start">
-        <h2 class="mb-3">Build Powerful Knowledge</h2>
-        <p class="mb-4">Learn full-stack development using Django and React. Manage users, handle forms, and create secure dashboards easily.</p>
-        <a href="{% url 'registration' %}" class="btn btn-success px-4 py-2 mb-4">Get Started</a>
-      </div>
-      <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
-        <div class="image-slider rounded w-100 mx-auto "></div>
-      </div>
+    <div class="col-12 col-md-6 text-center text-md-start animate__animated animate__fadeInRight">
+      <h2 class="mb-3">Join Thousands of Professionals</h2>
+      <p class="mb-4">HireHub is your partner in career growth — discover jobs, connect with recruiters, and thrive professionally.</p>
+      <a href="{% url 'registration' %}" class="btn btn-primary px-4 py-2">Get Started</a>
+    </div>
+  </div>
+</section>
 
+<!-- Additional Section -->
+<section class="container-fluid py-5">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-6 text-center text-md-start">
+      <h2 class="mb-3">Empowering Job Seekers & Recruiters</h2>
+      <p class="mb-4">With tools built for modern hiring needs, we help match talent with opportunity.</p>
+      <a href="{% url 'login' %}" class="btn btn-success px-4 py-2 mb-4">Create Your Profile</a>
     </div>
-  </section>
-  
+    <div class="col-12 col-md-6 text-center">
+      <img src="{% static 'image/student.jpg' %}" class="rounded w-100 mx-auto" alt="Networking">
+    </div>
+  </div>
+</section>
+
 <!-- Features Section -->
 <div class="container my-5">
-  <h3 class="text-center mb-4">Our Features</h3>
+  <h3 class="text-center mb-4">Platform Features</h3>
   <div class="row text-center">
-      <div class="col-md-4">
-          <div class="card shadow-sm p-3 mb-5 bg-body rounded">
-              <div class="card-body">
-                  <h5 class="card-title">Feature 1</h5>
-                  <p class="card-text">Quick and easy user registration and login system.</p>
-              </div>
-          </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="card-body">
+          <h5 class="card-title">Smart Matching</h5>
+          <p class="card-text">AI-powered job matching based on your skills and preferences.</p>
+        </div>
       </div>
-      <div class="col-md-4">
-          <div class="card shadow-sm p-3 mb-5 bg-body rounded">
-              <div class="card-body">
-                  <h5 class="card-title">Feature 2</h5>
-                  <p class="card-text">Secure search and explore functionality across the platform.</p>
-              </div>
-          </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="card-body">
+          <h5 class="card-title">Real-time Updates</h5>
+          <p class="card-text">Instant notifications for job alerts, messages, and application status.</p>
+        </div>
       </div>
-      <div class="col-md-4">
-          <div class="card shadow-sm p-3 mb-5 bg-body rounded">
-              <div class="card-body">
-                  <h5 class="card-title">Feature 3</h5>
-                  <p class="card-text">Modern design with responsive Bootstrap layout.</p>
-              </div>
-          </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="card-body">
+          <h5 class="card-title">Responsive Design</h5>
+          <p class="card-text">Use HireHub on any device with our fully responsive platform.</p>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 
-<!-- Acronym Section -->
+<!-- Social Section -->
+<!-- Social Section -->
 <div class="container my-5 text-center">
   <h1>
-      <acronym title="HyperText Markup Language" class="text-warning">FOLLOW US</acronym>
+    <acronym title="Follow us on social media" class="text-primary">FOLLOW US</acronym>
   </h1>
+  <div class="d-flex justify-content-center mt-4">
+    <a href="#" class="me-4 text-dark fs-3" aria-label="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="#" class="me-4 text-dark fs-3" aria-label="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" class="text-dark fs-3" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
 </div>
+
+
 {% endblock %}
