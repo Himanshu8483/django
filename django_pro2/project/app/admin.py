@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Students, StuQuery
+from .models import Users, UserQuery
 # Register your models here.
-admin.site.register(Students)
-admin.site.register(StuQuery)
+admin.site.register(Users)
+admin.site.register(UserQuery)

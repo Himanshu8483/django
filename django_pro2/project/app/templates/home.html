@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}HireHub - Home{% endblock %}
+{% block title %}HireConnect - Home{% endblock %}
 {% load static %}
 
 {% block css %}
@@ -16,21 +16,9 @@
   {% elif request.session.user == 'admin' %}
       <h2>Welcome, Admin!</h2>
   {% else %}
-      <h2>Welcome to HireHub!</h2>
+      <h2>Welcome to HireConnect!</h2>
   {% endif %}
 </div>
-
-<!-- Search Section -->
- {% comment %} <div class="container my-4">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <form class="d-flex" method="get" action="{% url 'job_search' %}">
-        <input class="form-control me-2" type="search" name="query" placeholder="Search Jobs or Companies..." aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</div>  {% endcomment %}
 
 <div class="container my-4">
   <div class="row justify-content-center">
@@ -57,7 +45,7 @@
 
 <!-- Welcome Message -->
 <div class="container mt-5 text-center">
-  <h1 class="display-4 fw-bold">Welcome to HireHub</h1>
+  <h1 class="display-4 fw-bold">Career in HireConnect</h1>
   <p class="lead">Connecting talent with opportunity — Find jobs, hire professionals, and grow your career.</p>
 </div>
 
@@ -140,7 +128,7 @@
     </div>
     <div class="col-12 col-md-6 text-center text-md-start animate__animated animate__fadeInRight">
       <h2 class="mb-3">Join Thousands of Professionals</h2>
-      <p class="mb-4">HireHub is your partner in career growth — discover jobs, connect with recruiters, and thrive professionally.</p>
+      <p class="mb-4">HireConnect is your partner in career growth — discover jobs, connect with recruiters, and thrive professionally.</p>
       <a href="{% url 'registration' %}" class="btn btn-primary px-4 py-2">Get Started</a>
     </div>
   </div>
@@ -152,7 +140,7 @@
     <div class="col-12 col-md-6 text-center text-md-start">
       <h2 class="mb-3">Empowering Job Seekers & Recruiters</h2>
       <p class="mb-4">With tools built for modern hiring needs, we help match talent with opportunity.</p>
-      <a href="{% url 'login' %}" class="btn btn-success px-4 py-2 mb-4">Create Your Profile</a>
+      <a href="{% url 'login' %}" class="btn btn-success px-4 py-2 mb-4">Visit Your Profile</a>
     </div>
     <div class="col-12 col-md-6 text-center">
       <img src="{% static 'image/student.jpg' %}" class="rounded w-100 mx-auto" alt="Networking">
@@ -184,7 +172,7 @@
       <div class="card shadow-sm p-3 mb-5 bg-body rounded">
         <div class="card-body">
           <h5 class="card-title">Responsive Design</h5>
-          <p class="card-text">Use HireHub on any device with our fully responsive platform.</p>
+          <p class="card-text">Use HireConnect on any device with our fully responsive platform.</p>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Students(models.Model):
+class Users(models.Model):
     stuname = models.CharField(max_length=50)
     stuemail = models.EmailField()  
     studetail = models.CharField(max_length=300)
@@ -17,7 +17,7 @@ class Students(models.Model):
     def __str__(self):
         return self.stuname  
 
-class StuQuery(models.Model):
+class UserQuery(models.Model):
     stuname = models.CharField(max_length=100)
     stuemail = models.EmailField()
     title = models.CharField(max_length=255)

@@ -35,18 +35,18 @@ urlpatterns = [
     path('about1/<int:pk>/', views.about1, name='about1'),
     path('service1/<int:pk>/', views.service1, name='service1'),
     path('registration1/<int:pk>/', views.registration1, name='registration1'),
-    path('student_dashboard1/<int:pk>/', views.student_dashboard1, name='student_dashboard1'),
+    path('user_dashboard1/<int:pk>/', views.user_dashboard1, name='user_dashboard1'),
     path('admin_dashboard1/<int:pk>/', views.admin_dashboard1, name='admin_dashboard1'),
         
     path('logindata/', views.logindata, name='logindata'),
 
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
-    path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
+    path('user_dashboard/', views.user_dashboard, name='user_dashboard'),
     path('logout/', views.logout, name='logout'),
     path('register/', views.register, name='register'),
     
     path('allquery/', views.allquery, name='allquery'),
-    path('stuallquery/<int:pk>/', views.stuallquery, name='stuallquery'),
+    path('userallquery/<int:pk>/', views.userallquery, name='userallquery'),
     path('queryres/<int:pk>/', views.queryres, name='queryres'),
     path('newquery/<int:pk>/', views.newquery, name='newquery'),
     
@@ -62,7 +62,7 @@ urlpatterns = [
     path('asc1/', views.asc1, name='asc1'),
     path('desc1/', views.desc1, name='desc1'),
     
-    path('search/', views.search, name='search'),
+    # path('search/', views.search, name='search'),
 
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

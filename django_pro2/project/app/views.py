@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Students, StuQuery   
+from .models import Users, UserQuery   
 
 def home(request):
     return render(request, 'home.html')
@@ -18,7 +18,7 @@ def registration(request):
 
 # Utility function
 def get_user_dict(pk):
-    user = Students.objects.get(id=pk)
+    user = Users.objects.get(id=pk)
     return {
         "id": user.id,
         "stuname": user.stuname,
@@ -45,27 +45,27 @@ def service1(request, pk):
 def registration1(request, pk):
     return render(request, 'registration.html', {'userdata': get_user_dict(pk)})
 
-def student_dashboard1(request, pk):
-    user = Students.objects.get(id=pk)
-    return render(request, 'student_dashboard.html', {'userdata': user})
+def user_dashboard1(request, pk):
+    user = Users.objects.get(id=pk)
+    return render(request, 'user_dashboard.html', {'userdata': user})
     
 def admin_dashboard1(request, pk):
-    user = Students.objects.get(id=pk)
+    user = Users.objects.get(id=pk)
     if request.session.get('user') != 'admin':
         return redirect('login')
-    users = Students.objects.all()
+    users = Users.objects.all()
     return render(request, 'admin_dashboard.html', { 'users': users, 'user':user})    
 
 def admin_dashboard(request):
     if request.session.get('user') != 'admin':
         return redirect('login')
-    users = Students.objects.all()
+    users = Users.objects.all()
     return render(request, 'admin_dashboard.html', { 'users': users})
 
-def student_dashboard(request):
+def user_dashboard(request):
     if request.session.get('user') != 'student':
         return redirect('login')
-    return render(request, 'student_dashboard.html')
+    return render(request, 'user_dashboard.html')
 
 
 def logout(request):
@@ -83,11 +83,11 @@ def logindata(request):
             return redirect('admin_dashboard')
 
         # Student login (from database)
-        student = Students.objects.filter(stuemail=email).first()
+        student = Users.objects.filter(stuemail=email).first()
         if student and password == student.stupass:
             request.session['user'] = 'student'
             request.session['student_id'] = student.id  
-            return redirect('student_dashboard1', pk=student.id)
+            return redirect('user_dashboard1', pk=student.id)
 
         # Invalid login
         msg = "Invalid email or password"
@@ -95,8 +95,6 @@ def logindata(request):
 
     return render(request, 'login.html')
 
-
-# Registration logic
 def register(request):
     if request.method == 'POST':
         stuname = request.POST.get('stuname')
@@ -111,13 +109,55 @@ def register(request):
         stuimage = request.FILES.get('stuimage')
         sturesume = request.FILES.get('sturesume')
 
-        if Students.objects.filter(stuemail=stuemail).exists():
+        # Name validation: allow only letters and spaces
+        for ch in stuname:
+            if not (ch.isalpha() or ch == ' '):
+                return render(request, 'registration.html', {'error': "Name can only contain letters and spaces."})
+
+        # Phone validation
+        if len(stuphone) != 10 or not stuphone.isdigit():
+            return render(request, 'registration.html', {'error': "Phone number must be exactly 10 digits."})
+
+        if stuphone[0] == '0':
+            return render(request, 'registration.html', {'error': "Phone number cannot start with 0."})
+
+        
+        if stuphone == stuphone[0] * 10:
+            return render(request, 'registration.html', {'error': "Phone number cannot be all digits same."})
+
+        if '@gmail.com' not in stuemail:
+            return render(request, 'registration.html', {'error': "Email must include @gmail.com"})
+
+        if Users.objects.filter(stuemail=stuemail).exists():
             return render(request, 'registration.html', {'error': "Email Already Exists"})
 
-        if cpass != cpass:
-            return render(request, 'registration.html', {'error': "Check Password And Confirm Password again"})
+        if stupass != cpass:
+            return render(request, 'registration.html', {'error': "Password and Confirm Password do not match."})
 
-        Students.objects.create(
+        if len(stupass) < 8:
+            return render(request, 'registration.html', {'error': "Password must be at least 8 characters long."})
+
+        has_upper = False
+        has_lower = False
+        has_digit = False
+        has_special = False
+        special_chars = "!@#$%^&*()-_+=[]{}|\\;:'\",.<>/?`~"
+
+        for ch in stupass:
+            if ch.isupper():
+                has_upper = True
+            elif ch.islower():
+                has_lower = True
+            elif ch.isdigit():
+                has_digit = True
+            elif ch in special_chars:
+                has_special = True
+
+        if not (has_upper and has_lower and has_digit and has_special):
+            return render(request, 'registration.html', {'error': "Password must include uppercase, lowercase, digit, and special character."})
+
+        # All validations passed — create user
+        Users.objects.create(
             stuname=stuname,
             stuemail=stuemail,
             studetail=studetail,
@@ -129,20 +169,18 @@ def register(request):
             sturesume=sturesume,
             stupass=stupass
         )
-        # return render(request, 'admin_dash.html', {'error': "Registration Successful"})
+
         return redirect('admin_dashboard')
-    
 
     return render(request, 'registration.html')
 
-
 def allquery(request):
-    queries = StuQuery.objects.all().order_by('-created_at')
+    queries = UserQuery.objects.all().order_by('-created_at')
     return render(request, 'allquery.html', {'queries': queries})
 
 
 def queryres(request, pk):
-    query = StuQuery.objects.get(id=pk)
+    query = UserQuery.objects.get(id=pk)
     if request.method == 'POST':
         response = request.POST.get('response')
         query.response = response
@@ -152,14 +190,14 @@ def queryres(request, pk):
 
 
 def newquery(request, pk):
-    user = Students.objects.get(id=pk)
+    user = Users.objects.get(id=pk)
     if request.session.get('user') != 'student':
         return redirect('login')
     if request.method == 'POST':
         title = request.POST.get('title')
         message = request.POST.get('message')
 
-        StuQuery.objects.create(
+        UserQuery.objects.create(
             stuname=user.stuname,
             stuemail=user.stuemail,
             title=title,
@@ -167,30 +205,30 @@ def newquery(request, pk):
         )
         success_msg = "Query submitted successfully!"
 
-        return redirect('stuallquery', pk=user.id)
+        return redirect('userallquery', pk=user.id)
 
     return render(request, 'newquery.html', {'userdata': user})
 
-def stuallquery(request, pk):
-    user = Students.objects.get(id=pk)
+def userallquery(request, pk):
+    user = Users.objects.get(id=pk)
     # Filter queries only for this user
-    queries = StuQuery.objects.filter(stuname=user.stuname, stuemail=user.stuemail).order_by('-created_at')
-    return render(request, 'stuallquery.html', {'queries': queries, 'userdata': user})
+    queries = UserQuery.objects.filter(stuname=user.stuname, stuemail=user.stuemail).order_by('-created_at')
+    return render(request, 'userallquery.html', {'queries': queries, 'userdata': user})
 
 
 def edituser(request, pk):
-    students = Students.objects.all()
-    student =  Students.objects.get(id=pk)
+    users = Users.objects.all()
+    student =  Users.objects.get(id=pk)
     context = {
         'userdata': student,
-        'users': students,
+        'users': users,
         'showform': True, 
 
     }
     return render(request, 'admin_dashboard.html', context)
 def edituserdata(request, pk):
     if request.method == "POST":
-        student = Students.objects.get(id=pk)
+        student = Users.objects.get(id=pk)
         
         student.stuname = request.POST.get('stuname')
         student.stuemail = request.POST.get('stuemail')
@@ -220,7 +258,7 @@ def edituserdata(request, pk):
 
         student.save()
 
-        users = Students.objects.all()
+        users = Users.objects.all()
         return render(request, 'admin_dashboard.html', {
             'userdata': student,
             'users': users,
@@ -228,63 +266,63 @@ def edituserdata(request, pk):
         })
 
 def deleteuser(request, pk):
-    student = Students.objects.get(id=pk)
+    student = Users.objects.get(id=pk)
     student.delete()
     return redirect('admin_dashboard')
 
 
 def editquery(request, pk1, pk):
-    student = Students.objects.get(id=pk1)
-    query = StuQuery.objects.get(id=pk)
-    queries = StuQuery.objects.all()
+    student = Users.objects.get(id=pk1)
+    query = UserQuery.objects.get(id=pk)
+    queries = UserQuery.objects.all()
     context = {
         'userdata': get_user_dict(student.id),
         'editdata': query,
         'data': queries,
         'showform': True,
     }
-    return render(request, 'stuallquery.html', context)
+    return render(request, 'userallquery.html', context)
 
 
 def edituserquery(request, pk1, pk):
     if request.method == "POST":
-        query = StuQuery.objects.get(id=pk)
+        query = UserQuery.objects.get(id=pk)
         query.title = request.POST.get('title')
         query.message = request.POST.get('message')
         query.save()
-        return redirect('stuallquery', pk=pk1)
-    return redirect('stuallquery', pk=pk1)
+        return redirect('userallquery', pk=pk1)
+    return redirect('userallquery', pk=pk1)
 
 
 def deletequery(request, pk1, pk):
-    query = StuQuery.objects.get(id=pk)
+    query = UserQuery.objects.get(id=pk)
     query.delete()
-    return redirect('stuallquery', pk=pk1)
+    return redirect('userallquery', pk=pk1)
 
 
 
 def first1(request):
-    queries = StuQuery.objects.all()[:5]
+    queries = UserQuery.objects.all()[:5]
     print(queries)
     return render(request, 'allquery.html', {'queries': queries})
 
 def last1(request):
-    queries = StuQuery.objects.order_by('-id')[:5]     # Last 5 Querys in descending order
+    queries = UserQuery.objects.order_by('-id')[:5]     # Last 5 Querys in descending order
     return render(request, 'allquery.html', {'queries': queries})
 
 def asc1(request):
-    queries = StuQuery.objects.order_by('stuname')       # in ascending order by name
+    queries = UserQuery.objects.order_by('stuname')       # in ascending order by name
     return render(request, 'allquery.html', {'queries': queries})
 
 def desc1(request):
-    queries = StuQuery.objects.order_by('-stuname')       # in descending order by name
+    queries = UserQuery.objects.order_by('-stuname')       # in descending order by name
     return render(request, 'allquery.html', {'queries': queries}) 
 
-def search(request):
-    query = request.GET.get('q')
-    all_queries = StuQuery.objects.all()  
-    if query:
-        queries = [q for q in all_queries if query.lower() in q.stuname.lower()]
-    else:
-        queries = all_queries
-    return render(request, 'allquery.html', {'queries': queries, 'search_term': query})
+# def search(request):
+#     query = request.GET.get('q')
+#     all_queries = UserQuery.objects.all()  
+#     if query:
+#         queries = [q for q in all_queries if query.lower() in q.stuname.lower()]
+#     else:
+#         queries = all_queries
+#     return render(request, 'allquery.html', {'queries': queries, 'search_term': query})
