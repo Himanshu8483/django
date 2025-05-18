@@ -227,34 +227,110 @@ def edituser(request, pk):
     }
     return render(request, 'admin_dashboard.html', context)
 def edituserdata(request, pk):
+    student = Users.objects.get(id=pk)
+
     if request.method == "POST":
-        student = Users.objects.get(id=pk)
-        
-        student.stuname = request.POST.get('stuname')
-        student.stuemail = request.POST.get('stuemail')
-        student.stuphone = request.POST.get('stuphone')
-        student.studetail = request.POST.get('studetail')
-        
-        if request.POST.get('studob'):
-            student.studob = request.POST.get('studob')
+        stuname = request.POST.get('stuname')
+        stuemail = request.POST.get('stuemail')
+        stuphone = request.POST.get('stuphone')
+        studetail = request.POST.get('studetail')
+        studob = request.POST.get('studob')
+        stuedu = request.POST.getlist('stuedu')
+        stugender = request.POST.get('stugender')
+        stuimage = request.FILES.get('stuimage')
+        sturesume = request.FILES.get('sturesume')
+        stupass = request.POST.get('stupass')
 
-        # if request.POST.getlist('stuedu'):
-        #     student.stuedu = ','.join(request.POST.getlist('stuedu'))
+        # --- Validation ---
 
-        if request.POST.getlist('stuedu'):
-            student.stuedu = request.POST.getlist('stuedu')
+        # Name validation
+        if stuname:
+            for ch in stuname:
+                if not (ch.isalpha() or ch == ' '):
+                    return render(request, 'admin_dashboard.html', {
+                        'error': "Name can only contain letters and spaces.",
+                        'userdata': student,
+                        'showform': True
+                    })
 
-        if request.POST.get('stugender'):
-            student.stugender = request.POST.get('stugender')
+        # Phone validation
+        if stuphone:
+            if len(stuphone) != 10 or not stuphone.isdigit():
+                return render(request, 'admin_dashboard.html', {
+                    'error': "Phone number must be exactly 10 digits.",
+                    'userdata': student,
+                    'showform': True
+                })
+            if stuphone[0] == '0':
+                return render(request, 'admin_dashboard.html', {
+                    'error': "Phone number cannot start with 0.",
+                    'userdata': student,
+                    'showform': True
+                })
+            if stuphone == stuphone[0] * 10:
+                return render(request, 'admin_dashboard.html', {
+                    'error': "Phone number cannot be all digits same.",
+                    'userdata': student,
+                    'showform': True
+                })
 
-        if 'stuimage' in request.FILES:
-            student.stuimage = request.FILES['stuimage']
+        # Email validation
+        if stuemail:
+            if '@gmail.com' not in stuemail:
+                return render(request, 'admin_dashboard.html', {
+                    'error': "Email must include @gmail.com",
+                    'userdata': student,
+                    'showform': True
+                })
+            if Users.objects.exclude(id=pk).filter(stuemail=stuemail).exists():
+                return render(request, 'admin_dashboard.html', {
+                    'error': "Email Already Exists",
+                    'userdata': student,
+                    'showform': True
+                })
 
-        if 'sturesume' in request.FILES:
-            student.sturesume = request.FILES['sturesume']
+        if stupass:
+            if len(stupass) < 8:
+                return render(request, 'admin_dashboard.html', {
+                    'error': "Password must be at least 8 characters long.",
+                    'userdata': student,
+                    'showform': True
+                })
 
-        if request.POST.get('stupass'):
-            student.stupass = request.POST.get('stupass')
+            has_upper = any(c.isupper() for c in stupass)
+            has_lower = any(c.islower() for c in stupass)
+            has_digit = any(c.isdigit() for c in stupass)
+            has_special = any(c in "!@#$%^&*()-_+=[]{}|\\;:'\",.<>/?`~" for c in stupass)
+
+            if not (has_upper and has_lower and has_digit and has_special):
+                return render(request, 'admin_dashboard.html', {
+                    'error': "Password must include uppercase, lowercase, digit, and special character.",
+                    'userdata': student,
+                    'showform': True
+                })
+
+        student.stuname = stuname
+        student.stuemail = stuemail
+        student.stuphone = stuphone
+        student.studetail = studetail
+
+        if studob:
+            student.studob = studob
+
+        if stuedu:
+            student.stuedu = stuedu
+
+        if stugender:
+            student.stugender = stugender
+
+        if stuimage:
+            student.stuimage = stuimage
+
+        if sturesume:
+            student.sturesume = sturesume
+
+        if stupass:
+            student.stupass = stupass
 
         student.save()
 
@@ -262,8 +338,9 @@ def edituserdata(request, pk):
         return render(request, 'admin_dashboard.html', {
             'userdata': student,
             'users': users,
-            'show_profile': True
         })
+
+    return render(request, 'admin_dashboard.html', {'userdata': student})
 
 def deleteuser(request, pk):
     student = Users.objects.get(id=pk)
