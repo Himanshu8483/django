@@ -18,61 +18,62 @@
 </div>
 
 <div class="container mt-4">
-<form method="get" action="" class="container my-3">
-  <div class="row">
-    <div class="col-md-8 col-sm-12 mb-2">
-      <input 
-        type="text" 
-        name="q" 
-        class="form-control" 
-        placeholder="Search by name" 
-        value="{{ search_term }}">
+  <form method="get" action="" class="container my-3">
+    <div class="row g-2">
+      <div class="col-md-8 col-sm-12">
+        <input 
+          type="text" 
+          name="q" 
+          class="form-control" 
+          placeholder="Search by name" 
+          value="{{ search_term }}">
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+      </div>
     </div>
-    <div class="col-md-4 col-sm-12">
-      <button type="submit" class="btn btn-primary w-100">Search</button>
-    </div>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle text-center">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Title</th>
+          <th>Message</th>
+          <th>Response</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for q in queries %}
+          <tr>
+            <td>{{ q.stuname }}</td>
+            <td>{{ q.stuemail }}</td>
+            <td>{{ q.title }}</td>
+            <td style="word-break: break-word;">{{ q.message }}</td>
+            <td style="max-width: 300px;">
+              {% if q.response %}
+                <details>
+                  <summary style="cursor: pointer;">✔️ {{ q.response|truncatechars:50 }}</summary>
+                  <div>{{ q.response }}</div>
+                </details>
+              {% else %}
+                ❌ Not yet responded
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'queryres' q.pk %}" class="btn btn-warning text-white">Respond</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6">No queries found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
-</form>
-
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Title</th>
-        <th>Message</th>
-        <th>Response</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for q in queries %}
-        <tr>
-          <td>{{ q.stuname }}</td>
-          <td>{{ q.stuemail }}</td>
-          <td>{{ q.title }}</td>
-          <td>{{ q.message }}</td>
-          <td>
-            {% if q.response %}
-              <details style="max-width: 300px;">
-                <summary style="cursor: pointer;">✔️ {{ q.response|truncatechars:50 }}</summary>
-                <div>{{ q.response }}</div>
-              </details>
-            {% else %}
-              ❌ Not yet responded
-            {% endif %}
-          </td>
-
-          <td>
-            <a href="{% url 'queryres' q.pk %}" class="btn btn-warning text-white">Respond</a>
-          </td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="6">No queries found.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 </div>
 {% endblock %}
