@@ -228,6 +228,7 @@ def edituser(request, pk):
     return render(request, 'admin_dashboard.html', context)
 def edituserdata(request, pk):
     student = Users.objects.get(id=pk)
+    users = Users.objects.all()
 
     if request.method == "POST":
         stuname = request.POST.get('stuname')
@@ -250,7 +251,8 @@ def edituserdata(request, pk):
                     return render(request, 'admin_dashboard.html', {
                         'error': "Name can only contain letters and spaces.",
                         'userdata': student,
-                        'showform': True
+                        'showform': True,
+                        'users': users
                     })
 
         # Phone validation
@@ -259,19 +261,22 @@ def edituserdata(request, pk):
                 return render(request, 'admin_dashboard.html', {
                     'error': "Phone number must be exactly 10 digits.",
                     'userdata': student,
-                    'showform': True
+                    'showform': True,
+                    'users': users
                 })
             if stuphone[0] == '0':
                 return render(request, 'admin_dashboard.html', {
                     'error': "Phone number cannot start with 0.",
                     'userdata': student,
-                    'showform': True
+                    'showform': True,
+                    'users': users
                 })
             if stuphone == stuphone[0] * 10:
                 return render(request, 'admin_dashboard.html', {
                     'error': "Phone number cannot be all digits same.",
                     'userdata': student,
-                    'showform': True
+                    'showform': True,
+                    'users': users
                 })
 
         # Email validation
@@ -280,13 +285,15 @@ def edituserdata(request, pk):
                 return render(request, 'admin_dashboard.html', {
                     'error': "Email must include @gmail.com",
                     'userdata': student,
-                    'showform': True
+                    'showform': True,
+                    'users': users
                 })
             if Users.objects.exclude(id=pk).filter(stuemail=stuemail).exists():
                 return render(request, 'admin_dashboard.html', {
                     'error': "Email Already Exists",
                     'userdata': student,
-                    'showform': True
+                    'showform': True,
+                    'users': users
                 })
 
         if stupass:
@@ -294,19 +301,31 @@ def edituserdata(request, pk):
                 return render(request, 'admin_dashboard.html', {
                     'error': "Password must be at least 8 characters long.",
                     'userdata': student,
-                    'showform': True
+                    'showform': True,
+                    'users': users
                 })
+            has_upper = False
+            has_lower = False
+            has_digit = False
+            has_special = False
+            special_chars = "!@#$%^&*()-_+=[]{}|\\;:'\",.<>/?`~"
 
-            has_upper = any(c.isupper() for c in stupass)
-            has_lower = any(c.islower() for c in stupass)
-            has_digit = any(c.isdigit() for c in stupass)
-            has_special = any(c in "!@#$%^&*()-_+=[]{}|\\;:'\",.<>/?`~" for c in stupass)
+            for ch in stupass:
+                if ch.isupper():
+                    has_upper = True
+                elif ch.islower():
+                    has_lower = True
+                elif ch.isdigit():
+                    has_digit = True
+                elif ch in special_chars:
+                    has_special = True
 
             if not (has_upper and has_lower and has_digit and has_special):
                 return render(request, 'admin_dashboard.html', {
                     'error': "Password must include uppercase, lowercase, digit, and special character.",
                     'userdata': student,
-                    'showform': True
+                    'showform': True,
+                    'users': users
                 })
 
         student.stuname = stuname

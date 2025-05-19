@@ -9,13 +9,14 @@
 {% block content %}
 
 <div class="container my-5">
-  <h1 class="text-center mb-4">Edit User</h1>
   
   {% if error %}
     <h2 class="text-center text-danger">{{ error }}</h2>
   {% endif %}
 
   {% if userdata and showform %}
+  <h1 class="text-center mb-4">Edit User</h1>
+
   <form action="{% url 'edituserdata' pk=userdata.id %}" method="post" enctype="multipart/form-data" class="row g-3 mb-4">
     {% csrf_token %}
 
