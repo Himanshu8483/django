@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Students, Book
 
+from django.db.models import Q
 # Public Pages
 def home(request):
     return render(request, 'home.html')

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}User Dashboard{% endblock %}
+{% block title %}Admin Dashboard{% endblock %}
 {% load static %}
 
 {% block css %}
@@ -115,7 +115,7 @@
   <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
     <h2 class="mb-0">All Registered Users</h2>
     <div class="d-flex gap-2">
-      <a href="{% url 'registration' %}" class="btn btn-success">Create Student</a>
+      <a href="{% url 'registration' %}" class="btn btn-success">Add Employee</a>
       <a href="{% url 'allquery' %}" class="btn btn-primary">All Queries</a>
     </div>
   </div>

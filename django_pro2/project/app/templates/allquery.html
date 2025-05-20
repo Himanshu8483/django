@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Home Page{% endblock %}
+{% block title %}Query{% endblock %}
 {% load static %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
@@ -18,23 +19,58 @@
 </div>
 
 <div class="container mt-4">
-  <form method="get" action="" class="container my-3">
+  <form method="get" action="{% url 'search' %}" class="container my-3">
     <div class="row g-2">
       <div class="col-md-8 col-sm-12">
         <input 
           type="text" 
-          name="q" 
+          name="search" 
           class="form-control" 
-          placeholder="Search by name" 
-          value="{{ search_term }}">
+          placeholder="Search by name or email" 
+          value="{{ pk|default:'' }}">
       </div>
       <div class="col-md-4 col-sm-12">
         <button type="submit" class="btn btn-primary w-100">Search</button>
       </div>
     </div>
   </form>
+<hr>
 
-  <div class="table-responsive">
+ <form method="post" action="{% url 'searchall' %}" class="container my-3">
+  {% csrf_token %}
+  <div class="row g-2 align-items-center">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <input 
+        type="text" 
+        name="stuname" 
+        class="form-control" 
+        placeholder="Search by name" 
+        value="{{ stuname|default:'' }}">
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <input 
+        type="text" 
+        name="stuemail" 
+        class="form-control" 
+        placeholder="Search by email" 
+        value="{{ stuemail|default:'' }}">
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <input 
+        type="text" 
+        name="title" 
+        class="form-control" 
+        placeholder="Search by title" 
+        value="{{ title|default:'' }}">
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <button type="submit" class="btn btn-primary w-100">Search</button>
+    </div>
+  </div>
+</form>
+
+
+  <div class="table-responsive mt-4">
     <table class="table table-bordered table-striped align-middle text-center">
       <thead class="table-light">
         <tr>
@@ -47,33 +83,68 @@
         </tr>
       </thead>
       <tbody>
-        {% for q in queries %}
-          <tr>
-            <td>{{ q.stuname }}</td>
-            <td>{{ q.stuemail }}</td>
-            <td>{{ q.title }}</td>
-            <td style="word-break: break-word;">{{ q.message }}</td>
-            <td style="max-width: 300px;">
-              {% if q.response %}
-                <details>
-                  <summary style="cursor: pointer;">✔️ {{ q.response|truncatechars:50 }}</summary>
-                  <div>{{ q.response }}</div>
-                </details>
-              {% else %}
-                ❌ Not yet responded
-              {% endif %}
-            </td>
-            <td>
-              <a href="{% url 'queryres' q.pk %}" class="btn btn-warning text-white">Respond</a>
-            </td>
-          </tr>
-        {% empty %}
+        {% if data %}
+          {% for q in data %}
+            <tr>
+              <td>{{ q.stuname }}</td>
+              <td>{{ q.stuemail }}</td>
+              <td>{{ q.title }}</td>
+              <td style="word-break: break-word;">{{ q.message }}</td>
+              <td style="max-width: 300px;">
+                {% if q.response %}
+                  <details>
+                    <summary style="cursor: pointer;">✔️ {{ q.response|truncatechars:50 }}</summary>
+                    <div>{{ q.response }}</div>
+                  </details>
+                {% else %}
+                  ❌ Not yet responded
+                {% endif %}
+              </td>
+              <td>
+                <a href="{% url 'queryres' q.pk %}" class="btn btn-warning text-white">Respond</a>
+              </td>
+            </tr>
+          {% endfor %}
+        {% elif queries %}
+          {% for q in queries %}
+            <tr>
+              <td>{{ q.stuname }}</td>
+              <td>{{ q.stuemail }}</td>
+              <td>{{ q.title }}</td>
+              <td style="word-break: break-word;">{{ q.message }}</td>
+              <td style="max-width: 300px;">
+                {% if q.response %}
+                  <details>
+                    <summary style="cursor: pointer;">✔️ {{ q.response|truncatechars:50 }}</summary>
+                    <div>{{ q.response }}</div>
+                  </details>
+                {% else %}
+                  ❌ Not yet responded
+                {% endif %}
+              </td>
+              <td>
+                <a href="{% url 'queryres' q.pk %}" class="btn btn-warning text-white">Respond</a>
+              </td>
+            </tr>
+          {% endfor %}
+        {% else %}
           <tr>
             <td colspan="6">No queries found.</td>
           </tr>
-        {% endfor %}
+        {% endif %}
       </tbody>
     </table>
   </div>
 </div>
 {% endblock %}
+
+
+    <div class="row g-2">
+      {% comment %} <div class="col-md-8 col-sm-12">
+        <input 
+          type="text" 
+          name="q" 
+          class="form-control" 
+          placeholder="Search by name" 
+          value="{{ search_term }}">
+      </div> {% endcomment %}

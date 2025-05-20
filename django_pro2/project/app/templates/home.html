@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}HireConnect - Home{% endblock %}
+{% block title %}CareerMint - Home{% endblock %}
 {% load static %}
 
 {% block css %}
@@ -16,7 +16,7 @@
   {% elif request.session.user == 'admin' %}
       <h2>Welcome, Admin!</h2>
   {% else %}
-      <h2>Welcome to HireConnect!</h2>
+      <h2>Welcome to CareerMint!</h2>
   {% endif %}
 </div>
 
@@ -45,7 +45,7 @@
 
 <!-- Welcome Message -->
 <div class="container mt-5 text-center">
-  <h1 class="display-4 fw-bold">Career in HireConnect</h1>
+  <h1 class="display-4 fw-bold">Career in CareerMint</h1>
   <p class="lead">Connecting talent with opportunity — Find jobs, hire professionals, and grow your career.</p>
 </div>
 
@@ -113,7 +113,7 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">Reports</h5>
-          <p class="card-text">Generate and download reports for student registrations and services.</p>
+          <p class="card-text">Generate and download reports for user registrations and services.</p>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
     </div>
     <div class="col-12 col-md-6 text-center text-md-start animate__animated animate__fadeInRight">
       <h2 class="mb-3">Join Thousands of Professionals</h2>
-      <p class="mb-4">HireConnect is your partner in career growth — discover jobs, connect with recruiters, and thrive professionally.</p>
+      <p class="mb-4">CareerMint is your partner in career growth — discover jobs, connect with recruiters, and thrive professionally.</p>
       <a href="{% url 'registration' %}" class="btn btn-primary px-4 py-2">Get Started</a>
     </div>
   </div>
@@ -142,9 +142,9 @@
       <p class="mb-4">With tools built for modern hiring needs, we help match talent with opportunity.</p>
       <a href="{% url 'login' %}" class="btn btn-success px-4 py-2 mb-4">Visit Your Profile</a>
     </div>
-    <div class="col-12 col-md-6 text-center">
-      <img src="{% static 'image/student.jpg' %}" class="rounded w-100 mx-auto" alt="Networking">
-    </div>
+          <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
+        <div class="image-slider rounded w-100 mx-auto "></div>
+      </div>
   </div>
 </section>
 
@@ -172,7 +172,7 @@
       <div class="card shadow-sm p-3 mb-5 bg-body rounded">
         <div class="card-body">
           <h5 class="card-title">Responsive Design</h5>
-          <p class="card-text">Use HireConnect on any device with our fully responsive platform.</p>
+          <p class="card-text">Use CareerMint on any device with our fully responsive platform.</p>
         </div>
       </div>
     </div>

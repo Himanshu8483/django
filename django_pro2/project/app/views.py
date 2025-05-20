@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Users, UserQuery   
-
+from django.db.models import Q
 def home(request):
     return render(request, 'home.html')
 
@@ -422,3 +422,28 @@ def desc1(request):
 #     else:
 #         queries = all_queries
 #     return render(request, 'allquery.html', {'queries': queries, 'search_term': query})
+
+
+# def search(request):
+#     pk = request.POST.get('search')
+#     all_data = UserQuery.objects.filter(Q(stuname__icontains=pk) | Q(stuemail__icontains=pk))
+    
+#     return render(request, 'allquery.html', {'data': all_data})
+
+
+def search(request):
+    pk = request.GET.get('search')
+    all_data = UserQuery.objects.filter(Q(stuname__icontains=pk) | Q(stuemail__icontains=pk))
+    return render(request, 'allquery.html', {'data': all_data, 'pk': pk})
+
+
+def searchall(request):
+    #  but not search by only fill one field requre to fill all input field 
+    if request.method == 'POST':
+        stuname=request.POST.get('stuname')
+        stuemail=request.POST.get('stuemail')
+        title=request.POST.get('title')
+        
+        all_data = UserQuery.objects.filter(Q(stuname__icontains=stuname) | Q(stuemail__icontains=stuemail) | Q(title__icontains=title))
+        return render(request, 'allquery.html', {'data': all_data})
+    return render(request, 'allquery.html')

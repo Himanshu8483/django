@@ -88,7 +88,28 @@
       <a href="{% url 'asc1' pk=userdata.id %}" class="btn btn-outline-info px-4 py-2 mb-2">Ascending Data</a>
       <a href="{% url 'desc1' pk=userdata.id %}" class="btn btn-outline-warning px-4 py-2 mb-2">Descending Data</a>
     </div>
+
   </div>
+
+
+  <form method="post" action="{% url 'search' pk=userdata.id %}" class="container my-3">
+    {% csrf_token %}
+    <div class="row g-2">
+      <div class="col-md-8 col-sm-12">
+        <input 
+          type="text" 
+          name="search" 
+          class="form-control" 
+          placeholder="Search by name or class or book" 
+          value="{{ pk|default:'' }}">
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+      </div>
+    </div>
+  </form>
+
+
 
   <div class="table-responsive">
     {% include "table.html" %}

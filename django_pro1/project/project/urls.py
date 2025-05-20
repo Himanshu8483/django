@@ -63,6 +63,8 @@ urlpatterns = [
     path('edituser/<int:pk>/', views.edituser, name='edituser'),
     # path('deleteuser/<int:pk>/', views.deleteuser, name='deleteuser'),
     path('edituserdata/<int:pk>/', views.edituserdata, name='edituserdata'),
+   
+    path('search/<int:pk>/', views.search, name='search'),
     
     
     
