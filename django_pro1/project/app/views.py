@@ -221,3 +221,9 @@ def edituserdata(request, pk):
 #     return redirect('admins')
 
     
+def search(request, pk):
+    user = Students.objects.get(id=pk)
+    find = request.POST.get('search')
+    all_data = Book.objects.filter(Q(student_name__icontains=find) | Q(clas__icontains=find) | Q(book_title__icontains=find))
+    return render(request, 'profile.html', {'data': all_data, 'find': find, 'userdata': user})
+
