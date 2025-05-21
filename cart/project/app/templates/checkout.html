@@ -1,0 +1,13 @@
+<h2>Checkout Page</h2>
+{% if cart %}
+  <ul>
+    {% for key, item in cart.items %}
+      <li>{{ item.name }} - ₹{{ item.price }} × {{ item.quantity }} = ₹{{ item.price|floatformat:2|floatformat:2 }}</li>
+    {% endfor %}
+  </ul>
+  <h3>Total to Pay: ₹{{ total }}</h3>
+  <p><strong>Note:</strong> Payment gateway coming soon...</p>
+  <a href="{% url 'clear_cart' %}">Clear Cart</a>
+{% else %}
+  <p>Your cart is empty. <a href="{% url 'product_list' %}">Go back to shopping</a></p>
+{% endif %}

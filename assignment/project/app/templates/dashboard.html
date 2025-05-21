@@ -1,0 +1,42 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>All Students with Age</h1>
+<a href="{% url 'homepage' %}">Back to Homepage</a>
+
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }} - Age: {{ student.age }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>All Teachers with Age</h1>
+    <ul>
+        {% for teacher in teachers %}
+            <li>{{ teacher.name }} - Age: {{ teacher.age }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>All Discounts</h1>
+    <ul>
+        {% for discount in discounts %}
+            <li>{{ discount.name }} - {{ discount.percentage }}% - 
+                {% if discount.active %}✅ Active{% else %}❌ Inactive{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h1>All Promotions</h1>
+    <ul>
+        {% for promo in promotions %}
+            <li><strong>{{ promo.title }}</strong>: {{ promo.description }} -
+                {% if promo.active %}✅ Active{% else %}❌ Inactive{% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
