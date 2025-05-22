@@ -45,8 +45,6 @@ class Promotion(Offer):
 
 
 # Q2 
-from django.db import models
-from datetime import date
 
 class Book(models.Model):
     title = models.CharField(max_length=100)

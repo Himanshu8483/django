@@ -23,7 +23,6 @@ def homepage(request):
 
     return render(request, 'homepage.html', context)
 
-
 from django.shortcuts import render
 from .models import Student, Teacher, Discount, Promotion
 

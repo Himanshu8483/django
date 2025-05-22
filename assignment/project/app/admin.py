@@ -14,12 +14,12 @@
 # from yourapp.models import Student, Teacher, Discount, Promotion
 
 # # Create some students and teachers
-# student1 = Student.objects.create(name="Alice", birth_date=date(2000, 5, 15))
-# teacher1 = Teacher.objects.create(name="Mr. Smith", birth_date=date(1980, 10, 30))
+# student1 = Student.objects.create(name="Himanshu", birth_date=date(2000, 5, 15))
+# teacher1 = Teacher.objects.create(name="Mr. Neeraj", birth_date=date(1980, 10, 30))
 
 # # Calculate ages
-# print(student1.name, "age:", student1.calculate_age())  # Alice age
-# print(teacher1.name, "age:", teacher1.calculate_age())  # Mr. Smith age
+# print(student1.name, "age:", student1.calculate_age())  # Himanshu age
+# print(teacher1.name, "age:", teacher1.calculate_age())  # Mr. Neeraj age
 
 # # Create discount and promotion offers
 # discount1 = Discount.objects.create(
@@ -66,8 +66,6 @@
 # # Check recent books (published this year or last year)
 # for b in RecentBook.objects.all():
 #     print(b.title, "is recent?", b.is_recent())
-
-
 
 from django.contrib import admin
 from .models import Student, Teacher
