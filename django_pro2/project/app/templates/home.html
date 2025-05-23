@@ -121,7 +121,61 @@
   
  
 <!-- About Section -->
-<section class="container-fluid py-5">
+<div id="videoTextCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <section class="container-fluid py-5">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
+            <video autoplay muted loop class="rounded w-100 animate__animated animate__fadeInLeft" style="max-height: 400px;">
+              <source src="{% static 'video/djangovid.mp4' %}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="col-12 col-md-6 text-center text-md-start animate__animated animate__fadeInRight">
+            <h2 class="mb-3">Join Thousands of Professionals</h2>
+            <p class="mb-4">CareerMint is your partner in career growth — discover jobs, connect with recruiters, and thrive professionally.</p>
+            <a href="{% url 'registration' %}" class="btn btn-primary px-4 py-2">Get Started</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <section class="container-fluid py-5">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
+            <video autoplay muted loop class="rounded w-100 animate__animated animate__fadeInLeft" style="max-height: 400px;">
+              <source src="{% static 'video/djangovideo.mp4' %}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="col-12 col-md-6 text-center text-md-start animate__animated animate__fadeInRight">
+            <h2 class="mb-3">With tools built for modern hiring needs.</h2>
+            <p class="mb-4">CareerMint is your partner in career growth — discover jobs, connect with recruiters, and thrive professionally.</p>
+            <a href="{% url 'registration' %}" class="btn btn-primary px-4 py-2">Get Started</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#videoTextCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#videoTextCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+{% comment %} <section class="container-fluid py-5">
   <div class="row align-items-center">
     <div class="col-12 col-md-6 text-center mb-4 mb-md-0">
       <video autoplay muted loop class="rounded w-100 animate__animated animate__fadeInLeft" style="max-height: 400px;" src="{% static 'video/djangovid.mp4' %}"></video>
@@ -132,8 +186,7 @@
       <a href="{% url 'registration' %}" class="btn btn-primary px-4 py-2">Get Started</a>
     </div>
   </div>
-</section>
-
+</section> {% endcomment %}
 <!-- Additional Section -->
 <section class="container-fluid py-5">
   <div class="row align-items-center">
@@ -147,6 +200,7 @@
       </div>
   </div>
 </section>
+
 
 <!-- Features Section -->
 <div class="container my-5">

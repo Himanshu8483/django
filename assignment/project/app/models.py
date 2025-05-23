@@ -1,7 +1,9 @@
+# Name: Himanshu Kushwaha Batch: P43 
+
 from django.db import models
 from datetime import date
 
-# Q1 
+# Q.1 
 class Person(models.Model):
     birth_date = models.DateField()
 
@@ -22,7 +24,7 @@ class Student(Person):
 class Teacher(Person):
     name= models.CharField(max_length=50)
     
-    
+# -------------------------------------------------
 class Offer(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
@@ -42,9 +44,7 @@ class Promotion(Offer):
     title = models.CharField(max_length=100)
     description = models.TextField()
 
-
-
-# Q2 
+# Q.2 
 
 class Book(models.Model):
     title = models.CharField(max_length=100)

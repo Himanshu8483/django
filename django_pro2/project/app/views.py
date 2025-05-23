@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Users, UserQuery   
+from django.core.paginator import Paginator
+
 from django.db.models import Q
 def home(request):
     return render(request, 'home.html')
@@ -174,10 +176,17 @@ def register(request):
 
     return render(request, 'registration.html')
 
+# def allquery(request):
+#     queries = UserQuery.objects.all().order_by('-created_at')
+#     return render(request, 'allquery.html', {'queries': queries})
+
 def allquery(request):
     queries = UserQuery.objects.all().order_by('-created_at')
-    return render(request, 'allquery.html', {'queries': queries})
+    paginator = Paginator(queries, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
+    return render(request, 'allquery.html', {'page_obj': page_obj, 'queries': page_obj})
 
 def queryres(request, pk):
     query = UserQuery.objects.get(id=pk)
