@@ -416,12 +416,19 @@ def last1(request):
     return render(request, 'allquery.html', {'queries': queries})
 
 def asc1(request):
-    queries = UserQuery.objects.order_by('stuname')       # in ascending order by name
-    return render(request, 'allquery.html', {'queries': queries})
+    queries = UserQuery.objects.order_by('stuname')
+    paginator = Paginator(queries, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'allquery.html', {'page_obj': page_obj, 'queries': page_obj})
 
 def desc1(request):
     queries = UserQuery.objects.order_by('-stuname')       # in descending order by name
-    return render(request, 'allquery.html', {'queries': queries}) 
+    paginator = Paginator(queries, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'allquery.html', {'page_obj': page_obj, 'queries': page_obj})
 
 # def search(request):
 #     query = request.GET.get('q')
