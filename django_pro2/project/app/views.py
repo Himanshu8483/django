@@ -446,20 +446,44 @@ def desc1(request):
     
 #     return render(request, 'allquery.html', {'data': all_data})
 
+# without pagination 
 
+
+
+
+
+
+# with pagination 
 def search(request):
-    pk = request.GET.get('search')
-    all_data = UserQuery.objects.filter(Q(stuname__icontains=pk) | Q(stuemail__icontains=pk))
-    return render(request, 'allquery.html', {'data': all_data, 'pk': pk})
+    pk = request.GET.get('search', '')
+    data = UserQuery.objects.filter(Q(stuname__icontains=pk) | Q(stuemail__icontains=pk)) if pk else UserQuery.objects.all()
+
+    paginator = Paginator(data, 5)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'pk': pk,
+    }
+    return render(request, 'allquery.html', context)
 
 
 def searchall(request):
-    #  but not search by only fill one field requre to fill all input field 
     if request.method == 'POST':
-        stuname=request.POST.get('stuname')
-        stuemail=request.POST.get('stuemail')
-        title=request.POST.get('title')
-        
-        all_data = UserQuery.objects.filter(Q(stuname__icontains=stuname) | Q(stuemail__icontains=stuemail) | Q(title__icontains=title))
-        return render(request, 'allquery.html', {'data': all_data})
+        stuname = request.POST.get('stuname', '').strip()
+        stuemail = request.POST.get('stuemail', '').strip()
+        title = request.POST.get('title', '').strip()
+
+        if stuname or stuemail or title:
+            data = UserQuery.objects.filter(
+                Q(stuname__icontains=stuname),
+                Q(stuemail__icontains=stuemail),
+                Q(title__icontains=title)
+            )
+        else:
+            data = []  # return empty list if any field is missing
+
+        return render(request, 'allquery.html', {'queries': data, 'stuname': stuname, 'stuemail': stuemail, 'title': title})
+
     return render(request, 'allquery.html')

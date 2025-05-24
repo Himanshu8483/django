@@ -1,3 +1,22 @@
 Cookies and Sessions:
 API
 Application: 
+type of api: 
+free/public, private, partner, composite 
+restapi: representaional state transfer
+1. stateless(without permission cannot access)
+2. client and server both are seperated and independent to eachother 
+2. commmon interface used in b/w client-server side
+3. only single protocol used that is http
+4. data transmit / transfer through json format over http protocol
+
+HTTP Methods: 
+endpoint is 2 in restapi single table: get(all_student, single student), post(detail), put(single): complete override, patch(partial update), delete
+1. endpoint: list/ :for GET AND POST , detail<int:pk>/ :for remaining put, patch, get, delete
+only get is safe because not send in database
+partial = true
+
+serialization and deserialaization
+database -> complex_data(<query_set>) -> serializer (technique to convert in python), (get) -> python_data -> json_data -> api 
+api -> json_data -> python_data -> deserializer(post, put, patch, delete) -> complex_data -> database for store 
+
