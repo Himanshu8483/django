@@ -20,3 +20,6 @@ serialization and deserialaization
 database -> complex_data(<query_set>) -> serializer (technique to convert in python), (get) -> python_data -> json_data -> api 
 api -> json_data -> python_data -> deserializer(post, put, patch, delete) -> complex_data -> database for store 
 
+postman, in vs code 
+django drf rest freamework
+requirements of version
