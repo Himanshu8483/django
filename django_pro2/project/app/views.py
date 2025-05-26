@@ -105,6 +105,8 @@ def register(request):
         stuphone = request.POST.get('stuphone')
         studob = request.POST.get('studob')
         stuedu = request.POST.getlist('stuedu')
+        stuedu = ", ".join(stuedu)  # convert list to comma-separated string
+        
         stugender = request.POST.get('stugender')
         stupass = request.POST.get('stupass')
         cpass = request.POST.get('cpass')
@@ -246,6 +248,7 @@ def edituserdata(request, pk):
         studetail = request.POST.get('studetail')
         studob = request.POST.get('studob')
         stuedu = request.POST.getlist('stuedu')
+        stuedu = ", ".join(stuedu)  # convert list to comma-separated string
         stugender = request.POST.get('stugender')
         stuimage = request.FILES.get('stuimage')
         sturesume = request.FILES.get('sturesume')
