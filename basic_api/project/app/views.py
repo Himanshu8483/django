@@ -30,23 +30,17 @@ def student_list(request):
     if request.method == 'POST':
         json_data = request.body
         print(json_data)
-        steam = io.BytesIO(json_data)
+        steam=io.BytesIO(json_data)
         python_data = JSONParser().parse(steam)
         serializer = StudentSerializer(data=python_data)
         if serializer.is_valid():
             serializer.save()
-            res = {'msg': 'Data Created'}
-            json_data = JSONRenderer().render(res)
+            res={'msg':'Data Created'}
+            json_data= JSONRenderer().render(res)
             return HttpResponse(json_data, content_type='application/json')
-        json_data = JSONRenderer().render(serializer.errors)
-        return HttpResponse(json_data, content_type='application/json')
-
-    # Default response for other methods (like GET)
-    return HttpResponse(
-        JSONRenderer().render({'msg': 'Only POST method allowed'}),
-        content_type='application/json',
-        status=405  # Method Not Allowed
-    )
+        else:
+            json_data = JSONRenderer().render(serializer.errors)
+            return HttpResponse(json_data, content_type = 'application/json')
 
 def student_detail(request, pk):
     user = Student.objects.get(pk=pk)
