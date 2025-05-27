@@ -23,3 +23,18 @@ api -> json_data -> python_data -> deserializer(post, put, patch, delete) -> com
 postman, in vs code 
 django drf rest freamework
 requirements of version
+
+
+always use safe = false because it return only dictionary but when get all data it return list of dictionary so use safe = false
+
+debuging is important to perform 
+
+
+
+
+
+
+
+
+
+
