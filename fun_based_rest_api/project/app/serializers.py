@@ -25,3 +25,4 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         # fields = "__all__"
         fields = ['id', 'name', 'age', 'city', 'active']
+
