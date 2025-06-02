@@ -1,5 +1,5 @@
 
-# # ------------------------ViewSets-----------------------------------
+# # ------------------------ViewSets-----------------------------------: No built-in actions. You define them manually: 
 # # During dispatch, the following attributes are available on the ViewSet.
 # # basename - the base to use for the URL names that are created.
 # # action - the name of the current action (e.g., list, create).
@@ -68,26 +68,46 @@
 #         stu.delete()
 #         return Response({'msg':'Data Deleted'})
     
-    
-    # ModelViewSet : Full CRUD: list(), create(), retrieve(), update(), destroy()
-# from rest_framework import status, viewsets
-# from rest_framework.response import Response
-# from .serializers import StudentSerializer
+#  GenericViewSet	: GenericViewSet: gives you the foundation and reusable tools like get_queryset() or get_serializer().
+# Mixins: give you the actual API behavior/actions (GET, POST, PUT, DELETE, etc.).
+# So, you combine them based on what actions you want in your ViewSet. 
+# from rest_framework import viewsets, mixins
 # from .models import Student
-# class StudentViewSet(viewsets.ModelViewSet):
+# from .serializers import StudentSerializer
+
+# class StudentViewSet(mixins.ListModelMixin,
+#                      mixins.CreateModelMixin,
+#                      mixins.RetrieveModelMixin,
+#                      mixins.UpdateModelMixin,
+#                      mixins.DestroyModelMixin,
+#                      viewsets.GenericViewSet):
 #     """
-#     A simple ViewSet for viewing and editing accounts.
+#     ViewSet for listing, creating, retrieving, and updating Students.
 #     """
 #     queryset = Student.objects.all()
 #     serializer_class = StudentSerializer
 
- # ReadOnlyModelViewSet : Only list() and retrieve() for read-only APIs
-from rest_framework import viewsets
+
+    
+    # ModelViewSet : Full CRUD: list(), create(), retrieve(), update(), destroy(): 
+from rest_framework import status, viewsets
+from rest_framework.response import Response
 from .serializers import StudentSerializer
 from .models import Student
-class StudentViewSet(viewsets.ReadOnlyModelViewSet):
+class StudentViewSet(viewsets.ModelViewSet):
     """
-    A simple ViewSet for viewing accounts.
+    A simple ViewSet for viewing and editing accounts.
     """
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
+ # ReadOnlyModelViewSet : Only list() and retrieve() for read-only APIs
+# from rest_framework import viewsets
+# from .serializers import StudentSerializer
+# from .models import Student
+# class StudentViewSet(viewsets.ReadOnlyModelViewSet):
+#     """
+#     A simple ViewSet for viewing accounts.
+#     """
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
