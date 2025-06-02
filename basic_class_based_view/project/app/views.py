@@ -33,7 +33,7 @@ class Detail(APIView):
     """
     def get_object(self, pk):
         try:
-            return Student.objects.get(id=pk)   # why pk = pk in drf not id = pk
+            return Student.objects.get(id=pk)   
         except Student.DoesNotExist:
             raise Http404
 
@@ -56,39 +56,39 @@ class Detail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Using mixins 
-from .models import *
-from .serializers import *
-from rest_framework import mixins
-from rest_framework import generics
+# # Using mixins 
+# from .models import *
+# from .serializers import *
+# from rest_framework import mixins
+# from rest_framework import generics
 
-class Home(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+# class Home(mixins.ListModelMixin,
+#                   mixins.CreateModelMixin,
+#                   generics.GenericAPIView):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
     
-class Detail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+# class Detail(mixins.RetrieveModelMixin,
+#                     mixins.UpdateModelMixin,
+#                     mixins.DestroyModelMixin,
+#                     generics.GenericAPIView):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
     
     
 
