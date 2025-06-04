@@ -18,11 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from app.views import StudentViewSet
+from app.views import ProfessorViewSet
+from app.views import AdminViewSet
 
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'student', StudentViewSet)
+router.register(r'professor', ProfessorViewSet)
+router.register(r'admin', AdminViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
