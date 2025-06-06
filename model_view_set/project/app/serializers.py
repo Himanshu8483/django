@@ -33,3 +33,8 @@ class AdminSerializer(serializers.ModelSerializer):
     class Meta:
         model = Admin
         fields = "__all__"
+        
+class WorkerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Worker
+        fields = "__all__"

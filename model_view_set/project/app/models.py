@@ -30,3 +30,13 @@ class Admin(models.Model):
     def __str__(self):
         return self.name
     
+class Worker(models.Model):
+    name= models.CharField(max_length=50)
+    work= models.CharField(max_length=50)
+    contact = models.IntegerField()
+    active = models.BooleanField(default=True) 
+
+    
+    def __str__(self):
+        return self.name
+    

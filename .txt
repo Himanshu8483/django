@@ -38,3 +38,5 @@ debuging is important to perform
 
 
 
+authentication and permission
+project or object level but use project level(settings.py) not in views 
