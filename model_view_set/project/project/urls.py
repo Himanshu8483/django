@@ -21,6 +21,7 @@ from app.views import StudentViewSet
 from app.views import ProfessorViewSet
 from app.views import AdminViewSet
 from app.views import WorkerViewSet
+from rest_framework.authtoken import views
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -36,6 +37,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-token-auth/', views.obtain_auth_token),
 
 ]
