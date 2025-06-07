@@ -21,6 +21,7 @@ from app.views import StudentViewSet
 from app.views import ProfessorViewSet
 from app.views import AdminViewSet
 from app.views import WorkerViewSet
+from app.views import CustomAuthToken
 from rest_framework.authtoken import views
 
 
@@ -31,6 +32,13 @@ router.register(r'professor', ProfessorViewSet)
 router.register(r'admins', AdminViewSet)
 router.register(r'worker', WorkerViewSet)
 
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
@@ -38,6 +46,17 @@ urlpatterns = [
     
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api-token-auth/', views.obtain_auth_token),
+    
+    # get token 
+    # path('api-token-auth/', views.obtain_auth_token),
+    
+    # get id username etc detail 
+    path('api-token-auth/', CustomAuthToken.as_view()),
+    
+    
+    # by simple jwt 
+    
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]
