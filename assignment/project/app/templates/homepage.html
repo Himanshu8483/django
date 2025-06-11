@@ -24,6 +24,14 @@
         <p>No discount found.</p>
     {% endif %}
 
-    
+    <h1>Book Info</h1>
+    {% if book %}
+        <p>Title: {{ book.title }}</p>
+        <p>Published: {{ book.published_date }}</p>
+        <p>Formatted: {{ formatted_details }}</p>
+        <p>Is Recent: {% if is_recent %}Yes{% else %}No{% endif %}</p>
+    {% else %}
+        <p>No book found.</p>
+    {% endif %}
 </body>
 </html>
