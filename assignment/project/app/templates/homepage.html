@@ -1,1 +1,39 @@
+<!-- templates/homepage.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Model Methods Output</title>
+</head>
+<body>
+    <h1>Student Info</h1>
+<a href="{% url 'dashboard' %}">See User Data</a>
+    {% if student %}
+        <p>Name: {{ student.name }}</p>
+        <p>Birth Date: {{ student.birth_date }}</p>
+        <p>Age: {{ student_age }}</p>
+    {% else %}
+        <p>No student found.</p>
+    {% endif %}
+
+    <h1>Discount Info</h1>
+    {% if discount %}
+        <p>Name: {{ discount.name }}</p>
+        <p>Percentage: {{ discount.percentage }}%</p>
+        <p>Status: {% if is_discount_active %}Active{% else %}Expired{% endif %}</p>
+    {% else %}
+        <p>No discount found.</p>
+    {% endif %}
+
+    <h1>Book Info</h1>
+    {% if book %}
+        <p>Title: {{ book.title }}</p>
+        <p>Published: {{ book.published_date }}</p>
+        <p>Formatted: {{ formatted_details }}</p>
+        <p>Is Recent: {% if is_recent %}Yes{% else %}No{% endif %}</p>
+    {% else %}
+        <p>No book found.</p>
+    {% endif %}
+</body>
+</html>
+
 
