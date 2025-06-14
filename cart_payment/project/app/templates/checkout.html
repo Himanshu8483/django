@@ -1,0 +1,52 @@
+<h2>Checkout Page</h2>
+{% if cart %}
+  <ul>
+    {% for key, item in cart.items %}
+      <li>{{ item.name }} - ₹{{ item.price }} × {{ item.quantity }}</li>
+    {% endfor %}
+  </ul>
+  <h3>Total to Pay: ₹{{ total }}</h3>
+
+  <form action="{% url 'paymenthandler' %}" method="POST">
+  {% csrf_token %}
+  <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="{{ razorpay_merchant_key }}"
+    data-amount="{{ razorpay_amount }}"
+    data-currency="{{ currency }}"
+    data-order_id="{{ razorpay_order_id }}"
+    data-buttontext="Pay with Razorpay"
+    data-name="Test Store"
+    data-description="Test Transaction"
+    data-image="https://your-logo-url"
+    data-prefill.name="Test User"
+    data-prefill.email="test@example.com"
+    data-theme.color="#F37254">
+  </script>
+</form> 
+
+{% comment %} <form action="{% url 'paymenthandler' %}" method="POST">
+    {% csrf_token %}
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="{{ razorpay_merchant_key }}"
+        data-amount="{{ razorpay_amount }}"
+        data-currency="INR"
+        data-order_id="{{ razorpay_order_id }}"
+        data-buttontext="Pay Now"
+        data-name="Your Shop"
+        data-description="Product Purchase"
+        data-image=""
+        data-prefill.name="Customer Name"
+        data-theme.color="#F37254">
+    </script>
+    <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+    <input type="hidden" name="razorpay_order_id" id="razorpay_order_id">
+    <input type="hidden" name="razorpay_signature" id="razorpay_signature">
+</form> {% endcomment %}
+
+
+  <a href="{% url 'clear_cart' %}">Clear Cart</a>
+{% else %}
+  <p>Your cart is empty. <a href="{% url 'product_list' %}">Go back to shopping</a></p>
+{% endif %}

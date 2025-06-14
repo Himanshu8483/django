@@ -49,3 +49,8 @@ in postman:
 key : autherization
 Token 588e5437ac336688c9658e4beed7b0264e8752fc
 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5Mjg3MTg0LCJpYXQiOjE3NDkyODY4ODQsImp0aSI6ImZhYTk1YjhhOTRjNDQxNDNiZTFkOTE5YjJhYTNhMjY2IiwidXNlcl9pZCI6M30.e3Zg6HJmENFGWG34HdVPPaXFr3qttiYw_zrzCPWysOE
+
+
+
+
+F:\Notes\django\payment_gateway\project>pip install setuptools
