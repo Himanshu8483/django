@@ -1,28 +1,7 @@
-{% comment %} <h2>Author List</h2>
+<h2>Author List</h2>
 <ul>
   {% for item in authors %}
     <li>{{ item.name }} - {{ item.email }}</li>
   {% endfor %}
 </ul>
-{{ authors.paginator.num_pages }} pages {% endcomment %}
-
-def author_list(request):
-    authors = Author.objects.all()
-
-    search_query = request.GET.get('search', '')
-    if search_query:
-        authors = authors.filter(name__icontains=search_query)
-
-    sort_by = request.GET.get('sort', '')
-    if sort_by in ['name', '-name']:
-        authors = authors.order_by(sort_by)
-
-    paginator = Paginator(authors, 5)
-    page = request.GET.get('page')
-    authors = paginator.get_page(page)
-
-    return render(request, 'author_list.html', {
-        'authors': authors,
-        'search_query': search_query,
-        'sort_by': sort_by,
-    })
+{{ authors.paginator.num_pages }} pages

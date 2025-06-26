@@ -1,7 +1,7 @@
 <h2>Author List</h2>
 <ul>
-  {% for item in authors %}
-    <li>{{ item.name }} - {{ item.email }}</li>
+  {% for item in records %}
+    <li>{{ item.book }} - {{ item.borrow_date }}</li>
   {% endfor %}
 </ul>
-{{ authors.paginator.num_pages }} pages
+{{ records.paginator.num_pages }} pages
