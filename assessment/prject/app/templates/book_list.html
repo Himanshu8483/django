@@ -1,0 +1,49 @@
+{% comment %} <h2>Author List</h2>
+<ul>
+  {% for item in authors %}
+    <li>{{ item.name }} - {{ item.email }}</li>
+  {% endfor %}
+</ul>
+{{ authors.paginator.num_pages }} pages {% endcomment %}
+
+
+<h2>Book List</h2>
+
+<form method="get" style="margin-bottom: 20px;">
+  <input type="text" name="search" value="{{ search_query }}" placeholder="Search by title">
+
+  <select name="genre">
+    <option value="">All Genres</option>
+    {% for genre in genres %}
+      <option value="{{ genre }}" {% if genre == genre_filter %}selected{% endif %}>{{ genre }}</option>
+    {% endfor %}
+  </select>
+
+  <select name="sort">
+    <option value="">Sort By</option>
+    <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Title (A-Z)</option>
+    <option value="-title" {% if sort_by == '-title' %}selected{% endif %}>Title (Z-A)</option>
+    <option value="published_date" {% if sort_by == 'published_date' %}selected{% endif %}>Date ↑</option>
+    <option value="-published_date" {% if sort_by == '-published_date' %}selected{% endif %}>Date ↓</option>
+  </select>
+
+  <button type="submit">Apply</button>
+</form>
+
+<ul>
+  {% for book in books %}
+    <li>{{ book.title }} - {{ book.genre }} - {{ book.published_date }}</li>
+  {% empty %}
+    <li>No books found.</li>
+  {% endfor %}
+</ul>
+
+<div>
+  Page: {{ books.number }} of {{ books.paginator.num_pages }}
+  {% if books.has_previous %}
+    <a href="?page={{ books.previous_page_number }}&search={{ search_query }}&genre={{ genre_filter }}&sort={{ sort_by }}">Prev</a>
+  {% endif %}
+  {% if books.has_next %}
+    <a href="?page={{ books.next_page_number }}&search={{ search_query }}&genre={{ genre_filter }}&sort={{ sort_by }}">Next</a>
+  {% endif %}
+</div>
